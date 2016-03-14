@@ -16,10 +16,16 @@
     = f.label :kind
     = f.number_field :kind
   .field
+    = f.label :started_at
+    = f.datetime_select :started_at
+  .field
+    = f.label :ended_at
+    = f.datetime_select :ended_at
+  .field
     = f.label :message
     = f.text_area :message
   .field
     = f.label :note
     = f.text_area :note
   .actions
-    = f.submit 'Save'
+    = f.submit t('views.save')

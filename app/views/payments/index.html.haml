@@ -1,13 +1,16 @@
-%h1 Listing payments
+= provide :title, t('activerecord.models.payment') + t('views.index')
+%h2= t('activerecord.models.payment') + t('views.index')
 
 %table
   %thead
     %tr
-      %th Payday
-      %th Amount
-      %th Kind
-      %th Message
-      %th Note
+      %th= t('activerecord.attributes.payment.payday')
+      %th= t('activerecord.attributes.payment.amount')
+      %th= t('activerecord.attributes.payment.kind')
+      %th= t('activerecord.attributes.payment.started_at')
+      %th= t('activerecord.attributes.payment.ended_at')
+      %th= t('activerecord.attributes.payment.message')
+      %th= t('activerecord.attributes.payment.note')
       %th
       %th
       %th
@@ -18,12 +21,14 @@
         %td= payment.payday
         %td= payment.amount
         %td= payment.kind
+        %td= payment.started_at
+        %td= payment.ended_at
         %td= payment.message
         %td= payment.note
-        %td= link_to 'Show', payment
-        %td= link_to 'Edit', edit_payment_path(payment)
-        %td= link_to 'Destroy', payment, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %td= link_to t('views.show'), payment
+        %td= link_to t('views.edit'), edit_payment_path(payment)
+        %td= link_to t('views.delete'), payment, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 
-= link_to 'New Payment', new_payment_path
+= link_to t('views.new'), new_payment_path

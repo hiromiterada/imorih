@@ -1,0 +1,13 @@
+ja:
+  activerecord:
+    models:
+      payment: お支払い
+    attributes:
+      payment:
+        payday: 日付
+        amount: 金額
+        kind: 区分
+        started_at: 対象開始
+        ended_at: 対象終了
+        message: オーナーからのメッセージ
+        note: 備考

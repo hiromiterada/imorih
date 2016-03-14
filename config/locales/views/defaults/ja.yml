@@ -1,0 +1,12 @@
+ja:
+  views:
+    index: '一覧'
+    new: '新規登録'
+    show: '詳細'
+    edit: '編集'
+    delete: '削除'
+    back: '一覧に戻る'
+    save: '保存'
+    signout: ログアウト
+    signin: ログイン
+    signup: 会員登録
