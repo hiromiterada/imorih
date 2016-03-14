@@ -1,0 +1,47 @@
+en:
+  devise:
+    sessions:
+      new:
+        title: Log in
+        submit: Log in
+    registrations:
+      new:
+        title: Sign up
+        submit: Sign up
+      edit:
+        title: Edit email and password
+        submit: Update
+        currently_waiting_confirmation_for: 'Currently waiting confirmation for: %{email}'
+        leave_blank_if_you_dont_want_to_change_it: (leave blank if you don't want to change it)
+        we_need_your_current_password_to_confirm_your_changes: (we need your current password to confirm your changes)
+        remove_account: Cancel my account
+        confirm: Are you sure?
+        unhappy: Unhappy?
+        back: Back
+    confirmations:
+      new:
+        title: Resend confirmation instructions
+        submit: Resend confirmation instructions
+    passwords:
+      new:
+        title: Forgot your password?
+        submit: Send me reset password instructions
+      edit:
+        title: Change your password
+        submit: Change my password
+        new_password: New password
+        confirm_new_password: Confirm new password
+    mailer:
+      confirmation_instructions:
+        welcome: 'Welcome %{email}!'
+        info: 'You can confirm your account email through the link below:'
+        link: Confirm my account
+      reset_password_instructions:
+        hello: 'Hello %{email}!'
+        info: Someone has requested a link to change your password. You can do this through the link below.
+        link: Change my password
+        notice1: If you didn't request this, please ignore this email.
+        notice2: Your password won't change until you access the link above and create a new one.
+      password_change: 
+        hello: 'Hello %{email}!'
+        info: We're contacting you to notify you that your password has been changed.

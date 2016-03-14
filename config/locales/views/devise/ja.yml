@@ -1,0 +1,47 @@
+ja:
+  devise:
+    sessions:
+      new:
+        title: ログイン
+        submit: ログイン
+    registrations:
+      new:
+        title: 会員登録
+        submit: 登録
+      edit:
+        title: メールアドレスおよびパスワードの変更
+        submit: 更新
+        currently_waiting_confirmation_for: '%{email}は承認待ちです。確認メールの内容に従って本登録を行ってください。'
+        leave_blank_if_you_dont_want_to_change_it: （変更の必要がなければ、空にしておいて下さい。）
+        we_need_your_current_password_to_confirm_your_changes: （認証のため現在のパスワードを入力して下さい。）
+        remove_account: アカウントを削除
+        confirm: 本当によろしいですか？
+        unhappy: アカウントを削除します。よろしければ「アカウントを削除」ボタンをクリックしてください。元に戻すことはできませんのでご注意ください。 
+        back: 戻る
+    confirmations:
+      new:
+        title: 確認メールの再送信
+        submit: 確認メールの再送信
+    passwords:
+      new:
+        title: パスワード再発行
+        submit: パスワード再発行
+      edit:
+        title: パスワード変更
+        submit: 更新
+        new_password: 新しいパスワード
+        confirm_new_password: 新しいパスワード（再入力）
+    mailer:
+      confirmation_instructions:
+        welcome: '%{email}様'
+        info: この度は「imoriH」にご登録いただきありがとうございます。正式なご登録は以下のリンクをクリックしてください。
+        link: 正式会員登録（無料）はこちら
+      reset_password_instructions:
+        hello: '%{email}様'
+        info: パスワードを再発行するには以下のリンクをクリックして手続きを行ってください。
+        link: パスワード再発行はこちら
+        notice1: このメールにお心当たりのない方は破棄してください。
+        notice2: 上記のリンクにアクセスするまで新しいパスワードは発行されません。ご注意ください。
+      password_change: 
+        hello: '%{email}様'
+        info: パスワードが変更されました。

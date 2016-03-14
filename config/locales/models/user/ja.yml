@@ -1,0 +1,12 @@
+ja:
+  activerecord:
+    models:
+      user: 会員 
+    attributes:
+      user:
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: パスワード（再入力）
+        current_password: 現在のパスワード
+        remember_me: ログインしたままにする
+

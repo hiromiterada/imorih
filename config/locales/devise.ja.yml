@@ -34,6 +34,8 @@ ja:
 #      send_instructions: 'You will receive an email with instructions about how to reset your password in a few minutes.'
       updated: 'パスワードを変更しました。'
 #      updated: 'Your password was changed successfully. You are now signed in.'
+      user:
+        updated_not_active: 'パスワードを変更しました。'
     confirmations:
       send_instructions: '登録方法を数分以内にメールでご連絡します。'
 #      send_instructions: 'You will receive an email with instructions about how to confirm your account in a few minutes.'
@@ -46,6 +48,9 @@ ja:
 #      updated: 'You updated your account successfully.'
       destroyed: 'アカウントを削除しました。またのご利用をお待ちしております。'
 #      destroyed: 'Bye! Your account was successfully cancelled. We hope to see you again soon.'
+      user:
+        signed_up_but_unconfirmed: '確認メールを送信しました。メールの内容に従って本登録を行ってください。'
+        update_needs_confirmation: '確認メールを送信しました。メールの内容に従って本登録を行ってください。'
     unlocks:
       send_instructions: 'アカウントの凍結解除方法を数分以内にメールでご連絡します。'
 #      send_instructions: 'You will receive an email with instructions about how to unlock your account in a few minutes.'
