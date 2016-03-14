@@ -70,6 +70,6 @@ class PaymentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def payment_params
-      params.require(:payment).permit(:payday, :amount, :kind, :message, :note)
+      params.require(:payment).permit(:payday, :amount, :kind, :started_at, :ended_at, :message, :note)
     end
 end

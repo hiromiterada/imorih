@@ -17,13 +17,15 @@ ActiveRecord::Schema.define(version: 20160314062525) do
   enable_extension "plpgsql"
 
   create_table "payments", force: :cascade do |t|
-    t.date     "payday"
-    t.integer  "amount"
-    t.integer  "kind"
+    t.date     "payday",                 null: false
+    t.integer  "amount",                 null: false
+    t.integer  "kind",       default: 0, null: false
+    t.datetime "started_at",             null: false
+    t.datetime "ended_at",               null: false
     t.text     "message"
     t.text     "note"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "users", force: :cascade do |t|
