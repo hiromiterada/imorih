@@ -34,8 +34,8 @@ ja:
     mailer:
       confirmation_instructions:
         welcome: '%{email}様'
-        info: この度は「imoriH」にご登録いただきありがとうございます。正式なご登録は以下のリンクをクリックしてください。
-        link: 正式会員登録（無料）はこちら
+        info: この度は「imoriH」にご登録いただきありがとうございます。以下のリンクをクリックしてメールアドレスを承認していただくと本登録となります。
+        link: 会員登録（無料）およびメールアドレスの承認はこちら
       reset_password_instructions:
         hello: '%{email}様'
         info: パスワードを再発行するには以下のリンクをクリックして手続きを行ってください。

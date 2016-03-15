@@ -9,4 +9,15 @@ ja:
         password_confirmation: パスワード（再入力）
         current_password: 現在のパスワード
         remember_me: ログインしたままにする
-
+        reset_password_token: パスワード再発行トークン
+        reset_password_sent_at: パスワード再発行メールの送信時刻
+        remember_created_at: 「ログインをそのままにする」の設定時刻
+        sign_in_count: これまでのログイン回数
+        current_sign_in_at: ログインした時刻
+        last_sign_in_at: 最後にログインした時刻
+        current_sign_in_ip: ログインした端末のIPアドレス
+        last_sign_in_ip: 最後にログインした端末のIPアドレス
+        confirmation_token: メールアドレスの承認トークン
+        confirmed_at: メールアドレスを承認した時刻
+        confirmation_sent_at: 確認メールの送信時刻
+        unconfirmed_email: 承認待ちのメールアドレス

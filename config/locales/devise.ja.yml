@@ -24,6 +24,7 @@ ja:
 #      timeout: 'Your session expired, please sign in again to continue.'
       inactive: 'アカウントがアクティベートされていません。'
 #      inactive: 'Your account was not activated yet.'
+      already_authenticated: 'すでにログインしています。'
     sessions:
       signed_in: 'ログインしました。'
 #      signed_in: 'Signed in successfully.'
@@ -58,12 +59,14 @@ ja:
 #      unlocked: 'Your account was successfully unlocked. You are now signed in.'
     mailer:
       confirmation_instructions:
-        subject: 'アカウントの登録方法'
+        subject: '[imoriH]会員登録およびメールアドレスの承認'
 #        subject: 'Confirmation instructions'
       reset_password_instructions:
-        subject: 'パスワードの再設定'
+        subject: '[imoriH]パスワードの再設定'
 #        subject: 'Reset password instructions'
       unlock_instructions:
         subject: 'アカウントの凍結解除'
 #        subject: 'Unlock Instructions'
-
+      password_change:
+        subject: "[imoriH]パスワードを変更しました"
+#        subject: "[imoriH]Password Changed"

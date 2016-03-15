@@ -1,0 +1,46 @@
+= provide :title, t('activerecord.models.user') + t('views.show')
+%h2= t('activerecord.models.user') + t('views.show')
+
+%p
+  %b= t('activerecord.attributes.user.email')
+  = @user.email
+%p
+  %b= t('activerecord.attributes.user.reset_password_token')
+  = @user.reset_password_token
+%p
+  %b= t('activerecord.attributes.user.reset_password_sent_at')
+  = @user.reset_password_sent_at.present? ? l(@user.reset_password_sent_at) : nil
+%p
+  %b= t('activerecord.attributes.user.remember_created_at')
+  = @user.remember_created_at.present? ? l(@user.remember_created_at) : nil
+%p
+  %b= t('activerecord.attributes.user.sign_in_count')
+  = @user.sign_in_count
+%p
+  %b= t('activerecord.attributes.user.current_sign_in_at')
+  = @user.current_sign_in_at.present? ? l(@user.current_sign_in_at) : nil
+%p
+  %b= t('activerecord.attributes.user.last_sign_in_at')
+  = @user.last_sign_in_at.present? ? l(@user.last_sign_in_at) : nil
+%p
+  %b= t('activerecord.attributes.user.current_sign_in_ip')
+  = @user.current_sign_in_ip
+%p
+  %b= t('activerecord.attributes.user.last_sign_in_ip')
+  = @user.last_sign_in_ip
+%p
+  %b= t('activerecord.attributes.user.confirmation_token')
+  = @user.confirmation_token
+%p
+  %b= t('activerecord.attributes.user.confirmed_at')
+  = @user.confirmed_at.present? ? l(@user.confirmed_at) : nil
+%p
+  %b= t('activerecord.attributes.user.confirmation_sent_at')
+  = @user.confirmation_sent_at.present? ? l(@user.confirmation_sent_at) : nil
+%p
+  %b= t('activerecord.attributes.user.unconfirmed_email')
+  = @user.unconfirmed_email
+
+=# link_to t('views.edit'), edit_payment_path(@payment)
+\|
+= link_to t('views.back'), users_path

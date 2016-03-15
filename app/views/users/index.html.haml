@@ -1,0 +1,21 @@
+= provide :title, t('activerecord.models.user') + t('views.index')
+%h2= t('activerecord.models.user') + t('views.index')
+
+%table
+  %thead
+    %tr
+      %th= t('activerecord.attributes.user.email')
+      %th
+      %th
+      %th
+
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td= user.email
+        %td= link_to t('views.show'), user
+        %td=# link_to t('views.edit'), edit_payment_path(payment)
+        %td=# link_to t('views.delete'), payment, :method => :delete, :data => { :confirm => 'Are you sure?' }
+%br
+
+=# link_to t('views.new'), new_payment_path
