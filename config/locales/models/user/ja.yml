@@ -9,6 +9,15 @@ ja:
         password_confirmation: パスワード（再入力）
         current_password: 現在のパスワード
         remember_me: ログインしたままにする
+        name: 氏名
+        lastname: 氏
+        firstname: 名
+        locale: 言語
+        gender: 性別
+        birthday: 誕生日
+        address: 住所
+        phone: 電話番号
+        role: 権限
         reset_password_token: パスワード再発行トークン
         reset_password_sent_at: パスワード再発行メールの送信時刻
         remember_created_at: 「ログインをそのままにする」の設定時刻

@@ -14,9 +14,10 @@ ja:
         currently_waiting_confirmation_for: '%{email}は承認待ちです。確認メールの内容に従って本登録を行ってください。'
         leave_blank_if_you_dont_want_to_change_it: （変更の必要がなければ、空にしておいて下さい。）
         we_need_your_current_password_to_confirm_your_changes: （認証のため現在のパスワードを入力して下さい。）
-        remove_account: アカウントを削除
+        remove_account: 退会
+        unhappy: 会員情報を削除します。よろしければ「退会」ボタンをクリックしてください。元に戻すことはできませんのでご注意ください。 
         confirm: 本当によろしいですか？
-        unhappy: アカウントを削除します。よろしければ「アカウントを削除」ボタンをクリックしてください。元に戻すことはできませんのでご注意ください。 
+        currently_waiting_confirmation_for: '%{email}は承認待ちです。確認メールの内容に従って本登録を行ってください。'
         back: 戻る
     confirmations:
       new:

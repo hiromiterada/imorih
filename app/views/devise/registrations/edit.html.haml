@@ -8,6 +8,31 @@
   - if devise_mapping.confirmable? && resource.pending_reconfirmation?
     %div= t('.currently_waiting_confirmation_for', email: resource.unconfirmed_email)
   .field
+    = f.label :name
+    %br/
+    = f.text_field :lastname, placeholder: "Lastname"
+    = f.text_field :firstname, placeholder: "Firstname"
+  .field
+    = f.label :locale
+    %br/
+    = f.text_field :locale
+  .field
+    = f.label :gender
+    %br/
+    = f.text_field :gender
+  .field
+    = f.label :birthday
+    %br/
+    = f.date_select :birthday, start_year: Time.now.year - 100, end_year: Time.now.year
+  .field
+    = f.label :address
+    %br/
+    = f.text_field :address
+  .field
+    = f.label :phone
+    %br/
+    = f.text_field :phone
+  .field
     = f.label :password
     %i= t('.leave_blank_if_you_dont_want_to_change_it')
     %br/
@@ -23,6 +48,7 @@
     = f.password_field :current_password, autocomplete: "off"
   .actions
     = f.submit t('.submit')
+
 %h3= t('.remove_account')
 %p
   = t('.unhappy')
