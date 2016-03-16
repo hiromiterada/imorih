@@ -16,6 +16,7 @@ ja:
       user: 会員 
     attributes:
       user:
+        login: メールアドレス、またはお客様番号
         email: メールアドレス
         password: パスワード
         password_confirmation: パスワード（再入力）
@@ -30,6 +31,8 @@ ja:
         address: 住所
         phone: 電話番号
         role: 権限
+        customer_code: お客様番号
+        send_of_dm: imoriHからの通知を受け取る
         reset_password_token: パスワード再発行トークン
         reset_password_sent_at: パスワード再発行メールの送信時刻
         remember_created_at: 「ログインをそのままにする」の設定時刻

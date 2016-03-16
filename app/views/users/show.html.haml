@@ -15,7 +15,7 @@
   = @user.enum_i18n(:gender)
 %p
   %b= t('activerecord.attributes.user.birthday')
-  = l @user.birthday
+  = l(@user.birthday) if @user.birthday.present?
 %p
   %b= t('activerecord.attributes.user.address')
   = @user.address
@@ -26,23 +26,29 @@
   %b= t('activerecord.attributes.user.role')
   = @user.enum_i18n(:role)
 %p
+  %b= t('activerecord.attributes.user.customer_code')
+  = @user.customer_code
+%p
+  %b= t('activerecord.attributes.user.send_of_dm')
+  = @user.boolean_i18n(:send_of_dm)
+%p
   %b= t('activerecord.attributes.user.reset_password_token')
   = @user.reset_password_token
 %p
   %b= t('activerecord.attributes.user.reset_password_sent_at')
-  = @user.reset_password_sent_at.present? ? l(@user.reset_password_sent_at) : nil
+  = l(@user.reset_password_sent_at) if @user.reset_password_sent_at.present?
 %p
   %b= t('activerecord.attributes.user.remember_created_at')
-  = @user.remember_created_at.present? ? l(@user.remember_created_at) : nil
+  = l(@user.remember_created_at) if @user.remember_created_at.present?
 %p
   %b= t('activerecord.attributes.user.sign_in_count')
   = @user.sign_in_count
 %p
   %b= t('activerecord.attributes.user.current_sign_in_at')
-  = @user.current_sign_in_at.present? ? l(@user.current_sign_in_at) : nil
+  = l(@user.current_sign_in_at) if @user.current_sign_in_at.present?
 %p
   %b= t('activerecord.attributes.user.last_sign_in_at')
-  = @user.last_sign_in_at.present? ? l(@user.last_sign_in_at) : nil
+  = l(@user.last_sign_in_at) if @user.last_sign_in_at.present?
 %p
   %b= t('activerecord.attributes.user.current_sign_in_ip')
   = @user.current_sign_in_ip
@@ -54,10 +60,10 @@
   = @user.confirmation_token
 %p
   %b= t('activerecord.attributes.user.confirmed_at')
-  = @user.confirmed_at.present? ? l(@user.confirmed_at) : nil
+  = l(@user.confirmed_at) if @user.confirmed_at.present?
 %p
   %b= t('activerecord.attributes.user.confirmation_sent_at')
-  = @user.confirmation_sent_at.present? ? l(@user.confirmation_sent_at) : nil
+  = l(@user.confirmation_sent_at) if @user.confirmation_sent_at.present?
 %p
   %b= t('activerecord.attributes.user.unconfirmed_email')
   = @user.unconfirmed_email

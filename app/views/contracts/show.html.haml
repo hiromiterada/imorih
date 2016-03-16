@@ -20,6 +20,10 @@
   %b= t('activerecord.attributes.contract.termed_at')
   = @contract.termed_at
 %p
+  %b= t('activerecord.attributes.contract.automatic_updating')
+  = @contract.boolean_i18n(:automatic_updating)
+
+%p
   %b= t('activerecord.attributes.contract.note')
   = @contract.note
 

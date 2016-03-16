@@ -46,6 +46,12 @@
     %br/
     = f.text_field :phone
   .field
+    = f.label :send_of_dm
+    %br/
+    - {yes: true, no: false}.each do |key, value|
+      = t("views.boolean.#{key}")
+      = f.radio_button :send_of_dm, value
+  .field
     = f.label :current_password
     %i= t('.we_need_your_current_password_to_confirm_your_changes')
     %br/

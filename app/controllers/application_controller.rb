@@ -15,18 +15,12 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    columns = [
-      :lastname,
-      :firstname,
-      :locale,
-      :gender,
-      :birthday,
-      :address,
-      :phone
+    devise_parameter_sanitizer.for(:sign_in) {|u| u.permit(
+      :login, :customer_code, :email, :password, :remember_me
+    )}
+    devise_parameter_sanitizer.for(:account_update) << [
+      :lastname, :firstname, :locale, :gender, :birthday,
+      :address, :phone, :send_of_dm
     ]
-#    devise_parameter_sanitizer.for(:sign_in) << columns
-#    devise_parameter_sanitizer.for(:sign_up) << columns
-    devise_parameter_sanitizer.for(:account_update) << columns
   end
-
 end

@@ -16,4 +16,5 @@ ja:
         rent: 金額
         contracted_at: 契約締結日時
         termed_at: 契約終了日時
+        automatic_updating: 契約期間を自動更新する
         note: 備考

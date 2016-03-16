@@ -1,10 +1,19 @@
 class User < ActiveRecord::Base
+  include BooleanI18n
   include EnumI18n
+  include MakeRand
+
+  attr_accessor :login
+
+  before_validation :set_customer_code
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable,
+         :authentication_keys => [:login]
+
+  validates :customer_code, presence: true, uniqueness: true
 
   has_many :contracts
 
@@ -14,5 +23,52 @@ class User < ActiveRecord::Base
 
   def fullname
     lastname.to_s + ' ' + firstname.to_s
+  end
+
+  def set_customer_code
+    return if customer_code.present?
+    retry_counter = 0
+    begin
+      self.customer_code = make_rand_string(8)
+      raise if User.where(customer_code: customer_code).first.present?
+    rescue
+      retry_counter += 1
+      if retry_counter <= 10
+        retry
+      else
+        logger.info 'Retried 10 times so go to next loop.'
+        raise
+      end
+    end
+  end
+
+  class << self
+    def create_without_confirmation
+      user = User.new
+      user.set_customer_code
+      user.email = user.customer_code.downcase + '@example.com'
+      user.password = make_password(user.customer_code.downcase)
+      user.skip_confirmation!
+      user.save!
+      user
+    end
+
+    def find_first_by_auth_conditions(warden_conditions)
+      conditions = warden_conditions.dup
+      if login = conditions.delete(:login)
+        where(conditions).where(
+          ["customer_code = :value OR lower(email) = lower(:value)",
+          { :value => login }]
+        ).first
+      else
+        where(conditions).first
+      end
+    end
+
+    private
+
+    def make_password(code)
+      code.split('').zip('imorih2'.split('')).flatten.join
+    end
   end
 end

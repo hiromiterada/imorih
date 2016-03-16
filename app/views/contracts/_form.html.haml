@@ -27,6 +27,12 @@
     = f.label :termed_at
     = f.datetime_select :termed_at
   .field
+    = f.label :automatic_updating
+    %br/
+    - {yes: true, no: false}.each do |key, value|
+      = t("views.boolean.#{key}")
+      = f.radio_button :automatic_updating, value
+  .field
     = f.label :note
     = f.text_area :note
   .actions
