@@ -43,11 +43,24 @@ class User < ActiveRecord::Base
   end
 
   class << self
-    def create_without_confirmation
+    def create_without_confirmation(options={})
       user = User.new
-      user.set_customer_code
-      user.email = user.customer_code.downcase + '@example.com'
-      user.password = make_password(user.customer_code.downcase)
+      if options[:customer_code].present?
+        user.customer_code = options[:customer_code]
+      else
+        user.set_customer_code 
+      end
+      code = user.customer_code.downcase
+      if options[:email].present?
+        user.email = options[:email]
+      else
+        user.email = code + '@example.com'
+      end
+      if options[:password].present?
+        user.password = options[:password]
+      else
+        user.password = make_password(code)
+      end
       user.skip_confirmation!
       user.save!
       user
@@ -56,10 +69,10 @@ class User < ActiveRecord::Base
     def find_first_by_auth_conditions(warden_conditions)
       conditions = warden_conditions.dup
       if login = conditions.delete(:login)
-        where(conditions).where(
-          ["customer_code = :value OR lower(email) = lower(:value)",
-          { :value => login }]
-        ).first
+        where(conditions).where([
+          "customer_code = :value OR lower(email) = lower(:value)",
+          { :value => login }
+        ]).first
       else
         where(conditions).first
       end
