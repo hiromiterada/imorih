@@ -1,4 +1,16 @@
 ja:
+  enums:
+    user:
+      locale:
+        ja: 日本語
+        en: 英語
+      gender:
+        male: 男
+        female: 女
+      role:
+        normal: 一般
+        owner: オーナー
+        admin: システム管理者
   activerecord:
     models:
       user: 会員 
