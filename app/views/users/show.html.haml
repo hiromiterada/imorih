@@ -5,6 +5,27 @@
   %b= t('activerecord.attributes.user.email')
   = @user.email
 %p
+  %b= t('activerecord.attributes.user.name')
+  = @user.fullname
+%p
+  %b= t('activerecord.attributes.user.locale')
+  = @user.enum_i18n(:locale)
+%p
+  %b= t('activerecord.attributes.user.gender')
+  = @user.enum_i18n(:gender)
+%p
+  %b= t('activerecord.attributes.user.birthday')
+  = l @user.birthday
+%p
+  %b= t('activerecord.attributes.user.address')
+  = @user.address
+%p
+  %b= t('activerecord.attributes.user.phone')
+  = @user.phone
+%p
+  %b= t('activerecord.attributes.user.role')
+  = @user.enum_i18n(:role)
+%p
   %b= t('activerecord.attributes.user.reset_password_token')
   = @user.reset_password_token
 %p

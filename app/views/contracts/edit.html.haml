@@ -1,0 +1,8 @@
+= provide :title, t('activerecord.models.contract') + t('views.edit')
+%h2= t('activerecord.models.contract') + t('views.edit')
+
+= render 'form'
+
+= link_to t('views.show'), @contract
+\|
+= link_to t('views.back'), contracts_path

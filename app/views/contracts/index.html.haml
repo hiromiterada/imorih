@@ -1,0 +1,34 @@
+= provide :title, t('activerecord.models.contract') + t('views.index')
+%h2= t('activerecord.models.contract') + t('views.index')
+
+%table
+  %thead
+    %tr
+      %th ID
+      %th= t('activerecord.attributes.contract.user_id')
+      %th= t('activerecord.attributes.contract.number')
+      %th= t('activerecord.attributes.contract.kind')
+      %th= t('activerecord.attributes.contract.rent')
+      %th= t('activerecord.attributes.contract.contracted_at')
+      %th= t('activerecord.attributes.contract.termed_at')
+      %th
+      %th
+      %th
+
+  %tbody
+    - @contracts.each do |contract|
+      %tr
+        %td= contract.id
+        %td= contract.user_id
+        %td= contract.number
+        %td= contract.enum_i18n(:kind)
+        %td= contract.rent
+        %td= contract.contracted_at
+        %td= contract.termed_at
+        %td= link_to t('views.show'), contract
+        %td= link_to t('views.edit'), edit_contract_path(contract)
+        %td= link_to t('views.delete'), contract, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to t('views.new'), new_contract_path

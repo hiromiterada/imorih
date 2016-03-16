@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :contracts
   resources :payments
   devise_for :users
   resources :users, only: [:index, :show]

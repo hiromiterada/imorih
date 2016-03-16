@@ -2,14 +2,14 @@
 %h2= t('activerecord.models.payment') + t('views.show')
 
 %p
+  %b= t('activerecord.attributes.payment.contract_id')
+  = @payment.contract_id
+%p
   %b= t('activerecord.attributes.payment.payday')
   = @payment.payday
 %p
   %b= t('activerecord.attributes.payment.amount')
   = @payment.amount
-%p
-  %b= t('activerecord.attributes.payment.kind')
-  = @payment.kind
 %p
   %b= t('activerecord.attributes.payment.started_at')
   = @payment.started_at

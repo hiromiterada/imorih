@@ -7,14 +7,14 @@
           %li= msg
 
   .field
+    = f.label :contract_id
+    = f.number_field :contract_id
+  .field
     = f.label :payday
     = f.date_select :payday
   .field
     = f.label :amount
     = f.number_field :amount
-  .field
-    = f.label :kind
-    = f.number_field :kind
   .field
     = f.label :started_at
     = f.datetime_select :started_at

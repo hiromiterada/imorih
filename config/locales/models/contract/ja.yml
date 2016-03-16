@@ -1,0 +1,19 @@
+ja:
+  enums:
+    contract:
+      kind:
+        leasedland: 借地
+        monthlyparking: 月極駐車場
+        dailyparking: 日貸駐車場
+  activerecord:
+    models:
+      contract: 契約
+    attributes:
+      contract:
+        user_id: 会員ID
+        number: 契約番号
+        kind: 種別
+        rent: 金額
+        contracted_at: 契約締結日時
+        termed_at: 契約終了日時
+        note: 備考

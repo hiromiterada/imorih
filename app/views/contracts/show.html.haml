@@ -1,0 +1,28 @@
+= provide :title, t('activerecord.models.contract') + t('views.show')
+%h2= t('activerecord.models.contract') + t('views.show')
+
+%p
+  %b= t('activerecord.attributes.contract.user_id')
+  = @contract.user_id
+%p
+  %b= t('activerecord.attributes.contract.number')
+  = @contract.number
+%p
+  %b= t('activerecord.attributes.contract.kind')
+  = @contract.enum_i18n(:kind)
+%p
+  %b= t('activerecord.attributes.contract.rent')
+  = @contract.rent
+%p
+  %b= t('activerecord.attributes.contract.contracted_at')
+  = @contract.contracted_at
+%p
+  %b= t('activerecord.attributes.contract.termed_at')
+  = @contract.termed_at
+%p
+  %b= t('activerecord.attributes.contract.note')
+  = @contract.note
+
+= link_to t('views.edit'), edit_contract_path(@contract)
+\|
+= link_to t('views.back'), contracts_path

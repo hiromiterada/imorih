@@ -1,0 +1,33 @@
+= form_for @contract do |f|
+  - if @contract.errors.any?
+    #error_explanation
+      %h2= t('errors.messages.not_saved')
+      %ul
+        - @contract.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :user_id
+    = f.number_field :user_id
+  .field
+    = f.label :number
+    = f.text_field :number
+  .field
+    = f.label :kind
+    - Contract.enum_i18n(:kind).invert.each do |key, value|
+      = key
+      = f.radio_button :kind, value
+  .field
+    = f.label :rent
+    = f.number_field :rent
+  .field
+    = f.label :contracted_at
+    = f.datetime_select :contracted_at
+  .field
+    = f.label :termed_at
+    = f.datetime_select :termed_at
+  .field
+    = f.label :note
+    = f.text_area :note
+  .actions
+    = f.submit t('views.save')

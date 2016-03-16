@@ -4,6 +4,7 @@
 %table
   %thead
     %tr
+      %th ID
       %th= t('activerecord.attributes.user.email')
       %th
       %th
@@ -12,6 +13,7 @@
   %tbody
     - @users.each do |user|
       %tr
+        %td= user.id
         %td= user.email
         %td= link_to t('views.show'), user
         %td=# link_to t('views.edit'), edit_payment_path(payment)

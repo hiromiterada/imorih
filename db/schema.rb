@@ -11,22 +11,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160315084938) do
+ActiveRecord::Schema.define(version: 20160316075233) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "contracts", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "number",                    null: false
+    t.integer  "kind",          default: 0, null: false
+    t.integer  "rent",                      null: false
+    t.datetime "contracted_at"
+    t.datetime "termed_at"
+    t.text     "note"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "contracts", ["kind"], name: "index_contracts_on_kind", using: :btree
+  add_index "contracts", ["user_id"], name: "index_contracts_on_user_id", using: :btree
+
   create_table "payments", force: :cascade do |t|
-    t.date     "payday",                 null: false
-    t.integer  "amount",                 null: false
-    t.integer  "kind",       default: 0, null: false
-    t.datetime "started_at",             null: false
-    t.datetime "ended_at",               null: false
+    t.integer  "contract_id", null: false
+    t.date     "payday",      null: false
+    t.integer  "amount",      null: false
+    t.datetime "started_at",  null: false
+    t.datetime "ended_at",    null: false
     t.text     "message"
     t.text     "note"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
+
+  add_index "payments", ["contract_id"], name: "index_payments_on_contract_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

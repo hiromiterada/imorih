@@ -4,9 +4,10 @@
 %table
   %thead
     %tr
+      %th user id
+      %th= t('activerecord.attributes.payment.contract_id')
       %th= t('activerecord.attributes.payment.payday')
       %th= t('activerecord.attributes.payment.amount')
-      %th= t('activerecord.attributes.payment.kind')
       %th= t('activerecord.attributes.payment.started_at')
       %th= t('activerecord.attributes.payment.ended_at')
       %th= t('activerecord.attributes.payment.message')
@@ -18,9 +19,10 @@
   %tbody
     - @payments.each do |payment|
       %tr
+        %td= payment.contract.user_id
+        %td= payment.contract_id
         %td= payment.payday
         %td= payment.amount
-        %td= payment.kind
         %td= l payment.started_at
         %td= l payment.ended_at
         %td= payment.message
