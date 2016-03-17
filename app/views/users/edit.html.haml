@@ -1,0 +1,8 @@
+= provide :title, t('activerecord.models.user') + t('views.edit')
+%h2= t('activerecord.models.user') + t('views.edit')
+
+= render 'form'
+
+= link_to t('views.show'), @user
+\|
+= link_to t('views.back'), users_path

@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   resources :contracts
   resources :payments
   devise_for :users
-  resources :users, only: [:index, :show]
+  scope :admin do
+    resources :users
+  end
   get 'home/index'
 
   # The priority is based upon order of creation: first created -> highest priority.

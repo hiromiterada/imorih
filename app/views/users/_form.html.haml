@@ -1,0 +1,63 @@
+= form_for @user do |f|
+  - if @user.errors.any?
+    #error_explanation
+      %h2= t('errors.messages.not_saved')
+      %ul
+        - @user.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :email
+    = f.email_field :email, autofocus: true
+  - if @user.new_record?
+    .field
+      = f.label :password
+      = f.password_field :password, autocomplete: "off"
+    .field
+      = f.label :password_confirmation
+      = f.password_field :password_confirmation, autocomplete: "off"
+  .field
+    = f.label :name
+    %br/
+    = f.label :lastname
+    = f.text_field :lastname, placeholder: "Lastname"
+    = f.label :firstname
+    = f.text_field :firstname, placeholder: "Firstname"
+  .field
+    = f.label :locale
+    %br/
+    - User.enum_i18n(:locale).invert.each do |key, value|
+      = key
+      = f.radio_button :locale, value
+  .field
+    = f.label :gender
+    %br/
+    - User.enum_i18n(:gender).invert.each do |key, value|
+      = key
+      = f.radio_button :gender, value
+  .field
+    = f.label :birthday
+    %br/
+    = f.date_select :birthday, start_year: Time.now.year - 100, end_year: Time.now.year
+  .field
+    = f.label :address
+    %br/
+    = f.text_field :address
+  .field
+    = f.label :phone
+    %br/
+    = f.text_field :phone
+  .field
+    = f.label :send_of_dm
+    %br/
+    - {yes: true, no: false}.each do |key, value|
+      = t("views.boolean.#{key}")
+      = f.radio_button :send_of_dm, value
+  .field
+    = f.label :role
+    %br/
+    - User.enum_i18n(:role).invert.each do |key, value|
+      = key
+      = f.radio_button :role, value
+  .actions
+    = f.submit t('views.save')

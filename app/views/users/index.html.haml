@@ -16,8 +16,8 @@
         %td= user.id
         %td= user.email
         %td= link_to t('views.show'), user
-        %td=# link_to t('views.edit'), edit_payment_path(payment)
-        %td=# link_to t('views.delete'), payment, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %td= link_to t('views.edit'), edit_user_path(user)
+        %td= link_to t('views.delete'), user, :method => :delete, :data => { :confirm => 'Are you sure?' }
 %br
 
-=# link_to t('views.new'), new_payment_path
+= link_to t('views.new'), new_user_path
