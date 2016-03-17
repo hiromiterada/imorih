@@ -1,3 +1,7 @@
+- today = Date.today
+- start_day = Date.new(today.year, today.month, 1) >> 1
+- end_day = (start_day >> 1) - 1
+
 = form_for @payment do |f|
   - if @payment.errors.any?
     #error_explanation
@@ -17,10 +21,14 @@
     = f.number_field :amount
   .field
     = f.label :started_at
-    = f.datetime_select :started_at
+    = f.datetime_select :started_at,
+      default: DateTime.new(start_day.year, start_day.month, start_day.day, 00, 00, 00),
+      minute_step: 60
   .field
     = f.label :ended_at
-    = f.datetime_select :ended_at
+    = f.datetime_select :ended_at,
+      default: DateTime.new(end_day.year, end_day.month, end_day.day, 00, 00, 00),
+      minute_step: 60
   .field
     = f.label :message
     = f.text_area :message

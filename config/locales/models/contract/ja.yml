@@ -11,7 +11,7 @@ ja:
     attributes:
       contract:
         user_id: 会員ID
-        number: 契約番号
+        number: ご契約番号
         kind: 種別
         rent: 金額
         contracted_at: 契約締結日時

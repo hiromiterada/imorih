@@ -5,7 +5,11 @@ class PaymentsController < ApplicationController
   # GET /payments
   # GET /payments.json
   def index
-    @payments = Payment.all
+    if current_user.normal?
+      @payments = Payment.search_user(current_user)
+    else
+      @payments = Payment.all
+    end
   end
 
   # GET /payments/1

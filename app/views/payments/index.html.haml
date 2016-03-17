@@ -4,33 +4,36 @@
 %table
   %thead
     %tr
-      %th user id
-      %th= t('activerecord.attributes.payment.contract_id')
+      %th= t('activerecord.attributes.user.customer_code')
+      %th= t('activerecord.attributes.contract.number')
       %th= t('activerecord.attributes.payment.payday')
       %th= t('activerecord.attributes.payment.amount')
-      %th= t('activerecord.attributes.payment.started_at')
-      %th= t('activerecord.attributes.payment.ended_at')
+      %th= t('activerecord.attributes.contract.kind')
+      %th= t('activerecord.attributes.payment.target')
       %th= t('activerecord.attributes.payment.message')
       %th= t('activerecord.attributes.payment.note')
-      %th
-      %th
-      %th
+      - if current_user.admin?
+        %th
+        %th
+        %th
 
   %tbody
     - @payments.each do |payment|
       %tr
-        %td= payment.contract.user_id
-        %td= payment.contract_id
+        %td= payment.contract.user.customer_code
+        %td= payment.contract.number
         %td= payment.payday
         %td= payment.amount
-        %td= l payment.started_at
-        %td= l payment.ended_at
+        %td= payment.contract.enum_i18n(:kind)
+        %td= l(payment.started_at) + '-' + l(payment.ended_at)
         %td= payment.message
         %td= payment.note
-        %td= link_to t('views.show'), payment
-        %td= link_to t('views.edit'), edit_payment_path(payment)
-        %td= link_to t('views.delete'), payment, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        - if current_user.admin?
+          %td= link_to t('views.show'), payment
+          %td= link_to t('views.edit'), edit_payment_path(payment)
+          %td= link_to t('views.delete'), payment, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 
-= link_to t('views.new'), new_payment_path
+- if current_user.admin?
+  = link_to t('views.new'), new_payment_path
