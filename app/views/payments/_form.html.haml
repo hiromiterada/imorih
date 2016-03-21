@@ -11,8 +11,11 @@
           %li= msg
 
   .field
-    = f.label :contract_id
-    = f.number_field :contract_id
+    = f.label :contract_id, t('activerecord.attributes.contract.number')
+    - if @contract.present?
+      = f.collection_select(:contract_id, @contracts, :id, :number, selected: @contract)
+    - else
+      = f.collection_select(:contract_id, @contracts, :id, :number, prompt: true)
   .field
     = f.label :payday
     = f.date_select :payday

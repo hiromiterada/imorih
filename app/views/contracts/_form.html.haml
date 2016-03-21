@@ -7,8 +7,11 @@
           %li= msg
 
   .field
-    = f.label :user_id
-    = f.number_field :user_id
+    = f.label :user_id, t('activerecord.attributes.user.customer_code')
+    - if @user.present?
+      = f.collection_select(:user_id, @users, :id, :customer_code, selected: @user)
+    - else
+      = f.collection_select(:user_id, @users, :id, :customer_code)
   .field
     = f.label :number
     = f.text_field :number

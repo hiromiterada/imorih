@@ -22,10 +22,11 @@
 %p
   %b= t('activerecord.attributes.contract.automatic_updating')
   = @contract.boolean_i18n(:automatic_updating)
-
 %p
   %b= t('activerecord.attributes.contract.note')
   = @contract.note
+
+= link_to t('activerecord.models.payment') + t('views.new'), new_contract_payment_path(@contract)
 
 = link_to t('views.edit'), edit_contract_path(@contract)
 \|

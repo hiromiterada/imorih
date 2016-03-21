@@ -68,6 +68,8 @@
   %b= t('activerecord.attributes.user.unconfirmed_email')
   = @user.unconfirmed_email
 
-=# link_to t('views.edit'), edit_payment_path(@payment)
+= link_to t('activerecord.models.contract') + t('views.new'), new_user_contract_path(@user)
+
+= link_to t('views.edit'), edit_user_path(@user)
 \|
 = link_to t('views.back'), users_path

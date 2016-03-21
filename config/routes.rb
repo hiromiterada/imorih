@@ -1,11 +1,15 @@
 Rails.application.routes.draw do
-  resources :contracts
-  resources :payments
   devise_for :users
-  scope :admin do
-    resources :users
-  end
   get 'home/index'
+  resources :payments
+  scope :admin do
+    resources :users do
+      resources :contracts, only: [:new]
+    end
+    resources :contracts do
+      resources :payments, only: [:new]
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

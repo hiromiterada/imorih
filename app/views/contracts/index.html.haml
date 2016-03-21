@@ -4,8 +4,7 @@
 %table
   %thead
     %tr
-      %th ID
-      %th= t('activerecord.attributes.contract.user_id')
+      %th= t('activerecord.attributes.user.customer_code')
       %th= t('activerecord.attributes.contract.number')
       %th= t('activerecord.attributes.contract.kind')
       %th= t('activerecord.attributes.contract.rent')
@@ -18,8 +17,7 @@
   %tbody
     - @contracts.each do |contract|
       %tr
-        %td= contract.id
-        %td= contract.user_id
+        %td= contract.user.customer_code
         %td= contract.number
         %td= contract.enum_i18n(:kind)
         %td= contract.rent
