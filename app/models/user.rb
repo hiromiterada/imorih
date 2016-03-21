@@ -84,7 +84,7 @@ class User < ActiveRecord::Base
     private
 
     def make_password(code)
-      code.split('').zip('imorih2'.split('')).flatten.join
+      'h i r o '.split('').zip(code.split('')).flatten.reject(&:blank?).join
     end
   end
 end
