@@ -25,5 +25,11 @@ test:
   database: imorih2_test
 
 production:
-  <<: *default
-  database: imorih2_production
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  database: ENV['DATABASE']
+  username: ENV['DB_USERNAME']
+  password: ENV['DB_PASSWORD']
+  port: ENV['DB_PORT']
+  host: ENV['DB_HOST']
