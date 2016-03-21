@@ -17,14 +17,14 @@
   %b= t('activerecord.attributes.contract.rent')
   = @contract.rent
 %p
-  %b= t('activerecord.attributes.contract.contracted_date')
-  = @contract.contracted_date
+  %b= t('activerecord.attributes.contract.date_signed')
+  = @contract.date_signed
 %p
-  %b= t('activerecord.attributes.contract.termed_date')
-  = @contract.termed_date
+  %b= t('activerecord.attributes.contract.date_terminated')
+  = @contract.date_terminated
 %p
-  %b= t('activerecord.attributes.contract.automatic_updating')
-  = @contract.boolean_i18n(:automatic_updating)
+  %b= t('activerecord.attributes.contract.auto_updating')
+  = @contract.boolean_i18n(:auto_updating)
 %p
   %b= t('activerecord.attributes.contract.note')
   = @contract.note

@@ -9,7 +9,7 @@
       %th= t('activerecord.attributes.payment.payday')
       %th= t('activerecord.attributes.payment.amount')
       %th= t('activerecord.attributes.contract.kind')
-      %th= t('activerecord.attributes.payment.target')
+      %th= t('activerecord.attributes.payment.period')
       %th= t('activerecord.attributes.payment.message')
       %th= t('activerecord.attributes.payment.note')
       - if current_user.admin?
@@ -20,12 +20,12 @@
   %tbody
     - @payments.each do |payment|
       %tr
-        %td= payment.contract.user.customer_code
-        %td= payment.contract.number
+        %td= payment.try(:contract).try(:user).customer_code
+        %td= payment.try(:contract).number
         %td= payment.payday
         %td= payment.amount
-        %td= payment.contract.enum_i18n(:kind)
-        %td= [l(payment.started_date), l(payment.ended_date)].join('-')
+        %td= payment.try(:contract).enum_i18n(:kind)
+        %td= [l(payment.date_started), l(payment.date_ended)].join(' - ')
         %td= payment.message
         %td= payment.note
         - if current_user.admin?

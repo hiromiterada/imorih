@@ -17,12 +17,10 @@
       = f.label :password_confirmation
       = f.password_field :password_confirmation, autocomplete: "off"
   .field
-    = f.label :name
+    = f.label :lastname, t('activerecord.attributes.user.name')
     %br/
-    = f.label :lastname
-    = f.text_field :lastname, placeholder: "Lastname"
-    = f.label :firstname
-    = f.text_field :firstname, placeholder: "Firstname"
+    = f.text_field :lastname, placeholder: t('activerecord.attributes.user.lastname')
+    = f.text_field :firstname, placeholder: t('activerecord.attributes.user.firstname')
   .field
     = f.label :locale
     %br/

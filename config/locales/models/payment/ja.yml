@@ -7,8 +7,8 @@ ja:
         contract_id: 契約ID
         payday: 日付
         amount: 金額
-        target: 対象
-        started_date: 対象開始日
-        ended_date: 対象終了日
-        message: オーナーからのメッセージ
+        period: 期間
+        date_started: 期間開始日
+        date_ended: 期間終了日
+        message: メッセージ
         note: 備考

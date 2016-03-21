@@ -23,12 +23,13 @@
     = f.label :amount
     = f.number_field :amount
   .field
-    = f.label :started_date
-    = f.date_select :started_date,
+    %b= t('activerecord.attributes.payment.period')
+    = f.label :date_started
+    = f.date_select :date_started,
       default: Date.new(start_day.year, start_day.month, start_day.day)
   .field
-    = f.label :ended_date
-    = f.date_select :ended_date,
+    = f.label :date_ended
+    = f.date_select :date_ended,
       default: Date.new(end_day.year, end_day.month, end_day.day)
   .field
     = f.label :message

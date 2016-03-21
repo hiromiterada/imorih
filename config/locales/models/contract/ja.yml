@@ -19,7 +19,7 @@ ja:
         kind: 種別
         status: 状態
         rent: 賃料
-        contracted_date: 契約締結日
-        termed_date: 契約終了日
-        automatic_updating: 契約期間を自動更新する
+        date_signed: 契約締結日
+        date_terminated: 契約終了日
+        auto_updating: 契約期間を自動更新する
         note: 備考

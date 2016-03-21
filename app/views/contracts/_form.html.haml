@@ -29,17 +29,17 @@
     = f.label :rent
     = f.number_field :rent
   .field
-    = f.label :contracted_date
-    = f.date_select :contracted_date
+    = f.label :date_signed
+    = f.date_select :date_signed
   .field
-    = f.label :termed_date
-    = f.date_select :termed_date
+    = f.label :date_terminated
+    = f.date_select :date_terminated
   .field
-    = f.label :automatic_updating
+    = f.label :auto_updating
     %br/
     - {yes: true, no: false}.each do |key, value|
       = t("views.boolean.#{key}")
-      = f.radio_button :automatic_updating, value
+      = f.radio_button :auto_updating, value
   .field
     = f.label :note
     = f.text_area :note

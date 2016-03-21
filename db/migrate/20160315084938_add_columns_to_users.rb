@@ -8,7 +8,6 @@ class AddColumnsToUsers < ActiveRecord::Migration
     add_column :users, :address,       :string
     add_column :users, :phone,         :string
     add_column :users, :role,          :integer, null: false, default: 0
-    add_column :users, :customer_code, :string,  null: false
     add_column :users, :send_of_dm,    :boolean, null: false, default: true
 
     add_index :users, :role

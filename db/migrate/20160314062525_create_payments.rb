@@ -4,8 +4,8 @@ class CreatePayments < ActiveRecord::Migration
       t.integer  :contract_id, null: false
       t.date     :payday,      null: false
       t.integer  :amount,      null: false
-      t.date     :started_date
-      t.date     :ended_date
+      t.date     :date_started
+      t.date     :date_ended
       t.text     :message
       t.text     :note
 

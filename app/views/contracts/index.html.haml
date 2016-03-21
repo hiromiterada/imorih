@@ -9,8 +9,8 @@
       %th= t('activerecord.attributes.contract.kind')
       %th= t('activerecord.attributes.contract.status')
       %th= t('activerecord.attributes.contract.rent')
-      %th= t('activerecord.attributes.contract.contracted_date')
-      %th= t('activerecord.attributes.contract.termed_date')
+      %th= t('activerecord.attributes.contract.date_signed')
+      %th= t('activerecord.attributes.contract.date_terminated')
       %th
       %th
       %th
@@ -18,13 +18,13 @@
   %tbody
     - @contracts.each do |contract|
       %tr
-        %td= contract.user.customer_code
+        %td= contract.try(:user).customer_code
         %td= contract.number
         %td= contract.enum_i18n(:kind)
         %td= contract.enum_i18n(:status)
         %td= contract.rent
-        %td= l(contract.contracted_date)
-        %td= l(contract.termed_date)
+        %td= l(contract.date_signed)
+        %td= l(contract.date_terminated)
         %td= link_to t('views.show'), contract
         %td= link_to t('views.edit'), edit_contract_path(contract)
         %td= link_to t('views.delete'), contract, :method => :delete, :data => { :confirm => 'Are you sure?' }
