@@ -7,9 +7,10 @@
       %th= t('activerecord.attributes.user.customer_code')
       %th= t('activerecord.attributes.contract.number')
       %th= t('activerecord.attributes.contract.kind')
+      %th= t('activerecord.attributes.contract.status')
       %th= t('activerecord.attributes.contract.rent')
-      %th= t('activerecord.attributes.contract.contracted_at')
-      %th= t('activerecord.attributes.contract.termed_at')
+      %th= t('activerecord.attributes.contract.contracted_date')
+      %th= t('activerecord.attributes.contract.termed_date')
       %th
       %th
       %th
@@ -20,9 +21,10 @@
         %td= contract.user.customer_code
         %td= contract.number
         %td= contract.enum_i18n(:kind)
+        %td= contract.enum_i18n(:status)
         %td= contract.rent
-        %td= contract.contracted_at
-        %td= contract.termed_at
+        %td= l(contract.contracted_date)
+        %td= l(contract.termed_date)
         %td= link_to t('views.show'), contract
         %td= link_to t('views.edit'), edit_contract_path(contract)
         %td= link_to t('views.delete'), contract, :method => :delete, :data => { :confirm => 'Are you sure?' }

@@ -6,14 +6,14 @@ class Contract < ActiveRecord::Base
   before_validation :set_number
 
   validates :kind, presence: true
-  validates :number, presence: true
-  validates :rent, presence: true
+  validates :status, presence: true
   validates :number, presence: true, uniqueness: true
 
   belongs_to :user
   has_many :payments
 
-  enum kind: %i(leasedland monthlyparking dailyparking)
+  enum kind: %i(leased_land monthly_parking)
+  enum status: %i(pending in_process completed canceled)
 
   def set_number
     self.user = User.create_without_confirmation if user.blank?

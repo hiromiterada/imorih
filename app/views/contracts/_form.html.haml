@@ -21,14 +21,19 @@
       = key
       = f.radio_button :kind, value
   .field
+    = f.label :status
+    - Contract.enum_i18n(:status).invert.each do |key, value|
+      = key
+      = f.radio_button :status, value
+  .field
     = f.label :rent
     = f.number_field :rent
   .field
-    = f.label :contracted_at
-    = f.datetime_select :contracted_at
+    = f.label :contracted_date
+    = f.date_select :contracted_date
   .field
-    = f.label :termed_at
-    = f.datetime_select :termed_at
+    = f.label :termed_date
+    = f.date_select :termed_date
   .field
     = f.label :automatic_updating
     %br/

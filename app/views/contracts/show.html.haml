@@ -11,14 +11,17 @@
   %b= t('activerecord.attributes.contract.kind')
   = @contract.enum_i18n(:kind)
 %p
+  %b= t('activerecord.attributes.contract.status')
+  = @contract.enum_i18n(:status)
+%p
   %b= t('activerecord.attributes.contract.rent')
   = @contract.rent
 %p
-  %b= t('activerecord.attributes.contract.contracted_at')
-  = @contract.contracted_at
+  %b= t('activerecord.attributes.contract.contracted_date')
+  = @contract.contracted_date
 %p
-  %b= t('activerecord.attributes.contract.termed_at')
-  = @contract.termed_at
+  %b= t('activerecord.attributes.contract.termed_date')
+  = @contract.termed_date
 %p
   %b= t('activerecord.attributes.contract.automatic_updating')
   = @contract.boolean_i18n(:automatic_updating)

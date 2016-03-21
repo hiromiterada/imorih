@@ -8,7 +8,7 @@ ja:
         payday: 日付
         amount: 金額
         target: 対象
-        started_at: 対象開始
-        ended_at: 対象終了
+        started_date: 対象開始日
+        ended_date: 対象終了日
         message: オーナーからのメッセージ
         note: 備考

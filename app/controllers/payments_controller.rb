@@ -54,7 +54,7 @@ class PaymentsController < ApplicationController
 
   def payment_params
     params.require(:payment).permit(
-      :contract_id, :payday, :amount, :started_at, :ended_at,
+      :contract_id, :payday, :amount, :started_date, :ended_date,
       :message, :note)
   end
 end

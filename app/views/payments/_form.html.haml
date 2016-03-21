@@ -23,15 +23,13 @@
     = f.label :amount
     = f.number_field :amount
   .field
-    = f.label :started_at
-    = f.datetime_select :started_at,
-      default: DateTime.new(start_day.year, start_day.month, start_day.day, 00, 00, 00),
-      minute_step: 60
+    = f.label :started_date
+    = f.date_select :started_date,
+      default: Date.new(start_day.year, start_day.month, start_day.day)
   .field
-    = f.label :ended_at
-    = f.datetime_select :ended_at,
-      default: DateTime.new(end_day.year, end_day.month, end_day.day, 00, 00, 00),
-      minute_step: 60
+    = f.label :ended_date
+    = f.date_select :ended_date,
+      default: Date.new(end_day.year, end_day.month, end_day.day)
   .field
     = f.label :message
     = f.text_area :message

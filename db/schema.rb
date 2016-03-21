@@ -20,9 +20,10 @@ ActiveRecord::Schema.define(version: 20160316075233) do
     t.integer  "user_id"
     t.string   "number",                            null: false
     t.integer  "kind",               default: 0,    null: false
-    t.integer  "rent",                              null: false
-    t.datetime "contracted_at"
-    t.datetime "termed_at"
+    t.integer  "status",             default: 0,    null: false
+    t.integer  "rent"
+    t.date     "contracted_date"
+    t.date     "termed_date"
     t.boolean  "automatic_updating", default: true, null: false
     t.text     "note"
     t.datetime "created_at",                        null: false
@@ -31,18 +32,19 @@ ActiveRecord::Schema.define(version: 20160316075233) do
 
   add_index "contracts", ["automatic_updating"], name: "index_contracts_on_automatic_updating", using: :btree
   add_index "contracts", ["kind"], name: "index_contracts_on_kind", using: :btree
+  add_index "contracts", ["status"], name: "index_contracts_on_status", using: :btree
   add_index "contracts", ["user_id"], name: "index_contracts_on_user_id", using: :btree
 
   create_table "payments", force: :cascade do |t|
-    t.integer  "contract_id", null: false
-    t.date     "payday",      null: false
-    t.integer  "amount",      null: false
-    t.datetime "started_at",  null: false
-    t.datetime "ended_at",    null: false
+    t.integer  "contract_id",  null: false
+    t.date     "payday",       null: false
+    t.integer  "amount",       null: false
+    t.date     "started_date"
+    t.date     "ended_date"
     t.text     "message"
     t.text     "note"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   add_index "payments", ["contract_id"], name: "index_payments_on_contract_id", using: :btree

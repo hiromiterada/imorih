@@ -61,6 +61,9 @@ class User < ActiveRecord::Base
       else
         user.password = make_password(code)
       end
+      if options[:role].present?
+        user.role = options[:role]
+      end
       user.skip_confirmation!
       user.save!
       user

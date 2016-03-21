@@ -4,9 +4,10 @@ class CreateContracts < ActiveRecord::Migration
       t.integer  :user_id
       t.string   :number,             null: false
       t.integer  :kind,               null: false, default: 0
-      t.integer  :rent,               null: false
-      t.datetime :contracted_at
-      t.datetime :termed_at
+      t.integer  :status,             null: false, default: 0
+      t.integer  :rent
+      t.date     :contracted_date
+      t.date     :termed_date
       t.boolean  :automatic_updating, null: false, default: true
       t.text     :note
 
@@ -14,6 +15,7 @@ class CreateContracts < ActiveRecord::Migration
     end
     add_index :contracts, :user_id
     add_index :contracts, :kind
+    add_index :contracts, :status
     add_index :contracts, :automatic_updating
   end
 end

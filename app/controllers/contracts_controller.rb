@@ -49,7 +49,7 @@ class ContractsController < ApplicationController
 
   def contract_params
     params.require(:contract).permit(
-      :user_id, :number, :kind, :rent, :contracted_at,
-      :termed_at, :automatic_updating, :note)
+      :user_id, :number, :kind, :status, :rent, :contracted_date,
+      :termed_date, :automatic_updating, :note)
   end
 end
