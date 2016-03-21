@@ -11,7 +11,7 @@
     - if @user.present?
       = f.collection_select(:user_id, @users, :id, :customer_code, selected: @user)
     - else
-      = f.collection_select(:user_id, @users, :id, :customer_code)
+      = f.collection_select(:user_id, @users, :id, :customer_code, include_blank: true)
   .field
     = f.label :number
     = f.text_field :number
