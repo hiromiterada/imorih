@@ -1,6 +1,10 @@
 = provide :title, t('activerecord.models.contract') + t('views.index')
 %h2= t('activerecord.models.contract') + t('views.index')
 
+%p= page_entries_info @contracts
+
+= link_to t('views.new'), new_contract_path
+
 %table
   %thead
     %tr
@@ -31,4 +35,4 @@
 
 %br
 
-= link_to t('views.new'), new_contract_path
+= paginate @contracts

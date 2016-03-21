@@ -33,7 +33,8 @@
     = f.date_select :date_signed
   .field
     = f.label :date_terminated
-    = f.date_select :date_terminated
+    = f.date_select :date_terminated,
+      default: Date.today >> 12
   .field
     = f.label :auto_updating
     %br/

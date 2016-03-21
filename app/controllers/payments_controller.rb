@@ -4,10 +4,11 @@ class PaymentsController < ApplicationController
 
   def index
     if current_user.normal?
-      @payments = Payment.search_user(current_user)
+      payments = Payment.search_user(current_user)
     else
-      @payments = Payment.all
+      payments = Payment.all
     end
+    @payments = payments.order('payday DESC').page(params[:page])
   end
 
   def show
