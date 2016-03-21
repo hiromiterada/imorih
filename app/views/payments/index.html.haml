@@ -24,10 +24,10 @@
   %tbody
     - @payments.each do |payment|
       %tr
-        %td= payment.try(:contract).number
+        %td= payment.contract.try(:number)
         %td= payment.payday
         %td= payment.amount
-        %td= payment.try(:contract).enum_i18n(:kind)
+        %td= payment.contract.try('enum_i18n(:kind)')
         %td= [l(payment.date_started), l(payment.date_ended)].join(' - ')
         %td= payment.message
         %td= payment.note

@@ -22,7 +22,7 @@
   %tbody
     - @contracts.each do |contract|
       %tr
-        %td= contract.try(:user).customer_code
+        %td= contract.user.try(:customer_code)
         %td= contract.number
         %td= contract.enum_i18n(:kind)
         %td= contract.enum_i18n(:status)
