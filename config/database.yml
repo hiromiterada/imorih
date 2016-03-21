@@ -27,9 +27,8 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  pool: 5
-  database: ENV['DATABASE']
-  username: ENV['DB_USERNAME']
-  password: ENV['DB_PASSWORD']
-  port: ENV['DB_PORT']
-  host: ENV['DB_HOST']
+  database: Rails.application.secrets.database
+  username: Rails.application.secrets.db_username
+  password: Rails.application.secrets.db_password
+  port: Rails.application.secrets.db_port
+  host: Rails.application.secrets.db_host
