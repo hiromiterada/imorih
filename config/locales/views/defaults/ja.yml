@@ -6,6 +6,7 @@ ja:
     edit: 編集
     delete: 削除
     back: 一覧に戻る
+    cancel: キャンセル
     save: 保存
     signout: ログアウト
     signin: ログイン
@@ -13,3 +14,8 @@ ja:
     boolean:
       'yes': はい
       'no': いいえ
+    messages:
+      confirm: 本当によろしいですか？
+      successfully_created: 登録しました。
+      successfully_updated: 更新しました。
+      successfully_destroyed: 削除しました。

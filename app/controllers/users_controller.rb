@@ -20,7 +20,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     @user.skip_confirmation!
     if @user.save
-      redirect_to @user, notice: 'User was successfully created.'
+      redirect_to @user,
+        notice: t('views.messages.successfully_created')
     else
       render :new
     end
@@ -29,7 +30,8 @@ class UsersController < ApplicationController
   def update
     @user.skip_reconfirmation!
     if @user.update(user_params)
-      redirect_to @user, notice: 'User was successfully updated.'
+      redirect_to @user,
+        notice: t('views.messages.successfully_updated')
     else
       render :edit
     end
@@ -37,7 +39,8 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    redirect_to users_url, notice: 'User was successfully destroyed.'
+    redirect_to users_url,
+      notice: t('views.messages.successfully_destroyed')
   end
 
   private

@@ -1,25 +1,53 @@
-!!!
-%html
+!!! 5
+%html(lang="ja")
   %head
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta(charset="utf-8")
+    %meta(http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1")
+    %meta(name="viewport" content="width=device-width, initial-scale=1.0")
     %title
       ImoriH - 
-      = yield(:title).present? ? yield(:title) : nil
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+      = yield(:title).present? ? yield(:title) : 'imoriH'
     = csrf_meta_tags
+    = stylesheet_link_tag "application", media: "all"
+    = favicon_link_tag 'apple-touch-icon-144x144-precomposed.png', rel: 'apple-touch-icon-precomposed', type: 'image/png', sizes: '144x144'
+    = favicon_link_tag 'apple-touch-icon-114x114-precomposed.png', rel: 'apple-touch-icon-precomposed', type: 'image/png', sizes: '114x114'
+    = favicon_link_tag 'apple-touch-icon-72x72-precomposed.png', rel: 'apple-touch-icon-precomposed', type: 'image/png', sizes: '72x72'
+    = favicon_link_tag 'apple-touch-icon-precomposed.png', rel: 'apple-touch-icon-precomposed', type: 'image/png'
+    = favicon_link_tag 'favicon.ico', rel: 'shortcut icon'
+    = javascript_include_tag "application"
+    / Le HTML5 shim, for IE6-8 support of HTML elements
+    /[if lt IE 9]
+      = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"
+
   %body
-    %ul
-      - if user_signed_in?
-        %li= link_to current_user.email, edit_user_registration_path
-        %li= link_to t('views.signout'), destroy_user_session_path, method: :delete
-        - if current_user.admin?
-          %li= link_to t('activerecord.models.user'), users_path
-          %li= link_to t('activerecord.models.contract'), contracts_path
-        %li= link_to t('activerecord.models.payment'), payments_path
-      - else
-        %li= link_to t('views.signin'), new_user_session_path
-        %li= link_to t('views.signup'), new_user_registration_path
-    %p#notice= notice
-    %p#alert= alert
-    = yield
+    .navbar.navbar-default.navbar-static-top
+      .container-fluid
+        %button.navbar-toggle(type="button" data-toggle="collapse" data-target=".navbar-responsive-collapse")
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+        .navbar-header
+          = link_to root_path, class: 'navbar-brand', style: 'position:relative; top:-15px' do
+            = image_tag 'logo.png'
+        .navbar-collapse.collapse.navbar-responsive-collapse
+          %ul.nav.navbar-nav
+            - if current_user.admin?
+              %li= link_to t('activerecord.models.user'), users_path
+              %li= link_to t('activerecord.models.contract'), contracts_path
+            %li= link_to t('activerecord.models.payment'), payments_path
+          %ul.nav.navbar-nav.navbar-right
+            - if user_signed_in?
+              %li= link_to current_user.email, edit_user_registration_path
+              %li= link_to t('views.signout'), destroy_user_session_path, method: :delete
+            - else
+              %li= link_to t('views.signin'), new_user_session_path
+              %li= link_to t('views.signup'), new_user_registration_path
+    .container
+      .row
+        %p.text-success= notice
+        %p.text-danger= alert
+
+      = yield
+
+      %footer
+        %p.text-right &copy; imoriH 2016

@@ -10,27 +10,30 @@ class ContractsController < ApplicationController
 
   def new
     @users = User.all
-    @user = User.find(params[:user_id]) if params[:user_id]
     @contract = Contract.new
+    @contract.user = User.find(params[:user_id]) if params[:user_id]
   end
 
   def edit
     @users = User.all
-    @user = @contract.user
   end
 
   def create
+    @users = User.all
     @contract = Contract.new(contract_params)
     if @contract.save
-      redirect_to @contract, notice: 'Contract was successfully created.'
+      redirect_to @contract,
+        notice: t('views.messages.successfully_created')
     else
       render :new
     end
   end
 
   def update
+    @users = User.all
     if @contract.update(contract_params)
-      redirect_to @contract, notice: 'Contract was successfully updated.'
+      redirect_to @contract,
+        notice: t('views.messages.successfully_updated')
     else
       render :edit
     end
@@ -38,7 +41,8 @@ class ContractsController < ApplicationController
 
   def destroy
     @contract.destroy
-    redirect_to contracts_url, notice: 'Contract was successfully destroyed.'
+    redirect_to contracts_url,
+      notice: t('views.messages.successfully_destroyed')
   end
 
   private

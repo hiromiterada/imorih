@@ -17,7 +17,7 @@ en:
         remove_account: Cancel my account
         confirm: Are you sure?
         unhappy: Unhappy?
-        back: Back
+        cancel: Cancel
     confirmations:
       new:
         title: Resend confirmation instructions

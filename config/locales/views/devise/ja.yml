@@ -18,7 +18,7 @@ ja:
         unhappy: 会員情報を削除します。よろしければ「退会」ボタンをクリックしてください。元に戻すことはできませんのでご注意ください。 
         confirm: 本当によろしいですか？
         currently_waiting_confirmation_for: '%{email}は承認待ちです。確認メールの内容に従って本登録を行ってください。'
-        back: 戻る
+        cancel: キャンセル
     confirmations:
       new:
         title: 確認メールの再送信

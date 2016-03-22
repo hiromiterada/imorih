@@ -1,0 +1,21 @@
+en:
+  views:
+    index: List
+    new: New
+    show: Info
+    edit: Edit
+    delete: Destroy
+    back: Back
+    cancel: Cancel
+    save: Save
+    signout: Sign out
+    signin: Sign in
+    signup: Sign up
+    boolean:
+      'yes': yes
+      'no': no
+    messages:
+      confirm: Are you sure?
+      successfully_created: Successfully created.
+      successfully_updated: Successfully updated.
+      successfully_destroyed: Successfully destroyed.

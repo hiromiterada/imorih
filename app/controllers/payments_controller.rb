@@ -16,27 +16,30 @@ class PaymentsController < ApplicationController
 
   def new
     @contracts = Contract.all
-    @contract = Contract.find(params[:contract_id]) if params[:contract_id]
     @payment = Payment.new
+    @payment.contract = Contract.find(params[:contract_id]) if params[:contract_id]
   end
 
   def edit
     @contracts = Contract.all
-    @contract = @payment.contract
   end
 
   def create
+    @contracts = Contract.all
     @payment = Payment.new(payment_params)
     if @payment.save
-      redirect_to @payment, notice: 'Payment was successfully created.'
+      redirect_to @payment,
+        notice: t('views.messages.successfully_created')
     else
       render :new
     end
   end
 
   def update
+    @contracts = Contract.all
     if @payment.update(payment_params)
-      redirect_to @payment, notice: 'Payment was successfully updated.'
+      redirect_to @payment,
+        notice: t('views.messages.successfully_updated')
     else
       render :edit
     end
@@ -44,7 +47,8 @@ class PaymentsController < ApplicationController
 
   def destroy
     @payment.destroy
-    redirect_to payments_url, notice: 'Payment was successfully destroyed.'
+    redirect_to payments_url,
+      notice: t('views.messages.successfully_destroyed')
   end
 
   private

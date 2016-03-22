@@ -1,27 +1,28 @@
-= provide :title, t('activerecord.models.user') + t('views.index')
-%h2= t('activerecord.models.user') + t('views.index')
+= provide :title, [User.model_name.human, t('views.index')].join
+
+%h2= User.model_name.human
+
+%p= link_to t('views.new'), new_user_path
 
 %p= page_entries_info @users
 
-= link_to t('views.new'), new_user_path
-
-%table
+%table.table.table-striped
   %thead
     %tr
-      %th ID
-      %th= t('activerecord.attributes.user.email')
-      %th
-      %th
+      %th= User.human_attribute_name(:email)
+      %th= User.human_attribute_name(:customer_code)
+      %th= User.human_attribute_name(:name)
       %th
 
   %tbody
     - @users.each do |user|
       %tr
-        %td= user.id
-        %td= user.email
-        %td= link_to t('views.show'), user
-        %td= link_to t('views.edit'), edit_user_path(user)
-        %td= link_to t('views.delete'), user, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %td= link_to user.email, user
+        %td= user.customer_code
+        %td= user.fullname
+        %td= link_to [Contract.model_name.human, t('views.new')].join,
+          new_user_contract_path(user)
+
 %br
 
 = paginate @users

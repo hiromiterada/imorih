@@ -1,66 +1,85 @@
 %h2= t('.title')
-= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
-  = devise_error_messages!
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true
-  - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-    %div= t('.currently_waiting_confirmation_for', email: resource.unconfirmed_email)
-  .field
-    = f.label :password
-    %i= t('.leave_blank_if_you_dont_want_to_change_it')
-    %br/
-    = f.password_field :password, autocomplete: "off"
-  .field
-    = f.label :password_confirmation
-    %br/
-    = f.password_field :password_confirmation, autocomplete: "off"
-  .field
-    = f.label :lastname, t('activerecord.attributes.user.name')
-    %br/
-    = f.text_field :lastname, placeholder: t('activerecord.attributes.user.lastname')
-    = f.text_field :firstname, placeholder: t('activerecord.attributes.user.firstname')
-  .field
-    = f.label :locale
-    %br/
-    - User.enum_i18n(:locale).invert.each do |key, value|
-      = key
-      = f.radio_button :locale, value
-  .field
-    = f.label :gender
-    %br/
-    - User.enum_i18n(:gender).invert.each do |key, value|
-      = key
-      = f.radio_button :gender, value
-  .field
-    = f.label :birthday
-    %br/
-    = f.date_select :birthday, start_year: Time.now.year - 100, end_year: Time.now.year
-  .field
-    = f.label :address
-    %br/
-    = f.text_field :address
-  .field
-    = f.label :phone
-    %br/
-    = f.text_field :phone
-  .field
-    = f.label :send_of_dm
-    %br/
-    - {yes: true, no: false}.each do |key, value|
-      = t("views.boolean.#{key}")
-      = f.radio_button :send_of_dm, value
-  .field
-    = f.label :current_password
-    %i= t('.we_need_your_current_password_to_confirm_your_changes')
-    %br/
-    = f.password_field :current_password, autocomplete: "off"
-  .actions
-    = f.submit t('.submit')
 
-%h3= t('.remove_account')
-%p
-  = t('.unhappy')
-  #{button_to t('.remove_account'), registration_path(resource_name), data: { confirm: t('.confirm') }, method: :delete}
-= link_to t('.back'), :back
+.well.bs-component
+  = form_for(resource, as: resource_name, url: registration_path(resource_name),
+    html: { method: :put }) do |f|
+    = devise_error_messages!
+    .form-group
+      = f.label :email, class: 'control-label col-lg-2'
+      .col-lg-10
+        = f.email_field :email, autofocus: true
+        - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+          %div= t('.currently_waiting_confirmation_for', email: resource.unconfirmed_email)
+      = f.error_span(:email)
+    .form-group
+      = f.label :password, class: 'control-label col-lg-2'
+      %i= t('.leave_blank_if_you_dont_want_to_change_it')
+      .col-lg-10
+        = f.password_field :password, autocomplete: "off"
+      = f.error_span(:password)
+    .form-group
+      = f.label :password_confirmation, class: 'control-label col-lg-2'
+      .col-lg-10
+        = f.password_field :password_confirmation, autocomplete: "off"
+      = f.error_span(:password_confirmation)
+    .form-group
+      = f.label :lastname, User.human_attribute_name(:name),
+        class: 'control-label col-lg-2'
+      .col-lg-10
+        = f.text_field :lastname, placeholder: User.human_attribute_name(:lastname)
+        = f.text_field :firstname, placeholder: User.human_attribute_name(:firstname)
+    .form-group
+      = f.label :locale, class: 'control-label col-lg-2'
+      .col-lg-10
+        - User.enum_i18n(:locale).invert.each do |key, value|
+          = key
+          = f.radio_button :locale, value
+      = f.error_span(:locale)
+    .form-group
+      = f.label :gender, class: 'control-label col-lg-2'
+      .col-lg-10
+        - User.enum_i18n(:gender).invert.each do |key, value|
+          = key
+          = f.radio_button :gender, value
+      = f.error_span(:gender)
+    .form-group
+      = f.label :birthday, class: 'control-label col-lg-2'
+      .col-lg-10
+        = f.date_select :birthday,
+          start_year: Date.today.year - 100, end_year: Date.today.year
+      = f.error_span(:birthday)
+    .form-group
+      = f.label :address, class: 'control-label col-lg-2'
+      .col-lg-10
+        = f.text_field :address
+      = f.error_span(:address)
+    .form-group
+      = f.label :phone, class: 'control-label col-lg-2'
+      .col-lg-10
+        = f.text_field :phone
+      = f.error_span(:phone)
+    .form-group
+      = f.label :send_of_dm, class: 'control-label col-lg-2'
+      .col-lg-10
+        - {yes: true, no: false}.each do |key, value|
+          = t("views.boolean.#{key}")
+          = f.radio_button :send_of_dm, value
+      = f.error_span(:send_of_dm)
+    .form-group
+      = f.label :current_password, class: 'control-label col-lg-2'
+      %i= t('.we_need_your_current_password_to_confirm_your_changes')
+      .col-lg-10
+        = f.password_field :current_password, autocomplete: "off"
+      = f.error_span(:current_password)
+    .form-group
+      .col-lg-offset-2.col-lg-10
+      = f.submit t('.submit'), class: 'btn btn-primary'
+      = link_to t('views.cancel'), users_path, class: 'btn btn-default'
+
+.well.bs-component
+  %fieldset
+    %legend= t('.remove_account')
+  %p
+    = t('.unhappy')
+    = button_to t('.remove_account'), registration_path(resource_name),
+      data: { confirm: t('.confirm') }, method: :delete

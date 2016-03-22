@@ -1,8 +1,5 @@
-= provide :title, t('activerecord.models.contract') + t('views.edit')
-%h2= t('activerecord.models.contract') + t('views.edit')
+= provide :title, [Contract.model_name.human, t('views.edit')].join
+
+%h2= t('views.edit')
 
 = render 'form'
-
-= link_to t('views.show'), @contract
-\|
-= link_to t('views.back'), contracts_path

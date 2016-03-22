@@ -1,37 +1,35 @@
-= provide :title, t('activerecord.models.contract') + t('views.index')
-%h2= t('activerecord.models.contract') + t('views.index')
+= provide :title, [Contract.model_name.human, t('views.index')].join
+
+%h2= Contract.model_name.human
+
+%p= link_to t('views.new'), new_contract_path
 
 %p= page_entries_info @contracts
 
-= link_to t('views.new'), new_contract_path
-
-%table
+%table.table.table-striped
   %thead
     %tr
-      %th= t('activerecord.attributes.user.customer_code')
-      %th= t('activerecord.attributes.contract.number')
-      %th= t('activerecord.attributes.contract.kind')
-      %th= t('activerecord.attributes.contract.status')
-      %th= t('activerecord.attributes.contract.rent')
-      %th= t('activerecord.attributes.contract.date_signed')
-      %th= t('activerecord.attributes.contract.date_terminated')
-      %th
-      %th
+      %th= User.human_attribute_name(:customer_code)
+      %th= Contract.human_attribute_name(:number)
+      %th= Contract.human_attribute_name(:kind)
+      %th= Contract.human_attribute_name(:status)
+      %th= Contract.human_attribute_name(:rent)
+      %th= Contract.human_attribute_name(:date_signed)
+      %th= Contract.human_attribute_name(:date_terminated)
       %th
 
   %tbody
     - @contracts.each do |contract|
       %tr
         %td= contract.user.try(:customer_code)
-        %td= contract.number
+        %td= link_to contract.number, contract
         %td= contract.enum_i18n(:kind)
         %td= contract.enum_i18n(:status)
         %td= contract.rent
         %td= l(contract.date_signed)
         %td= l(contract.date_terminated)
-        %td= link_to t('views.show'), contract
-        %td= link_to t('views.edit'), edit_contract_path(contract)
-        %td= link_to t('views.delete'), contract, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %td= link_to [Payment.model_name.human, t('views.new')].join,
+          new_contract_payment_path(contract)
 
 %br
 

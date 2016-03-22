@@ -1,8 +1,5 @@
-= provide :title, t('activerecord.models.payment') + t('views.edit')
-%h2= t('activerecord.models.payment') + t('views.edit')
+= provide :title, [Payment.model_name.human, t('views.edit')].join
+
+%h2= t('views.edit')
 
 = render 'form'
-
-= link_to t('views.show'), @payment
-\|
-= link_to t('views.back'), payments_path

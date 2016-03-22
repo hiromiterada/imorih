@@ -2,40 +2,53 @@
 - start_day = Date.new(today.year, today.month, 1) >> 1
 - end_day = (start_day >> 1) - 1
 
-= form_for @payment do |f|
-  - if @payment.errors.any?
-    #error_explanation
-      %h2= t('errors.messages.not_saved')
-      %ul
-        - @payment.errors.full_messages.each do |msg|
-          %li= msg
+.well.bs-component
+  = form_for @payment, html: { class: "form-horizontal payment" } do |f|
+    %fieldset
+      %legend= Payment.model_name.human
+    - if @payment.errors.any?
+      %p.text-danger= t('errors.messages.not_saved')
 
-  .field
-    = f.label :contract_id, t('activerecord.attributes.contract.number')
-    - if @contract.present?
-      = f.collection_select(:contract_id, @contracts, :id, :number, selected: @contract)
-    - else
-      = f.collection_select(:contract_id, @contracts, :id, :number, prompt: true)
-  .field
-    = f.label :payday
-    = f.date_select :payday
-  .field
-    = f.label :amount
-    = f.number_field :amount
-  .field
-    %b= t('activerecord.attributes.payment.period')
-    = f.label :date_started
-    = f.date_select :date_started,
-      default: Date.new(start_day.year, start_day.month, start_day.day)
-  .field
-    = f.label :date_ended
-    = f.date_select :date_ended,
-      default: Date.new(end_day.year, end_day.month, end_day.day)
-  .field
-    = f.label :message
-    = f.text_area :message
-  .field
-    = f.label :note
-    = f.text_area :note
-  .actions
-    = f.submit t('views.save')
+    .form-group
+      = f.label :contract_id, Contract.human_attribute_name(:number),
+         class: 'control-label col-lg-2'
+      .col-lg-10
+        - if @payment.contract.present?
+          = f.collection_select(:contract_id, @contracts, :id, :number, selected: @payment.contract.id)
+        - else
+          = f.collection_select(:contract_id, @contracts, :id, :number, prompt: true)
+      = f.error_span(:contract_id)
+    .form-group
+      = f.label :payday, class: 'control-label col-lg-2'
+      .col-lg-10
+        = f.date_select :payday
+      = f.error_span(:payday)
+    .form-group
+      = f.label :amount, class: 'control-label col-lg-2'
+      .col-lg-10
+        = f.number_field :amount
+      = f.error_span(:amount)
+    .form-group
+      = f.label :date_started, Payment.human_attribute_name(:period),
+        class: 'control-label col-lg-2'
+      .col-lg-10
+        = f.date_select :date_started,
+          default: Date.new(start_day.year, start_day.month, start_day.day)
+        = '-'
+        = f.date_select :date_ended,
+          default: Date.new(end_day.year, end_day.month, end_day.day)
+      = f.error_span(:date_started)
+    .form-group
+      = f.label :message
+      .col-lg-10
+        = f.text_area :message
+      = f.error_span(:message)
+    .form-group
+      = f.label :note
+      .col-lg-10
+        = f.text_area :note
+      = f.error_span(:note)
+    .form-group
+      .col-lg-offset-2.col-lg-10
+      = f.submit t('views.save'), class: 'btn btn-primary'
+      = link_to t('views.cancel'), payments_path, class: 'btn btn-default'

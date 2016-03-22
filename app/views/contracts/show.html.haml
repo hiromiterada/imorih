@@ -1,36 +1,41 @@
-= provide :title, t('activerecord.models.contract') + t('views.show')
-%h2= t('activerecord.models.contract') + t('views.show')
+= provide :title, [Contract.model_name.human, t('views.show')].join
 
-%p
-  %b= t('activerecord.attributes.contract.user_id')
-  = @contract.user_id
-%p
-  %b= t('activerecord.attributes.contract.number')
-  = @contract.number
-%p
-  %b= t('activerecord.attributes.contract.kind')
-  = @contract.enum_i18n(:kind)
-%p
-  %b= t('activerecord.attributes.contract.status')
-  = @contract.enum_i18n(:status)
-%p
-  %b= t('activerecord.attributes.contract.rent')
-  = @contract.rent
-%p
-  %b= t('activerecord.attributes.contract.date_signed')
-  = @contract.date_signed
-%p
-  %b= t('activerecord.attributes.contract.date_terminated')
-  = @contract.date_terminated
-%p
-  %b= t('activerecord.attributes.contract.auto_updating')
-  = @contract.boolean_i18n(:auto_updating)
-%p
-  %b= t('activerecord.attributes.contract.note')
-  = @contract.note
+%h2= t('views.show')
 
-= link_to t('activerecord.models.payment') + t('views.new'), new_contract_payment_path(@contract)
+.well.bs-component
+  %fieldset
+    %legend= Contract.model_name.human
+  %p
+    %b= User.human_attribute_name(:customer_code) + ':'
+    = @contract.user.try(:customer_code)
+    - if @contract.user.try(:fullname).present?
+      = ['(', @contract.user.try(:fullname), ')'].join
+  %p
+    %b= Contract.human_attribute_name(:number) + ':'
+    = @contract.number
+  %p
+    %b= Contract.human_attribute_name(:kind) + ':'
+    = @contract.enum_i18n(:kind)
+  %p
+    %b= Contract.human_attribute_name(:status) + ':'
+    = @contract.enum_i18n(:status)
+  %p
+    %b= Contract.human_attribute_name(:rent) + ':'
+    = @contract.rent
+  %p
+    %b= Contract.human_attribute_name(:date_signed) + ':'
+    = @contract.date_signed
+  %p
+    %b= Contract.human_attribute_name(:date_terminated) + ':'
+    = @contract.date_terminated
+  %p
+    %b= Contract.human_attribute_name(:auto_updating) + ':'
+    = @contract.boolean_i18n(:auto_updating)
+  %p
+    %b= Contract.human_attribute_name(:note) + ':'
+    = @contract.note
 
-= link_to t('views.edit'), edit_contract_path(@contract)
-\|
-= link_to t('views.back'), contracts_path
+  = link_to t('views.edit'), edit_contract_path(@contract), class: 'btn btn-default'
+  = link_to t('views.delete'), @contract, method: :delete,
+    data: { confirm: t('views.messages.confirm')}, class: 'btn btn-danger'
+= link_to t('views.back'), contracts_path, class: 'btn btn-default'

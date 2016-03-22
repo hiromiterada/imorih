@@ -1,24 +1,23 @@
-= provide :title, t('activerecord.models.payment') + t('views.index')
-%h2= t('activerecord.models.payment') + t('views.index')
+= provide :title, [Payment.model_name.human, t('views.index')].join
+
+%h2= Payment.model_name.human
+
+- if current_user.admin?
+  %p= link_to t('views.new'), new_payment_path
 
 %p= page_entries_info @payments
 
-- if current_user.admin?
-  = link_to t('views.new'), new_payment_path
-
-%table
+%table.table.table-striped
   %thead
     %tr
-      %th= t('activerecord.attributes.contract.number')
-      %th= t('activerecord.attributes.payment.payday')
-      %th= t('activerecord.attributes.payment.amount')
-      %th= t('activerecord.attributes.contract.kind')
-      %th= t('activerecord.attributes.payment.period')
-      %th= t('activerecord.attributes.payment.message')
-      %th= t('activerecord.attributes.payment.note')
+      %th= Contract.human_attribute_name(:number)
+      %th= Payment.human_attribute_name(:payday)
+      %th= Payment.human_attribute_name(:amount)
+      %th= Contract.human_attribute_name(:kind)
+      %th= Payment.human_attribute_name(:period)
+      %th= Payment.human_attribute_name(:message)
+      %th= Payment.human_attribute_name(:note)
       - if current_user.admin?
-        %th
-        %th
         %th
 
   %tbody
@@ -27,14 +26,12 @@
         %td= payment.contract.try(:number)
         %td= payment.payday
         %td= payment.amount
-        %td= payment.contract.try('enum_i18n(:kind)')
+        %td= payment.contract.enum_i18n(:kind) if payment.contract.present?
         %td= [l(payment.date_started), l(payment.date_ended)].join(' - ')
         %td= payment.message
         %td= payment.note
         - if current_user.admin?
           %td= link_to t('views.show'), payment
-          %td= link_to t('views.edit'), edit_payment_path(payment)
-          %td= link_to t('views.delete'), payment, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 

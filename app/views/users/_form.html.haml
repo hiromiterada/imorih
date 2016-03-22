@@ -1,61 +1,77 @@
-= form_for @user do |f|
-  - if @user.errors.any?
-    #error_explanation
-      %h2= t('errors.messages.not_saved')
-      %ul
-        - @user.errors.full_messages.each do |msg|
-          %li= msg
+.well.bs-component
+  = form_for @user, html: { class: "form-horizontal payment" } do |f|
+    %fieldset
+      %legend= User.model_name.human
+    - if @user.errors.any?
+      %p.text-danger= t('errors.messages.not_saved')
 
-  .field
-    = f.label :email
-    = f.email_field :email, autofocus: true
-  - if @user.new_record?
-    .field
-      = f.label :password
-      = f.password_field :password, autocomplete: "off"
-    .field
-      = f.label :password_confirmation
-      = f.password_field :password_confirmation, autocomplete: "off"
-  .field
-    = f.label :lastname, t('activerecord.attributes.user.name')
-    %br/
-    = f.text_field :lastname, placeholder: t('activerecord.attributes.user.lastname')
-    = f.text_field :firstname, placeholder: t('activerecord.attributes.user.firstname')
-  .field
-    = f.label :locale
-    %br/
-    - User.enum_i18n(:locale).invert.each do |key, value|
-      = key
-      = f.radio_button :locale, value
-  .field
-    = f.label :gender
-    %br/
-    - User.enum_i18n(:gender).invert.each do |key, value|
-      = key
-      = f.radio_button :gender, value
-  .field
-    = f.label :birthday
-    %br/
-    = f.date_select :birthday, start_year: Time.now.year - 100, end_year: Time.now.year
-  .field
-    = f.label :address
-    %br/
-    = f.text_field :address
-  .field
-    = f.label :phone
-    %br/
-    = f.text_field :phone
-  .field
-    = f.label :send_of_dm
-    %br/
-    - {yes: true, no: false}.each do |key, value|
-      = t("views.boolean.#{key}")
-      = f.radio_button :send_of_dm, value
-  .field
-    = f.label :role
-    %br/
-    - User.enum_i18n(:role).invert.each do |key, value|
-      = key
-      = f.radio_button :role, value
-  .actions
-    = f.submit t('views.save')
+    .form-group
+      = f.label :email, class: 'control-label col-lg-2'
+      .col-lg-10
+        = f.email_field :email, autofocus: true
+      = f.error_span(:email)
+    - if @user.new_record?
+      .form-group
+        = f.label :password, class: 'control-label col-lg-2'
+        .col-lg-10
+          = f.password_field :password, autocomplete: "off"
+        = f.error_span(:password)
+      .form-group
+        = f.label :password_confirmation, class: 'control-label col-lg-2'
+        .col-lg-10
+          = f.password_field :password_confirmation, autocomplete: "off"
+        = f.error_span(:password_confirmation)
+    .form-group
+      = f.label :lastname, User.human_attribute_name(:name),
+        class: 'control-label col-lg-2'
+      .col-lg-10
+        = f.text_field :lastname, placeholder: User.human_attribute_name(:lastname)
+        = f.text_field :firstname, placeholder: User.human_attribute_name(:firstname)
+    .form-group
+      = f.label :locale, class: 'control-label col-lg-2'
+      .col-lg-10
+        - User.enum_i18n(:locale).invert.each do |key, value|
+          = key
+          = f.radio_button :locale, value
+      = f.error_span(:locale)
+    .form-group
+      = f.label :gender, class: 'control-label col-lg-2'
+      .col-lg-10
+        - User.enum_i18n(:gender).invert.each do |key, value|
+          = key
+          = f.radio_button :gender, value
+      = f.error_span(:gender)
+    .form-group
+      = f.label :birthday, class: 'control-label col-lg-2'
+      .col-lg-10
+        = f.date_select :birthday,
+          start_year: Date.today.year - 100, end_year: Date.today.year
+      = f.error_span(:birthday)
+    .form-group
+      = f.label :address, class: 'control-label col-lg-2'
+      .col-lg-10
+        = f.text_field :address
+      = f.error_span(:address)
+    .form-group
+      = f.label :phone, class: 'control-label col-lg-2'
+      .col-lg-10
+        = f.text_field :phone
+      = f.error_span(:phone)
+    .form-group
+      = f.label :send_of_dm, class: 'control-label col-lg-2'
+      .col-lg-10
+        - {yes: true, no: false}.each do |key, value|
+          = t("views.boolean.#{key}")
+          = f.radio_button :send_of_dm, value
+      = f.error_span(:send_of_dm)
+    .form-group
+      = f.label :role, class: 'control-label col-lg-2'
+      .col-lg-10
+        - User.enum_i18n(:role).invert.each do |key, value|
+          = key
+          = f.radio_button :role, value
+      = f.error_span(:role)
+    .form-group
+      .col-lg-offset-2.col-lg-10
+      = f.submit t('views.save'), class: 'btn btn-primary'
+      = link_to t('views.cancel'), users_path, class: 'btn btn-default'

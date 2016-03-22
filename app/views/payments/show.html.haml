@@ -1,25 +1,31 @@
-= provide :title, t('activerecord.models.payment') + t('views.show')
-%h2= t('activerecord.models.payment') + t('views.show')
+= provide :title, [Payment.model_name.human, t('views.show')].join
 
-%p
-  %b= t('activerecord.attributes.payment.contract_id')
-  = @payment.contract_id
-%p
-  %b= t('activerecord.attributes.payment.payday')
-  = @payment.payday
-%p
-  %b= t('activerecord.attributes.payment.amount')
-  = @payment.amount
-%p
-  %b= t('activerecord.attributes.payment.period')
-  = [@payment.date_started, @payment.date_ended].join(' - ')
-%p
-  %b= t('activerecord.attributes.payment.message')
-  = @payment.message
-%p
-  %b= t('activerecord.attributes.payment.note')
-  = @payment.note
+%h2= t('views.show')
 
-= link_to t('views.edit'), edit_payment_path(@payment)
-\|
-= link_to t('views.back'), payments_path
+.well.bs-component
+  %fieldset
+    %legend= Payment.model_name.human
+  %p
+    %b= Contract.human_attribute_name(:number) + ':'
+    = @payment.contract.number
+  %p
+    %b= Payment.human_attribute_name(:payday) + ':'
+    = @payment.payday
+  %p
+    %b= Payment.human_attribute_name(:amount) + ':'
+    = @payment.amount
+  %p
+    %b= Payment.human_attribute_name(:period) + ':'
+    = [@payment.date_started, @payment.date_ended].join(' - ')
+  %p
+    %b= Payment.human_attribute_name(:message) + ':'
+    = @payment.message
+  %p
+    %b= Payment.human_attribute_name(:note) + ':'
+    = @payment.note
+
+  = link_to t('views.edit'), edit_payment_path(@payment),
+    class: 'btn btn-default'
+  = link_to t('views.delete'), @payment, method: :delete,
+    data: { confirm: t('views.messages.confirm')}, class: 'btn btn-danger'
+= link_to t('views.back'), payments_path, class: 'btn btn-default'

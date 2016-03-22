@@ -1,48 +1,69 @@
-= form_for @contract do |f|
-  - if @contract.errors.any?
-    #error_explanation
-      %h2= t('errors.messages.not_saved')
-      %ul
-        - @contract.errors.full_messages.each do |msg|
-          %li= msg
+.well.bs-component
+  = form_for @contract, html: { class: "form-horizontal payment" } do |f|
+    %fieldset
+      %legend= Contract.model_name.human
+    - if @contract.errors.any?
+      %p.text-danger= t('errors.messages.not_saved')
 
-  .field
-    = f.label :user_id, t('activerecord.attributes.user.customer_code')
-    - if @user.present?
-      = f.collection_select(:user_id, @users, :id, :customer_code, selected: @user)
-    - else
-      = f.collection_select(:user_id, @users, :id, :customer_code, include_blank: true)
-  .field
-    = f.label :number
-    = f.text_field :number
-  .field
-    = f.label :kind
-    - Contract.enum_i18n(:kind).invert.each do |key, value|
-      = key
-      = f.radio_button :kind, value
-  .field
-    = f.label :status
-    - Contract.enum_i18n(:status).invert.each do |key, value|
-      = key
-      = f.radio_button :status, value
-  .field
-    = f.label :rent
-    = f.number_field :rent
-  .field
-    = f.label :date_signed
-    = f.date_select :date_signed
-  .field
-    = f.label :date_terminated
-    = f.date_select :date_terminated,
-      default: Date.today >> 12
-  .field
-    = f.label :auto_updating
-    %br/
-    - {yes: true, no: false}.each do |key, value|
-      = t("views.boolean.#{key}")
-      = f.radio_button :auto_updating, value
-  .field
-    = f.label :note
-    = f.text_area :note
-  .actions
-    = f.submit t('views.save')
+    .form-group
+      = f.label :user_id, User.human_attribute_name(:customer_code),
+         class: 'control-label col-lg-2'
+      .col-lg-10
+        - if @contract.user.present?
+          = f.collection_select(:user_id, @users, :id, :customer_code, selected: @contract.user.id)
+        - else
+          = f.collection_select(:user_id, @users, :id, :customer_code, include_blank: true)
+      = f.error_span(:user_id)
+    .form-group
+      = f.label :number, class: 'control-label col-lg-2'
+      .col-lg-10
+        - if @contract.new_record?
+          = f.text_field :number
+        - else
+          = @contract.number
+      = f.error_span(:number)
+    .form-group
+      = f.label :kind, class: 'control-label col-lg-2'
+      .col-lg-10
+        - Contract.enum_i18n(:kind).invert.each do |key, value|
+          = key
+          = f.radio_button :kind, value
+      = f.error_span(:kind)
+    .form-group
+      = f.label :status, class: 'control-label col-lg-2'
+      .col-lg-10
+        - Contract.enum_i18n(:status).invert.each do |key, value|
+          = key
+          = f.radio_button :status, value
+      = f.error_span(:status)
+    .form-group
+      = f.label :rent, class: 'control-label col-lg-2'
+      .col-lg-10
+        = f.number_field :rent
+      = f.error_span(:rent)
+    .form-group
+      = f.label :date_signed, class: 'control-label col-lg-2'
+      .col-lg-10
+        = f.date_select :date_signed
+      = f.error_span(:date_signed)
+    .form-group
+      = f.label :date_terminated, class: 'control-label col-lg-2'
+      .col-lg-10
+        = f.date_select :date_terminated, default: Date.today >> 12
+      = f.error_span(:date_terminated)
+    .form-group
+      = f.label :auto_updating, class: 'control-label col-lg-2'
+      .col-lg-10
+        - {yes: true, no: false}.each do |key, value|
+          = t("views.boolean.#{key}")
+          = f.radio_button :auto_updating, value
+      = f.error_span(:auto_updating)
+    .form-group
+      = f.label :note, class: 'control-label col-lg-2'
+      .col-lg-10
+        = f.text_area :note
+      = f.error_span(:note)
+    .form-group
+      .col-lg-offset-2.col-lg-10
+      = f.submit t('views.save'), class: 'btn btn-primary'
+      = link_to t('views.cancel'), contracts_path, class: 'btn btn-default'
