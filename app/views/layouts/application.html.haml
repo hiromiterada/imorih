@@ -31,10 +31,11 @@
             = image_tag 'logo.png'
         .navbar-collapse.collapse.navbar-responsive-collapse
           %ul.nav.navbar-nav
-            - if current_user.admin?
-              %li= link_to t('activerecord.models.user'), users_path
-              %li= link_to t('activerecord.models.contract'), contracts_path
-            %li= link_to t('activerecord.models.payment'), payments_path
+            - if user_signed_in?
+              - if current_user.admin?
+                %li= link_to t('activerecord.models.user'), users_path
+                %li= link_to t('activerecord.models.contract'), contracts_path
+              %li= link_to t('activerecord.models.payment'), payments_path
           %ul.nav.navbar-nav.navbar-right
             - if user_signed_in?
               %li= link_to current_user.decorate.welcome, edit_user_registration_path
