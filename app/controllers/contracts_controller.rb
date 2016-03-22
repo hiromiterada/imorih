@@ -22,7 +22,7 @@ class ContractsController < ApplicationController
     @users = User.all
     @contract = Contract.new(contract_params)
     if @contract.save
-      redirect_to @contract,
+      redirect_to contracts_url,
         notice: t('views.messages.successfully_created')
     else
       render :new
@@ -32,7 +32,7 @@ class ContractsController < ApplicationController
   def update
     @users = User.all
     if @contract.update(contract_params)
-      redirect_to @contract,
+      redirect_to contracts_url,
         notice: t('views.messages.successfully_updated')
     else
       render :edit

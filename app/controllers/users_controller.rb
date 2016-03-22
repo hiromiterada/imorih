@@ -20,7 +20,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     @user.skip_confirmation!
     if @user.save
-      redirect_to @user,
+      redirect_to users_url,
         notice: t('views.messages.successfully_created')
     else
       render :new
@@ -30,7 +30,7 @@ class UsersController < ApplicationController
   def update
     @user.skip_reconfirmation!
     if @user.update(user_params)
-      redirect_to @user,
+      redirect_to users_url,
         notice: t('views.messages.successfully_updated')
     else
       render :edit

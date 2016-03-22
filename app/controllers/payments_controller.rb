@@ -28,7 +28,7 @@ class PaymentsController < ApplicationController
     @contracts = Contract.all
     @payment = Payment.new(payment_params)
     if @payment.save
-      redirect_to @payment,
+      redirect_to payments_url,
         notice: t('views.messages.successfully_created')
     else
       render :new
@@ -38,7 +38,7 @@ class PaymentsController < ApplicationController
   def update
     @contracts = Contract.all
     if @payment.update(payment_params)
-      redirect_to @payment,
+      redirect_to payments_url,
         notice: t('views.messages.successfully_updated')
     else
       render :edit
