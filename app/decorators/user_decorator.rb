@@ -10,13 +10,9 @@ class UserDecorator < Draper::Decorator
     end
   end
 
-  def welcome
-    if fullname.present?
-      name = fullname
-    else
-      name = object.email
-    end
-    I18n.t('views.welcome', name: name)
+  def fullname_or_email
+    return fullname if fullname.present?
+    object.email
   end
 
   def customer_code_and_fullname

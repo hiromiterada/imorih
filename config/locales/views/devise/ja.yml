@@ -9,7 +9,7 @@ ja:
         title: 会員登録
         submit: 登録
       edit:
-        title: メールアドレスおよびパスワードの変更
+        title: 会員情報設定
         submit: 更新
         currently_waiting_confirmation_for: '%{email}は承認待ちです。確認メールの内容に従って本登録を行ってください。'
         leave_blank_if_you_dont_want_to_change_it: （変更の必要がなければ、空にしておいて下さい。）

@@ -22,15 +22,16 @@
   %body
     .navbar.navbar-default.navbar-static-top
       .container-fluid
-        %button.navbar-toggle(type="button" data-toggle="collapse" data-target=".navbar-responsive-collapse")
-          %span.icon-bar
-          %span.icon-bar
-          %span.icon-bar
         .navbar-header
+          %button.navbar-toggle(type="button" data-toggle="collapse" data-target=".navbar-responsive-collapse")
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
           = link_to root_path, class: 'navbar-brand', style: 'position:relative; top:-15px' do
             = image_tag 'logo.png'
         .navbar-collapse.collapse.navbar-responsive-collapse
           %ul.nav.navbar-nav
+            %li= link_to t('views.home'), root_path
             - if user_signed_in?
               - if current_user.admin?
                 %li= link_to t('activerecord.models.user'), users_path
@@ -38,11 +39,12 @@
               %li= link_to t('activerecord.models.payment'), payments_path
           %ul.nav.navbar-nav.navbar-right
             - if user_signed_in?
-              %li= link_to current_user.decorate.welcome, edit_user_registration_path
+              %li= link_to t('views.settings'), edit_user_registration_path
               %li= link_to t('views.signout'), destroy_user_session_path, method: :delete
             - else
               %li= link_to t('views.signin'), new_user_session_path
               %li= link_to t('views.signup'), new_user_registration_path
+          %p.navbar-text.navbar-right= welcome_message
     .container
       .row
         %p.text-success= notice

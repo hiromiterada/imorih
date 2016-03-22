@@ -9,7 +9,7 @@ en:
         title: Sign up
         submit: Sign up
       edit:
-        title: Edit email and password
+        title: Account settings
         submit: Update
         currently_waiting_confirmation_for: 'Currently waiting confirmation for: %{email}'
         leave_blank_if_you_dont_want_to_change_it: (leave blank if you don't want to change it)

@@ -8,10 +8,13 @@ ja:
     back: 一覧に戻る
     cancel: キャンセル
     save: 保存
+    home: ホーム
+    settings: 会員情報設定
     signout: ログアウト
     signin: ログイン
     signup: 会員登録
-    welcome: 'ようこそ %{name} さん'
+    guest: ゲスト
+    welcome: 'ようこそ %{name} さん。'
     boolean:
       'yes': はい
       'no': いいえ

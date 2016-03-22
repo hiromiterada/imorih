@@ -8,9 +8,12 @@ en:
     back: Back
     cancel: Cancel
     save: Save
+    home: Home
+    settings: Account settings
     signout: Sign out
     signin: Sign in
     signup: Sign up
+    guest: Guest
     welcome: 'Welcome %{name} !'
     boolean:
       'yes': yes
