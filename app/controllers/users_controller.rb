@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @users = User.order('created_at DESC').page(params[:page])
+    @users = User.order('created_at DESC').page(params[:page]).decorate
   end
 
   def show
@@ -46,7 +46,7 @@ class UsersController < ApplicationController
   private
 
   def set_user
-    @user = User.find(params[:id])
+    @user = User.find(params[:id]).decorate
   end
 
   def user_params

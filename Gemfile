@@ -32,6 +32,7 @@ gem 'kaminari'
 gem 'less-rails'
 gem 'execjs'
 gem 'twitter-bootstrap-rails'
+gem 'draper', '~> 1.3'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

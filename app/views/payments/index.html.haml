@@ -27,7 +27,7 @@
         %td= payment.payday
         %td= payment.amount
         %td= payment.contract.enum_i18n(:kind) if payment.contract.present?
-        %td= [l(payment.date_started), l(payment.date_ended)].join(' - ')
+        %td= payment.period
         %td= payment.message
         %td= payment.note
         - if current_user.admin?

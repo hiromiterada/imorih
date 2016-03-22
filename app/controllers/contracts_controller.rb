@@ -2,7 +2,7 @@ class ContractsController < ApplicationController
   before_action :set_contract, only: [:show, :edit, :update, :destroy]
 
   def index
-    @contracts = Contract.order('created_at DESC').page(params[:page])
+    @contracts = Contract.order('created_at DESC').page(params[:page]).decorate
   end
 
   def show
@@ -48,7 +48,7 @@ class ContractsController < ApplicationController
   private
 
   def set_contract
-    @contract = Contract.find(params[:id])
+    @contract = Contract.find(params[:id]).decorate
   end
 
   def contract_params

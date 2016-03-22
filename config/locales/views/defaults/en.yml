@@ -11,6 +11,7 @@ en:
     signout: Sign out
     signin: Sign in
     signup: Sign up
+    welcome: 'Welcome %{name} !'
     boolean:
       'yes': yes
       'no': no

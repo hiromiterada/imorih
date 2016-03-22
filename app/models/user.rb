@@ -21,10 +21,6 @@ class User < ActiveRecord::Base
   enum gender: %i(male female)
   enum role: %i(normal owner admin)
 
-  def fullname
-    lastname.to_s + ' ' + firstname.to_s
-  end
-
   def set_customer_code
     return if customer_code.present?
     retry_counter = 0

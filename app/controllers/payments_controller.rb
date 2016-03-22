@@ -8,7 +8,7 @@ class PaymentsController < ApplicationController
     else
       payments = Payment.all
     end
-    @payments = payments.order('payday DESC').page(params[:page])
+    @payments = payments.order('payday DESC').page(params[:page]).decorate
   end
 
   def show
@@ -54,7 +54,7 @@ class PaymentsController < ApplicationController
   private
 
   def set_payment
-    @payment = Payment.find(params[:id])
+    @payment = Payment.find(params[:id]).decorate
   end
 
   def payment_params
