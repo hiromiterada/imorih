@@ -7,7 +7,7 @@
     %legend= Payment.model_name.human
   %p
     %b= Contract.human_attribute_name(:number) + ':'
-    = @payment.contract.number
+    = @payment.contract.number_and_fullname
   %p
     %b= Payment.human_attribute_name(:payday) + ':'
     = @payment.payday

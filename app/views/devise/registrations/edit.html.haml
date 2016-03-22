@@ -23,7 +23,7 @@
         = f.password_field :password_confirmation, autocomplete: "off"
       = f.error_span(:password_confirmation)
     .form-group
-      = f.label :lastname, User.human_attribute_name(:name),
+      = f.label :lastname, User.human_attribute_name(:fullname),
         class: 'control-label col-lg-2'
       .col-lg-10
         = f.text_field :lastname, placeholder: User.human_attribute_name(:lastname)

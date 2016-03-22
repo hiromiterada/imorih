@@ -7,9 +7,7 @@
     %legend= Contract.model_name.human
   %p
     %b= User.human_attribute_name(:customer_code) + ':'
-    = @contract.user.try(:customer_code)
-    - if @contract.user.try(:fullname).present?
-      = ['(', @contract.user.try(:fullname), ')'].join
+    = @contract.user.try(:customer_code_and_fullname)
   %p
     %b= Contract.human_attribute_name(:number) + ':'
     = @contract.number

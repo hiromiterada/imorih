@@ -21,7 +21,7 @@
   %tbody
     - @contracts.each do |contract|
       %tr
-        %td= contract.user.try(:customer_code)
+        %td= contract.user.try(:customer_code_and_fullname)
         %td= link_to contract.number, contract
         %td= contract.enum_i18n(:kind)
         %td= contract.enum_i18n(:status)

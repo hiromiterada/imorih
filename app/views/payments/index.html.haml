@@ -23,7 +23,7 @@
   %tbody
     - @payments.each do |payment|
       %tr
-        %td= payment.contract.try(:number)
+        %td= payment.contract.try(:number_and_fullname)
         %td= payment.payday
         %td= payment.amount
         %td= payment.contract.enum_i18n(:kind) if payment.contract.present?

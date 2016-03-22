@@ -22,7 +22,7 @@ ja:
         password_confirmation: パスワード（再入力）
         current_password: 現在のパスワード
         remember_me: ログインしたままにする
-        name: 氏名
+        fullname: 氏名
         lastname: 氏
         firstname: 名
         locale: 言語
