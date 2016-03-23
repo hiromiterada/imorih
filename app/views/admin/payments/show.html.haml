@@ -7,7 +7,8 @@
     %legend= Payment.model_name.human
   %p
     %b= Contract.human_attribute_name(:number) + ':'
-    = @payment.contract.number_and_fullname
+    - if @payment.contract.present?
+      = link_to @payment.contract.number_and_fullname, [:admin, @payment.contract]
   %p
     %b= Payment.human_attribute_name(:payday) + ':'
     = @payment.payday
@@ -25,8 +26,8 @@
     %b= Payment.human_attribute_name(:note) + ':'
     = @payment.note
 
-  = link_to t('views.edit'), edit_payment_path(@payment),
+  = link_to t('views.edit'), [:edit, :admin, @payment],
     class: 'btn btn-default'
-  = link_to t('views.delete'), @payment, method: :delete,
+  = link_to t('views.delete'), [:admin, @payment], method: :delete,
     data: { confirm: t('views.messages.confirm')}, class: 'btn btn-danger'
-= link_to t('views.back'), payments_path, class: 'btn btn-default'
+= link_to t('views.back'), [:admin, :payments], class: 'btn btn-default'

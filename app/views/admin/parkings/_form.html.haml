@@ -1,0 +1,60 @@
+.well.bs-component
+  = form_for [:admin, @parking], html: { class: "form-horizontal parking" } do |f|
+    %fieldset
+      %legend= Parking.model_name.human
+    - if @parking.errors.any?
+      %p.text-danger= t('errors.messages.not_saved')
+
+    .form-group
+      = f.label :management_id, Management.model_name.human,
+         class: 'control-label col-lg-2'
+      .col-lg-10
+        - if @parking.management.present?
+          = f.collection_select(:management_id, @managements, :id, :name, selected: @parking.management.id)
+        - else
+          = f.collection_select(:management_id, @managements, :id, :name, prompt: true)
+      = f.error_span(:management_id)
+    .form-group
+      = f.label :name, class: 'control-label col-lg-2'
+      .col-lg-10
+        = f.text_field :name
+      = f.error_span(:name)
+    .form-group
+      = f.label :code, class: 'control-label col-lg-2'
+      .col-lg-10
+        = f.text_field :code
+      = f.error_span(:code)
+    .form-group
+      = f.label :canonical_name, class: 'control-label col-lg-2'
+      .col-lg-10
+        = f.text_field :canonical_name
+      = f.error_span(:canonical_name)
+    .form-group
+      = f.label :address, class: 'control-label col-lg-2'
+      .col-lg-10
+        = f.text_field :address
+      = f.error_span(:address)
+    .form-group
+      = f.label :description, class: 'control-label col-lg-2'
+      .col-lg-10
+        = f.text_area :description
+      = f.error_span(:description)
+    .form-group
+      = f.label :price, class: 'control-label col-lg-2'
+      .col-lg-10
+        = f.text_area :price
+      = f.error_span(:price)
+    .form-group
+      = f.label :message, class: 'control-label col-lg-2'
+      .col-lg-10
+        = f.text_area :message
+      = f.error_span(:message)
+    .form-group
+      = f.label :cautions, class: 'control-label col-lg-2'
+      .col-lg-10
+        = f.text_area :cautions
+      = f.error_span(:cautions)
+    .form-group
+      .col-lg-offset-2.col-lg-10
+      = f.submit t('views.save'), class: 'btn btn-primary'
+      = link_to t('views.cancel'), [:admin, :parkings], class: 'btn btn-default'

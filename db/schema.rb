@@ -11,17 +11,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160316075233) do
+ActiveRecord::Schema.define(version: 20160323084917) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "areas", force: :cascade do |t|
+    t.integer  "parking_id",     null: false
+    t.string   "name",           null: false
+    t.string   "canonical_name", null: false
+    t.integer  "status",         null: false
+    t.text     "note"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "areas", ["parking_id"], name: "index_areas_on_parking_id", using: :btree
+
+  create_table "contract_areas", force: :cascade do |t|
+    t.integer  "contract_id", null: false
+    t.integer  "area_id",     null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "contract_areas", ["area_id"], name: "index_contract_areas_on_area_id", using: :btree
+  add_index "contract_areas", ["contract_id"], name: "index_contract_areas_on_contract_id", using: :btree
+
   create_table "contracts", force: :cascade do |t|
-    t.integer  "user_id"
+    t.integer  "user_id",                        null: false
     t.string   "number",                         null: false
     t.integer  "kind",            default: 0,    null: false
     t.integer  "status",          default: 0,    null: false
-    t.integer  "rent"
+    t.integer  "rent",            default: 0,    null: false
     t.date     "date_signed"
     t.date     "date_terminated"
     t.boolean  "auto_updating",   default: true, null: false
@@ -34,6 +56,35 @@ ActiveRecord::Schema.define(version: 20160316075233) do
   add_index "contracts", ["kind"], name: "index_contracts_on_kind", using: :btree
   add_index "contracts", ["status"], name: "index_contracts_on_status", using: :btree
   add_index "contracts", ["user_id"], name: "index_contracts_on_user_id", using: :btree
+
+  create_table "managements", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email",      null: false
+    t.string   "address"
+    t.string   "phone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "parkings", force: :cascade do |t|
+    t.integer  "management_id",  null: false
+    t.string   "name",           null: false
+    t.string   "code",           null: false
+    t.string   "canonical_name", null: false
+    t.string   "address"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.text     "description"
+    t.text     "price"
+    t.text     "message"
+    t.text     "cautions"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "parkings", ["canonical_name"], name: "index_parkings_on_canonical_name", unique: true, using: :btree
+  add_index "parkings", ["code"], name: "index_parkings_on_code", unique: true, using: :btree
+  add_index "parkings", ["management_id"], name: "index_parkings_on_management_id", using: :btree
 
   create_table "payments", force: :cascade do |t|
     t.integer  "contract_id",  null: false
@@ -85,4 +136,10 @@ ActiveRecord::Schema.define(version: 20160316075233) do
   add_index "users", ["role"], name: "index_users_on_role", using: :btree
   add_index "users", ["send_of_dm"], name: "index_users_on_send_of_dm", using: :btree
 
+  add_foreign_key "areas", "parkings"
+  add_foreign_key "contract_areas", "areas"
+  add_foreign_key "contract_areas", "contracts"
+  add_foreign_key "contracts", "users"
+  add_foreign_key "parkings", "managements"
+  add_foreign_key "payments", "contracts"
 end

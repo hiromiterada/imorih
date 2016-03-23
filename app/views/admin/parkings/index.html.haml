@@ -1,0 +1,23 @@
+= provide :title, [Parking.model_name.human, t('views.index')].join
+
+%h2= Parking.model_name.human
+
+%p= link_to t('views.new'), [:new, :admin, :parking], class: 'btn btn-default'
+
+%p= page_entries_info @parkings
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th= Parking.human_attribute_name(:name_and_code)
+      %th= Parking.human_attribute_name(:address)
+
+  %tbody
+    - @parkings.each do |parking|
+      %tr
+        %td= link_to parking.name_and_code, [:admin, parking]
+        %td= parking.address
+
+%br
+
+= paginate @parkings

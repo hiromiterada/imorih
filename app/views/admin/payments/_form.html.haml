@@ -3,7 +3,7 @@
 - end_day = (start_day >> 1) - 1
 
 .well.bs-component
-  = form_for @payment, html: { class: "form-horizontal payment" } do |f|
+  = form_for [:admin, @payment], html: { class: "form-horizontal payment" } do |f|
     %fieldset
       %legend= Payment.model_name.human
     - if @payment.errors.any?
@@ -51,4 +51,4 @@
     .form-group
       .col-lg-offset-2.col-lg-10
       = f.submit t('views.save'), class: 'btn btn-primary'
-      = link_to t('views.cancel'), payments_path, class: 'btn btn-default'
+      = link_to t('views.cancel'), [:admin, :payments], class: 'btn btn-default'

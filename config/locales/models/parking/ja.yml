@@ -1,0 +1,17 @@
+ja:
+  activerecord:
+    models:
+      parking: 駐車場
+    attributes:
+      parking:
+        name: 名称
+        code: コード
+        name_and_code: 名称（コード）
+        canonical_name: URLのパス名
+        address: 住所
+        latitude: 緯度
+        longitude: 経度
+        description: 詳細
+        price: 価格
+        message: メッセージ
+        cautions: 注意事項

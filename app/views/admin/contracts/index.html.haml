@@ -2,7 +2,7 @@
 
 %h2= Contract.model_name.human
 
-%p= link_to t('views.new'), new_contract_path, class: 'btn btn-default'
+%p= link_to t('views.new'), [:new, :admin, :contract], class: 'btn btn-default'
 
 %p= page_entries_info @contracts
 
@@ -22,14 +22,14 @@
     - @contracts.each do |contract|
       %tr
         %td= contract.user.try(:customer_code_and_fullname)
-        %td= link_to contract.number, contract
+        %td= link_to contract.number, [:admin, contract]
         %td= contract.enum_i18n(:kind)
         %td= contract.enum_i18n(:status)
         %td= contract.rent
         %td= l(contract.date_signed)
         %td= l(contract.date_terminated)
         %td= link_to [Payment.model_name.human, t('views.new')].join,
-          new_contract_payment_path(contract), class: 'btn btn-default'
+          [:new, :admin, contract, :payment], class: 'btn btn-default'
 
 %br
 

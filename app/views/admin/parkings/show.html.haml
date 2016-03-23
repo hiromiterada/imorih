@@ -1,0 +1,43 @@
+= provide :title, [Parking.model_name.human, t('views.show')].join
+
+%h2= t('views.show')
+
+.well.bs-component
+  %fieldset
+    %legend= Parking.model_name.human
+  %p
+    %b= Parking.human_attribute_name(:name) + ':'
+    = @parking.email
+  %p
+    %b= Parking.human_attribute_name(:code + ':'
+    = @parking.code
+  %p
+    %b= Parking.human_attribute_name(:phone) + ':'
+    = @parking.phone
+  %p
+    %b= Parking.human_attribute_name(:address) + ':'
+    = @parking.address
+  %p
+    %b= Parking.human_attribute_name(:latitude) + ':'
+    = @parking.latitude
+  %p
+    %b= Parking.human_attribute_name(:longitude) + ':'
+    = @parking.longitude
+  %p
+    %b= Parking.human_attribute_name(:description) + ':'
+    = @parking.description
+  %p
+    %b= Parking.human_attribute_name(:price) + ':'
+    = @parking.price
+  %p
+    %b= Parking.human_attribute_name(:message) + ':'
+    = @parking.message
+  %p
+    %b= Parking.human_attribute_name(:cautions) + ':'
+    = @parking.cautions
+
+  = link_to t('views.edit'), [:edit, :adminm, @parking],
+    class: 'btn btn-default'
+  = link_to t('views.delete'), [:admin, @parking], method: :delete,
+    data: { confirm: t('views.messages.confirm')}, class: 'btn btn-danger'
+= link_to t('views.back'), [:admin, :parkings], class: 'btn btn-default'

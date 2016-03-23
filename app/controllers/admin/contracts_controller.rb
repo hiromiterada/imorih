@@ -1,4 +1,4 @@
-class ContractsController < ApplicationController
+class Admin::ContractsController < ApplicationController
   before_action :set_contract, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -22,7 +22,7 @@ class ContractsController < ApplicationController
     @users = User.all
     @contract = Contract.new(contract_params)
     if @contract.save
-      redirect_to contracts_url,
+      redirect_to admin_contracts_url,
         notice: t('views.messages.successfully_created')
     else
       render :new
@@ -32,7 +32,7 @@ class ContractsController < ApplicationController
   def update
     @users = User.all
     if @contract.update(contract_params)
-      redirect_to contracts_url,
+      redirect_to admin_contracts_url,
         notice: t('views.messages.successfully_updated')
     else
       render :edit
@@ -41,7 +41,7 @@ class ContractsController < ApplicationController
 
   def destroy
     @contract.destroy
-    redirect_to contracts_url,
+    redirect_to admin_contracts_url,
       notice: t('views.messages.successfully_destroyed')
   end
 

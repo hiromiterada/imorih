@@ -1,0 +1,30 @@
+= provide :title, [Management.model_name.human, t('views.index')].join
+
+%h2= Management.model_name.human
+
+%p= link_to t('views.new'), [:new, :admin, :management], class: 'btn btn-default'
+
+%p= page_entries_info @managements
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th= Management.human_attribute_name(:email)
+      %th= Management.human_attribute_name(:name)
+      %th= Management.human_attribute_name(:address)
+      %th= Management.human_attribute_name(:phone)
+      %th
+
+  %tbody
+    - @managements.each do |management|
+      %tr
+        %td= link_to management.email, [:admin, management]
+        %td= management.name
+        %td= management.address
+        %td= management.phone
+        %td= link_to [Parking.model_name.human, t('views.new')].join,
+          [:new, :admin, management, :parking], class: 'btn btn-default'
+
+%br
+
+= paginate @managements

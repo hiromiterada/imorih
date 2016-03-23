@@ -11,6 +11,8 @@ class Contract < ActiveRecord::Base
 
   belongs_to :user
   has_many :payments
+  has_many :contract_areas
+  has_many :areas, :through => :contract_areas
 
   enum kind: %i(leased_land monthly_parking)
   enum status: %i(pending in_process completed canceled)
@@ -22,7 +24,7 @@ class Contract < ActiveRecord::Base
       self.number = [
         kind[0].upcase + '000',
         '0000',
-        make_rand_integer(4),
+        make_rand_string(4),
         user.customer_code[0,4],
         user.customer_code[4,4]
       ].join('-')

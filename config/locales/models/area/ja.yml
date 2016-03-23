@@ -1,0 +1,11 @@
+ja:
+  activerecord:
+    models:
+      area: 区画
+    attributes:
+      area:
+        parking_id: 駐車場ID
+        name: 名称
+        canonical_name: URLのパス名
+        status: 状態
+        note: 備考

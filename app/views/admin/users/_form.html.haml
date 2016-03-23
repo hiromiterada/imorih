@@ -1,5 +1,5 @@
 .well.bs-component
-  = form_for @user, html: { class: "form-horizontal payment" } do |f|
+  = form_for [:admin, @user], html: { class: "form-horizontal user" } do |f|
     %fieldset
       %legend= User.model_name.human
     - if @user.errors.any?
@@ -74,4 +74,4 @@
     .form-group
       .col-lg-offset-2.col-lg-10
       = f.submit t('views.save'), class: 'btn btn-primary'
-      = link_to t('views.cancel'), users_path, class: 'btn btn-default'
+      = link_to t('views.cancel'), [:admin, :users], class: 'btn btn-default'

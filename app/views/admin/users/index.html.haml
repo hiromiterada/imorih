@@ -2,7 +2,7 @@
 
 %h2= User.model_name.human
 
-%p= link_to t('views.new'), new_user_path, class: 'btn btn-default'
+%p= link_to t('views.new'), [:new, :admin, :user], class: 'btn btn-default'
 
 %p= page_entries_info @users
 
@@ -17,11 +17,11 @@
   %tbody
     - @users.each do |user|
       %tr
-        %td= link_to user.email, user
+        %td= link_to user.email, [:admin, user]
         %td= user.customer_code
         %td= user.fullname
         %td= link_to [Contract.model_name.human, t('views.new')].join,
-          new_user_contract_path(user), class: 'btn btn-default'
+          [:new, :admin, user, :contract], class: 'btn btn-default'
 
 %br
 

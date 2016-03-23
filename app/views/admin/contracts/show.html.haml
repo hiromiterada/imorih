@@ -7,7 +7,8 @@
     %legend= Contract.model_name.human
   %p
     %b= User.human_attribute_name(:customer_code) + ':'
-    = @contract.user.try(:customer_code_and_fullname)
+    - if @contract.user.present?
+      = link_to @contract.user.customer_code_and_fullname, [:admin, @contract.user]
   %p
     %b= Contract.human_attribute_name(:number) + ':'
     = @contract.number
@@ -33,7 +34,7 @@
     %b= Contract.human_attribute_name(:note) + ':'
     = @contract.note
 
-  = link_to t('views.edit'), edit_contract_path(@contract), class: 'btn btn-default'
-  = link_to t('views.delete'), @contract, method: :delete,
+  = link_to t('views.edit'), [:edit, :admin, @contract], class: 'btn btn-default'
+  = link_to t('views.delete'), [:admin, @contract], method: :delete,
     data: { confirm: t('views.messages.confirm')}, class: 'btn btn-danger'
-= link_to t('views.back'), contracts_path, class: 'btn btn-default'
+= link_to t('views.back'), [:admin, :contracts], class: 'btn btn-default'

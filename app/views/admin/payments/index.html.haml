@@ -3,7 +3,7 @@
 %h2= Payment.model_name.human
 
 - if current_user.admin?
-  %p= link_to t('views.new'), new_payment_path, class: 'btn btn-default'
+  %p= link_to t('views.new'), [:new, :admin, :payment], class: 'btn btn-default'
 
 %p= page_entries_info @payments
 
@@ -31,7 +31,7 @@
         %td= payment.message
         %td= payment.note
         - if current_user.admin?
-          %td= link_to t('views.show'), payment, class: 'btn btn-default'
+          %td= link_to t('views.show'), [:admin, payment], class: 'btn btn-default'
 
 %br
 

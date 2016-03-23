@@ -1,14 +1,9 @@
-class PaymentsController < ApplicationController
+class Admin::PaymentsController < ApplicationController
   before_action :set_payment, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!
 
   def index
-    if current_user.normal?
-      payments = Payment.search_user(current_user)
-    else
-      payments = Payment.all
-    end
-    @payments = payments.order('payday DESC').page(params[:page]).decorate
+    @payments = Payment.all.order('payday DESC').page(params[:page]).decorate
   end
 
   def show
@@ -28,7 +23,7 @@ class PaymentsController < ApplicationController
     @contracts = Contract.all
     @payment = Payment.new(payment_params)
     if @payment.save
-      redirect_to payments_url,
+      redirect_to admin_payments_url,
         notice: t('views.messages.successfully_created')
     else
       render :new
@@ -38,7 +33,7 @@ class PaymentsController < ApplicationController
   def update
     @contracts = Contract.all
     if @payment.update(payment_params)
-      redirect_to payments_url,
+      redirect_to admin_payments_url,
         notice: t('views.messages.successfully_updated')
     else
       render :edit
@@ -47,7 +42,7 @@ class PaymentsController < ApplicationController
 
   def destroy
     @payment.destroy
-    redirect_to payments_url,
+    redirect_to admin_payments_url,
       notice: t('views.messages.successfully_destroyed')
   end
 
