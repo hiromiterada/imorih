@@ -1,0 +1,14 @@
+- display = contract.about_parking? ? 'block' : 'none'
+#select-parking-form.form-group{style: "display: #{display};"}
+  .well.well-sm
+    = f.label :parking_id, Parking.model_name.human,
+       class: 'control-label col-lg-2'
+    .col-lg-10
+      - if contract.parking.present?
+        - options = {selected: contract.parking.id}
+      - else
+        - options = {prompt: true}
+      = f.collection_select :parking_id, parkings, :id, :name,
+        options, onchange: "select_parking(this.value)"
+      = f.error_span(:parking_id)
+    = render 'form_areas', f: f, contract: contract

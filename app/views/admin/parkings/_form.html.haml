@@ -1,5 +1,5 @@
 .well.bs-component
-  = form_for [:admin, @parking], html: { class: "form-horizontal parking" } do |f|
+  = nested_form_for [:admin, @parking], html: { class: "form-horizontal parking" } do |f|
     %fieldset
       %legend= Parking.model_name.human
     - if @parking.errors.any?
@@ -54,6 +54,7 @@
       .col-lg-10
         = f.text_area :cautions
       = f.error_span(:cautions)
+    = render 'form_area', f: f
     .form-group
       .col-lg-offset-2.col-lg-10
       = f.submit t('views.save'), class: 'btn btn-primary'

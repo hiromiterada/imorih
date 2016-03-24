@@ -9,7 +9,10 @@ class Parking < ActiveRecord::Base
   validates :canonical_name, presence: true, uniqueness: true
 
   belongs_to :management
-  has_many :areas
+  has_many :contracts
+  has_many :areas, dependent: :destroy
+  accepts_nested_attributes_for :areas, allow_destroy: true,
+    reject_if: proc { |attributes| attributes['name'].blank? }
 
   def set_code
     retry_counter = 0

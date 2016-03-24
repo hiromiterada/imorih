@@ -17,13 +17,12 @@ ActiveRecord::Schema.define(version: 20160323084917) do
   enable_extension "plpgsql"
 
   create_table "areas", force: :cascade do |t|
-    t.integer  "parking_id",     null: false
-    t.string   "name",           null: false
-    t.string   "canonical_name", null: false
-    t.integer  "status",         null: false
+    t.integer  "parking_id", null: false
+    t.string   "name",       null: false
+    t.integer  "status",     null: false
     t.text     "note"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "areas", ["parking_id"], name: "index_areas_on_parking_id", using: :btree
@@ -40,9 +39,10 @@ ActiveRecord::Schema.define(version: 20160323084917) do
 
   create_table "contracts", force: :cascade do |t|
     t.integer  "user_id",                        null: false
+    t.integer  "parking_id"
     t.string   "number",                         null: false
     t.integer  "kind",            default: 0,    null: false
-    t.integer  "status",          default: 0,    null: false
+    t.integer  "status",          default: 1,    null: false
     t.integer  "rent",            default: 0,    null: false
     t.date     "date_signed"
     t.date     "date_terminated"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20160323084917) do
 
   add_index "contracts", ["auto_updating"], name: "index_contracts_on_auto_updating", using: :btree
   add_index "contracts", ["kind"], name: "index_contracts_on_kind", using: :btree
+  add_index "contracts", ["parking_id"], name: "index_contracts_on_parking_id", using: :btree
   add_index "contracts", ["status"], name: "index_contracts_on_status", using: :btree
   add_index "contracts", ["user_id"], name: "index_contracts_on_user_id", using: :btree
 
@@ -139,6 +140,7 @@ ActiveRecord::Schema.define(version: 20160323084917) do
   add_foreign_key "areas", "parkings"
   add_foreign_key "contract_areas", "areas"
   add_foreign_key "contract_areas", "contracts"
+  add_foreign_key "contracts", "parkings"
   add_foreign_key "contracts", "users"
   add_foreign_key "parkings", "managements"
   add_foreign_key "payments", "contracts"

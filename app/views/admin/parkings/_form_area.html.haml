@@ -1,0 +1,14 @@
+.well
+  %fieldset
+    %legend= Area.model_name.human
+    = f.fields_for :areas do |form_area|
+      .row{style: "vertical-align:middle;"}
+        .col-xs-12.col-sm-12
+          = form_area.text_field :name, placeholder: Area.human_attribute_name(:name), size: 10
+          = form_area.error_span(:name)
+          = form_area.text_area :note, placeholder: Area.human_attribute_name(:note), size: 10
+          = form_area.select :status, Area.enum_i18n(:status).invert
+          = form_area.link_to_remove Area.model_name.human + t('views.delete'),
+            class: 'btn btn-danger'
+    = f.link_to_add Area.model_name.human + t('views.add'), :areas,
+      class: 'btn btn-default'

@@ -7,13 +7,10 @@
     %legend= Parking.model_name.human
   %p
     %b= Parking.human_attribute_name(:name) + ':'
-    = @parking.email
+    = @parking.name
   %p
-    %b= Parking.human_attribute_name(:code + ':'
+    %b= Parking.human_attribute_name(:code) + ':'
     = @parking.code
-  %p
-    %b= Parking.human_attribute_name(:phone) + ':'
-    = @parking.phone
   %p
     %b= Parking.human_attribute_name(:address) + ':'
     = @parking.address
@@ -36,7 +33,21 @@
     %b= Parking.human_attribute_name(:cautions) + ':'
     = @parking.cautions
 
-  = link_to t('views.edit'), [:edit, :adminm, @parking],
+  %fieldset
+    %legend= Area.model_name.human
+  %table.table.table-striped.table-hover.table-sortable
+    %thead
+      %th= Area.human_attribute_name(:name)
+      %th= Area.human_attribute_name(:note)
+      %th= Area.human_attribute_name(:status)
+    %tbody
+      - @parking.areas.each do |area|
+        %tr.item{data: { model_name: 'area' }}
+          %td= area.name
+          %td= area.note
+          %td= area.enum_i18n(:status)
+
+  = link_to t('views.edit'), [:edit, :admin, @parking],
     class: 'btn btn-default'
   = link_to t('views.delete'), [:admin, @parking], method: :delete,
     data: { confirm: t('views.messages.confirm')}, class: 'btn btn-danger'

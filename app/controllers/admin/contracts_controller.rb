@@ -10,16 +10,19 @@ class Admin::ContractsController < ApplicationController
 
   def new
     @users = User.all
+    @parkings = Parking.all
     @contract = Contract.new
     @contract.user = User.find(params[:user_id]) if params[:user_id]
   end
 
   def edit
     @users = User.all
+    @parkings = Parking.all
   end
 
   def create
     @users = User.all
+    @parkings = Parking.all
     @contract = Contract.new(contract_params)
     if @contract.save
       redirect_to admin_contracts_url,
@@ -31,6 +34,7 @@ class Admin::ContractsController < ApplicationController
 
   def update
     @users = User.all
+    @parkings = Parking.all
     if @contract.update(contract_params)
       redirect_to admin_contracts_url,
         notice: t('views.messages.successfully_updated')
@@ -53,7 +57,9 @@ class Admin::ContractsController < ApplicationController
 
   def contract_params
     params.require(:contract).permit(
-      :user_id, :number, :kind, :status, :rent, :date_signed,
-      :date_terminated, :auto_updating, :note)
+      :user_id, :parking_id, :number, :kind, :status, :rent,
+      :date_signed, :date_terminated, :auto_updating, :note,
+      :area_ids => []
+    )
   end
 end

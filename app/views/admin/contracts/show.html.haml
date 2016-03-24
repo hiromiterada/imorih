@@ -15,6 +15,10 @@
   %p
     %b= Contract.human_attribute_name(:kind) + ':'
     = @contract.enum_i18n(:kind)
+  - if @contract.about_parking?
+    %p
+      %b= Contract.human_attribute_name(:parking_name_and_area_names) + ':'
+      = @contract.parking_name_and_area_names
   %p
     %b= Contract.human_attribute_name(:status) + ':'
     = @contract.enum_i18n(:status)

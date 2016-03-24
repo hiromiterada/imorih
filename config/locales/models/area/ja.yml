@@ -1,4 +1,9 @@
 ja:
+  enums:
+    area:
+      status:
+        available: 利用可
+        unavailable: 利用不可
   activerecord:
     models:
       area: 区画

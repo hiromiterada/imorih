@@ -12,10 +12,12 @@ class Admin::ParkingsController < ApplicationController
     @managements = Management.all
     @parking = Parking.new
     @parking.management = Management.find(params[:management_id]) if params[:management_id]
+    @parking.areas.build
   end
 
   def edit
     @managements = Management.all
+    @parking.areas.build if @parking.areas.blank?
   end
 
   def create
@@ -54,7 +56,10 @@ class Admin::ParkingsController < ApplicationController
   def parking_params
     params.require(:parking).permit(
       :management_id, :name, :code, :canonical_name, :address,
-      :latitude, :longitude, :description, :price, :message, :cautions
+      :latitude, :longitude, :description, :price, :message, :cautions,
+      areas_attributes: [
+      :id, :parking_id, :name, :status, :note, :_destroyi
+      ]
     )
   end
 end

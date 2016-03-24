@@ -1,0 +1,8 @@
+= f.label :areas, Area.model_name.human,
+   class: 'control-label col-lg-2'
+.col-lg-10
+  #select-areas-form
+    - if contract.parking.present?
+      = f.collection_check_boxes(:area_ids, contract.parking.areas.actives, :id, :name) do |b|
+        = b.label { b.check_box + b.text }
+= f.error_span(:areas)

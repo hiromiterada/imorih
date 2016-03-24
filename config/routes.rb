@@ -3,6 +3,11 @@ Rails.application.routes.draw do
 
   devise_for :users
 
+  resources :parkings, param: :canonical_name, only: [:index, :show]
+  resources :parkings, only: [] do
+    resources :areas, only: [:index]
+  end
+
   namespace :admin do
     resources :users do
       resources :contracts, only: [:new]

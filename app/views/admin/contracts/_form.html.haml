@@ -1,5 +1,5 @@
 .well.bs-component
-  = form_for [:admin, @contract], html: { class: "form-horizontal payment" } do |f|
+  = form_for [:admin, @contract], html: { class: "form-horizontal contract" } do |f|
     %fieldset
       %legend= Contract.model_name.human
     - if @contract.errors.any?
@@ -27,8 +27,9 @@
       .col-lg-10
         - Contract.enum_i18n(:kind).invert.each do |key, value|
           = key
-          = f.radio_button :kind, value
+          = f.radio_button :kind, value, onclick: "select_kind('#{value}');"
       = f.error_span(:kind)
+    = render 'form_parking', f: f, contract: @contract, parkings: @parkings
     .form-group
       = f.label :status, class: 'control-label col-lg-2'
       .col-lg-10
