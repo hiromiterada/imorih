@@ -5,7 +5,7 @@ ja:
     attributes:
       payment:
         contract_id: 契約ID
-        payday: 日付
+        payday: 入金日
         amount: 金額
         period: 期間
         date_started: 期間開始日

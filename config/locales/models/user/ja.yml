@@ -13,7 +13,7 @@ ja:
         admin: システム管理者
   activerecord:
     models:
-      user: 会員 
+      user: アカウント
     attributes:
       user:
         login: メールアドレス、またはお客様番号
@@ -32,6 +32,7 @@ ja:
         phone: 電話番号
         role: 権限
         customer_code: お客様番号
+        customer_code_and_fullname: お客様番号(氏名)
         send_of_dm: imoriHからの通知を受け取る
         reset_password_token: パスワード再発行トークン
         reset_password_sent_at: パスワード再発行メールの送信時刻

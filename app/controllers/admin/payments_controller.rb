@@ -1,5 +1,6 @@
 class Admin::PaymentsController < ApplicationController
   before_action :set_payment, only: [:show, :edit, :update, :destroy]
+  before_action :set_parameters, only: [:new, :edit, :create, :update]
   before_filter :authenticate_user!
 
   def index
@@ -10,17 +11,14 @@ class Admin::PaymentsController < ApplicationController
   end
 
   def new
-    @contracts = Contract.all
     @payment = Payment.new
     @payment.contract = Contract.find(params[:contract_id]) if params[:contract_id]
   end
 
   def edit
-    @contracts = Contract.all
   end
 
   def create
-    @contracts = Contract.all
     @payment = Payment.new(payment_params)
     if @payment.save
       redirect_to admin_payments_url,
@@ -31,7 +29,6 @@ class Admin::PaymentsController < ApplicationController
   end
 
   def update
-    @contracts = Contract.all
     if @payment.update(payment_params)
       redirect_to admin_payments_url,
         notice: t('views.messages.successfully_updated')
@@ -50,6 +47,10 @@ class Admin::PaymentsController < ApplicationController
 
   def set_payment
     @payment = Payment.find(params[:id]).decorate
+  end
+
+  def set_parameters
+    @contracts = Contract.all.decorate
   end
 
   def payment_params

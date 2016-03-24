@@ -1,7 +1,7 @@
 class ParkingsController < ApplicationController
 
   def index
-    @parkings = Parking.all
+    @parkings = Parking.all.page(params[:page]).decorate
   end
 
   def show

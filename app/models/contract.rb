@@ -10,6 +10,7 @@ class Contract < ActiveRecord::Base
   validates :kind, presence: true
   validates :status, presence: true
   validates :number, presence: true, uniqueness: true
+  validates :rent, numericality: :only_integer
   validates :areas, presence: true, if: :about_parking?
 
   belongs_to :user
@@ -32,9 +33,20 @@ class Contract < ActiveRecord::Base
     self.user = User.create_without_confirmation if user.blank?
     retry_counter = 0
     begin
+      if about_parking?
+        area_code = [areas.first.name.upcase]
+        (3 - area_code.length).times do
+          area_code.unshift('0')
+        end
+        area_code = area_code.join
+        parking_code = parking.code
+      else
+        area_code = '000'
+        parking_code = '0000'
+      end
       self.number = [
-        kind[0].upcase + '000',
-        '0000',
+        kind[0].upcase + area_code,
+        parking_code,
         make_rand_string(4),
         user.customer_code[0,4],
         user.customer_code[4,4]

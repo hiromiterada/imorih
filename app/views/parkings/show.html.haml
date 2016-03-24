@@ -1,0 +1,50 @@
+= provide :title, [Parking.model_name.human, t('views.show')].join
+
+%h2= t('views.show')
+
+.well.bs-component
+  %fieldset
+    %legend= Parking.model_name.human
+  %p
+    %b= Parking.human_attribute_name(:name) + ':'
+    = @parking.name
+  %p
+    %b= Parking.human_attribute_name(:code) + ':'
+    = @parking.code
+  %p
+    %b= Parking.human_attribute_name(:address) + ':'
+    = @parking.address
+  %p
+    %b= Parking.human_attribute_name(:latitude) + ':'
+    = @parking.latitude
+  %p
+    %b= Parking.human_attribute_name(:longitude) + ':'
+    = @parking.longitude
+  %p
+    %b= Parking.human_attribute_name(:description) + ':'
+    = @parking.description
+  %p
+    %b= Parking.human_attribute_name(:price) + ':'
+    = @parking.price
+  %p
+    %b= Parking.human_attribute_name(:message) + ':'
+    = @parking.message
+  %p
+    %b= Parking.human_attribute_name(:cautions) + ':'
+    = @parking.cautions
+
+  %fieldset
+    %legend= Area.model_name.human
+  %table.table.table-striped.table-hover.table-sortable
+    %thead
+      %th= Area.human_attribute_name(:name)
+      %th= Area.human_attribute_name(:note)
+      %th= Area.human_attribute_name(:status)
+    %tbody
+      - @parking.areas.each do |area|
+        %tr.item{data: { model_name: 'area' }}
+          %td= area.name
+          %td= area.note
+          %td= area.enum_i18n(:status)
+
+= link_to t('views.back'), [:parkings], class: 'btn btn-default'

@@ -12,14 +12,18 @@
       %th= User.human_attribute_name(:email)
       %th= User.human_attribute_name(:customer_code)
       %th= User.human_attribute_name(:fullname)
+      %th= User.human_attribute_name(:role)
+      %th
       %th
 
   %tbody
     - @users.each do |user|
       %tr
-        %td= link_to user.email, [:admin, user]
+        %td= user.email
         %td= user.customer_code
         %td= user.fullname
+        %td= user.enum_i18n(:role)
+        %td= link_to t('views.show'), [:admin, user], class: 'btn btn-default'
         %td= link_to [Contract.model_name.human, t('views.new')].join,
           [:new, :admin, user, :contract], class: 'btn btn-default'
 

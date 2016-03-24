@@ -12,4 +12,8 @@ class ContractDecorator < Draper::Decorator
     return object.parking.name if object.areas.blank?
     [object.parking.name, '(', object.areas.map(&:name).join(','), ')'].join
   end
+
+  def period
+    [object.date_signed, object.date_terminated].join(' - ')
+  end
 end

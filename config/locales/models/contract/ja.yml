@@ -11,17 +11,19 @@ ja:
         canceled: キャンセル
   activerecord:
     models:
-      contract: 契約
+      contract: ご契約
     attributes:
       contract:
         user_id: 会員ID
         parking_id: 駐車場ID
         parking_name_and_area_names: 駐車場(区画)
         number: ご契約番号
+        number_and_fullname: ご契約番号(氏名)
         kind: 種別
         status: 状態
         rent: 賃料
         date_signed: 契約締結日
         date_terminated: 契約終了日
+        period: ご契約期間
         auto_updating: 契約期間を自動更新する
         note: 備考

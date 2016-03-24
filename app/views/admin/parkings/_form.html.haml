@@ -10,20 +10,21 @@
          class: 'control-label col-lg-2'
       .col-lg-10
         - if @parking.management.present?
-          = f.collection_select(:management_id, @managements, :id, :name, selected: @parking.management.id)
+          - options = {selected: @parking.management.id}
         - else
-          = f.collection_select(:management_id, @managements, :id, :name, prompt: true)
+          - options = {prompt: true}
+        = f.collection_select(:management_id, @managements, :id, :name, options)
       = f.error_span(:management_id)
     .form-group
       = f.label :name, class: 'control-label col-lg-2'
       .col-lg-10
         = f.text_field :name
       = f.error_span(:name)
-    .form-group
-      = f.label :code, class: 'control-label col-lg-2'
-      .col-lg-10
-        = f.text_field :code
-      = f.error_span(:code)
+    - unless @parking.new_record?
+      .form-group
+        = f.label :code, class: 'control-label col-lg-2'
+        .col-lg-10
+          = @parking.code
     .form-group
       = f.label :canonical_name, class: 'control-label col-lg-2'
       .col-lg-10

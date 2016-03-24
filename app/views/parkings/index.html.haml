@@ -2,15 +2,12 @@
 
 %h2= Parking.model_name.human
 
-%p= link_to t('views.new'), [:new, :admin, :parking], class: 'btn btn-default'
-
 %p= page_entries_info @parkings
 
 %table.table.table-striped
   %thead
     %tr
       %th= Parking.human_attribute_name(:name)
-      %th= Parking.human_attribute_name(:code)
       %th= Area.model_name.human
       %th= Parking.human_attribute_name(:address)
       %th
@@ -19,10 +16,9 @@
     - @parkings.each do |parking|
       %tr
         %td= parking.name
-        %td= parking.code
         %td= parking.areas.pluck(:name).join(',')
         %td= parking.address
-        %td= link_to t('views.show'), [:admin, parking], class: 'btn btn-default'
+        %td= link_to t('views.show'), parking_path(canonical_name: parking.canonical_name), class: 'btn btn-default'
 
 %br
 

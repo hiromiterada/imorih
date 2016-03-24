@@ -27,18 +27,26 @@
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
-          = link_to root_path, class: 'navbar-brand', style: 'position:relative; top:-15px' do
-            = image_tag 'logo.png'
         .navbar-collapse.collapse.navbar-responsive-collapse
           %ul.nav.navbar-nav
+            %li.navbar-brand{style: 'position:relative; top:-25px'}
+              = link_to root_path do
+                = image_tag 'logo.png'
             %li= link_to t('views.home'), root_path
+            %li= link_to t('views.search_parking'), [:parkings]
             - if user_signed_in?
+              %li= link_to t('views.search_payment'), [:payments]
               - if current_user.admin?
-                %li= link_to User.model_name.human, [:admin, :users]
-                %li= link_to Management.model_name.human, [:admin, :managements]
-                %li= link_to Parking.model_name.human, [:admin, :parkings]
-                %li= link_to Contract.model_name.human, [:admin, :contracts]
-                %li= link_to Payment.model_name.human, [:admin, :payments]
+                %li
+                  %a{'data-toggle': 'dropdown', href: '#'}
+                    管理
+                    %span.caret
+                  %ul.dropdown-menu
+                    %li= link_to User.model_name.human, [:admin, :users]
+                    %li= link_to Management.model_name.human, [:admin, :managements]
+                    %li= link_to Parking.model_name.human, [:admin, :parkings]
+                    %li= link_to Contract.model_name.human, [:admin, :contracts]
+                    %li= link_to Payment.model_name.human, [:admin, :payments]
           %ul.nav.navbar-nav.navbar-right
             - if user_signed_in?
               %li= link_to t('views.settings'), [:edit, :user, :registration]

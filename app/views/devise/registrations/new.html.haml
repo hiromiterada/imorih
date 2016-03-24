@@ -1,25 +1,26 @@
 = provide :title, t('.title')
 
-%div{:style => "max-width: 440px; padding-bottom: 15px; margin: 0px auto;"}
+%div{style: 'max-width: 440px; padding-bottom: 15px; margin: 0px auto;'}
   %h2.text-center= t('.title')
 
   .well.bs-component
     = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
       = devise_error_messages!
+
       %fieldset
         %legend= t('activerecord.models.user')
       .form-group
-        = f.label :email, '', class: 'col-lg-2 control-label'
+        = f.label :email, class: 'col-lg-2 control-label'
         .col-lg-10
           = f.email_field :email, class: 'form-control'
       .form-group
-        = f.label :password, '', class: 'col-lg-2 control-label'
+        = f.label :password, class: 'col-lg-2 control-label'
         .col-lg-10
-          = f.password_field :password, autocomplete: "off", class: 'form-control'
+          = f.password_field :password, autocomplete: 'off', class: 'form-control'
       .form-group
-        = f.label :password_confirmation, '', class: 'col-lg-2 control-label'
+        = f.label :password_confirmation, class: 'col-lg-2 control-label'
         .col-lg-10
-          = f.password_field :password_confirmation, autocomplete: "off", class: 'form-control'
+          = f.password_field :password_confirmation, autocomplete: 'off', class: 'form-control'
       %span.help-block
-        = f.submit t('.submit'), class: "btn btn-lg btn-primary btn-block"
-    = render "devise/shared/links"
+        = f.submit t('.submit'), class: 'btn btn-lg btn-primary btn-block'
+    = render 'devise/shared/links'

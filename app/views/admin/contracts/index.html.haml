@@ -9,7 +9,7 @@
 %table.table.table-striped
   %thead
     %tr
-      %th= User.human_attribute_name(:customer_code)
+      %th= User.human_attribute_name(:customer_code_and_fullname)
       %th= Contract.human_attribute_name(:number)
       %th= Contract.human_attribute_name(:kind)
       %th= Contract.human_attribute_name(:status)
@@ -17,17 +17,19 @@
       %th= Contract.human_attribute_name(:date_signed)
       %th= Contract.human_attribute_name(:date_terminated)
       %th
+      %th
 
   %tbody
     - @contracts.each do |contract|
       %tr
         %td= contract.user.try(:customer_code_and_fullname)
-        %td= link_to contract.number, [:admin, contract]
+        %td= contract.number
         %td= contract.enum_i18n(:kind)
         %td= contract.enum_i18n(:status)
         %td= contract.rent
         %td= l(contract.date_signed)
         %td= l(contract.date_terminated)
+        %td= link_to t('views.show'), [:admin, contract], class: 'btn btn-default'
         %td= link_to [Payment.model_name.human, t('views.new')].join,
           [:new, :admin, contract, :payment], class: 'btn btn-default'
 

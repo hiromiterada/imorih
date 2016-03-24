@@ -10,24 +10,25 @@
          class: 'control-label col-lg-2'
       .col-lg-10
         - if @contract.user.present?
-          = f.collection_select(:user_id, @users, :id, :customer_code, selected: @contract.user.id)
+          - options = {selected: @contract.user.id}
         - else
-          = f.collection_select(:user_id, @users, :id, :customer_code, include_blank: true)
+          - options = {include_blank: true}
+        = f.collection_select(:user_id, @users, :id, :customer_code_and_fullname, options)
       = f.error_span(:user_id)
-    .form-group
-      = f.label :number, class: 'control-label col-lg-2'
-      .col-lg-10
-        - if @contract.new_record?
-          = f.text_field :number
-        - else
+    - unless @contract.new_record?
+      .form-group
+        = f.label :number, class: 'control-label col-lg-2'
+        .col-lg-10
           = @contract.number
-      = f.error_span(:number)
     .form-group
       = f.label :kind, class: 'control-label col-lg-2'
       .col-lg-10
-        - Contract.enum_i18n(:kind).invert.each do |key, value|
-          = key
-          = f.radio_button :kind, value, onclick: "select_kind('#{value}');"
+        - if @contract.new_record?
+          - Contract.enum_i18n(:kind).invert.each do |key, value|
+            = key
+            = f.radio_button :kind, value, onclick: "select_kind('#{value}');"
+        - else
+          = @contract.enum_i18n(:kind)
       = f.error_span(:kind)
     = render 'form_parking', f: f, contract: @contract, parkings: @parkings
     .form-group

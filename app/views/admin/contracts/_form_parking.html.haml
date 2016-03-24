@@ -4,11 +4,14 @@
     = f.label :parking_id, Parking.model_name.human,
        class: 'control-label col-lg-2'
     .col-lg-10
-      - if contract.parking.present?
-        - options = {selected: contract.parking.id}
+      - if @contract.new_record?
+        - if contract.parking.present?
+          - options = {selected: contract.parking.id}
+        - else
+          - options = {prompt: true}
+        = f.collection_select :parking_id, parkings, :id, :name,
+          options, onchange: "select_parking(this.value)"
+        = f.error_span(:parking_id)
       - else
-        - options = {prompt: true}
-      = f.collection_select :parking_id, parkings, :id, :name,
-        options, onchange: "select_parking(this.value)"
-      = f.error_span(:parking_id)
+        = @contract.parking.name
     = render 'form_areas', f: f, contract: contract

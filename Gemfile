@@ -33,6 +33,8 @@ gem 'kaminari'
 gem 'less-rails'
 gem 'execjs'
 gem 'twitter-bootstrap-rails'
+gem 'font-awesome-sass'
+gem 'font-awesome-rails'
 gem 'draper', '~> 1.3'
 gem 'nested_form'
 

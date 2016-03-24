@@ -1,23 +1,25 @@
 = provide :title, t('.title')
 
-%div{:style => "max-width: 440px; padding-bottom: 15px; margin: 0px auto;"}
+%div{style: 'max-width: 440px; padding-bottom: 15px; margin: 0px auto;'}
   %h2.text-center= t('.title')
-  = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-    .input-group
-      %span.input-group-addon
-        %i.fa.fa-user
-      = f.text_field :login, autofocus: true,
-        placeholder: User.human_attribute_name(:login), class: 'form-control'
-    %span.help-block
-    .input-group
-      %span.input-group-addon
-        %i.fa.fa-lock
-      = f.password_field :password, autocomplete: "off",
-        placeholder: User.human_attribute_name(:password), class: 'form-control'
-    - if devise_mapping.rememberable?
+
+  .well.bs-component
+    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
       .input-group
-        = f.check_box :remember_me
-        = f.label :remember_me
-    %span.help-block
-      = f.submit t('.submit'), class: "btn btn-lg btn-primary btn-block"
-  = render "devise/shared/links"
+        %span.input-group-addon
+          %i.fa.fa-user
+        = f.text_field :login, autofocus: true,
+          placeholder: User.human_attribute_name(:login), class: 'form-control'
+      %span.help-block
+      .input-group
+        %span.input-group-addon
+          %i.fa.fa-lock
+        = f.password_field :password, autocomplete: 'off',
+          placeholder: User.human_attribute_name(:password), class: 'form-control'
+      - if devise_mapping.rememberable?
+        .input-group
+          = f.check_box :remember_me
+          = f.label :remember_me
+      %span.help-block
+        = f.submit t('.submit'), class: 'btn btn-lg btn-primary btn-block'
+    = render 'devise/shared/links'

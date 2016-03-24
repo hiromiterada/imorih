@@ -21,6 +21,8 @@ class User < ActiveRecord::Base
   enum gender: %i(male female)
   enum role: %i(normal owner admin)
 
+  DUMMY_DOMAINNAME = '@example.com'
+
   def set_customer_code
     return if customer_code.present?
     retry_counter = 0
@@ -50,7 +52,7 @@ class User < ActiveRecord::Base
       if options[:email].present?
         user.email = options[:email]
       else
-        user.email = code + '@example.com'
+        user.email = code + DUMMY_DOMAINNAME
       end
       if options[:password].present?
         user.password = options[:password]

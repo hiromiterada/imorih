@@ -10,10 +10,12 @@ ja:
     save: 保存
     add: 追加
     home: ホーム
-    settings: 会員情報設定
+    search_parking: 駐車場検索
+    search_payment: お支払い照会
+    settings: アカウント設定
     signout: ログアウト
     signin: ログイン
-    signup: 会員登録
+    signup: アカウント登録
     guest: ゲスト
     welcome: 'ようこそ %{name} さん。'
     boolean:

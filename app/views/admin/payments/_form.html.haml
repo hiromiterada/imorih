@@ -14,9 +14,10 @@
          class: 'control-label col-lg-2'
       .col-lg-10
         - if @payment.contract.present?
-          = f.collection_select(:contract_id, @contracts, :id, :number, selected: @payment.contract.id)
+          - options = {selected: @payment.contract.id}
         - else
-          = f.collection_select(:contract_id, @contracts, :id, :number, prompt: true)
+          - options = {prompt: true}
+        = f.collection_select(:contract_id, @contracts, :id, :number_and_fullname, options)
       = f.error_span(:contract_id)
     .form-group
       = f.label :payday, class: 'control-label col-lg-2'

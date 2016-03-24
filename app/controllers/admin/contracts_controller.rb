@@ -1,5 +1,6 @@
 class Admin::ContractsController < ApplicationController
   before_action :set_contract, only: [:show, :edit, :update, :destroy]
+  before_action :set_parameters, only: [:new, :edit, :create, :update]
 
   def index
     @contracts = Contract.order('created_at DESC').page(params[:page]).decorate
@@ -9,20 +10,14 @@ class Admin::ContractsController < ApplicationController
   end
 
   def new
-    @users = User.all
-    @parkings = Parking.all
     @contract = Contract.new
     @contract.user = User.find(params[:user_id]) if params[:user_id]
   end
 
   def edit
-    @users = User.all
-    @parkings = Parking.all
   end
 
   def create
-    @users = User.all
-    @parkings = Parking.all
     @contract = Contract.new(contract_params)
     if @contract.save
       redirect_to admin_contracts_url,
@@ -33,8 +28,6 @@ class Admin::ContractsController < ApplicationController
   end
 
   def update
-    @users = User.all
-    @parkings = Parking.all
     if @contract.update(contract_params)
       redirect_to admin_contracts_url,
         notice: t('views.messages.successfully_updated')
@@ -53,6 +46,11 @@ class Admin::ContractsController < ApplicationController
 
   def set_contract
     @contract = Contract.find(params[:id]).decorate
+  end
+
+  def set_parameters
+    @users = User.all.decorate
+    @parkings = Parking.all
   end
 
   def contract_params

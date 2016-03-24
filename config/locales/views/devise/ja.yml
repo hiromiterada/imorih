@@ -6,16 +6,16 @@ ja:
         submit: ログイン
     registrations:
       new:
-        title: 会員登録
+        title: アカウント登録
         submit: 登録
       edit:
-        title: 会員情報設定
+        title: アカウント設定
         submit: 更新
         currently_waiting_confirmation_for: '%{email}は承認待ちです。確認メールの内容に従って本登録を行ってください。'
         leave_blank_if_you_dont_want_to_change_it: （変更の必要がなければ、空にしておいて下さい。）
         we_need_your_current_password_to_confirm_your_changes: （認証のため現在のパスワードを入力して下さい。）
         remove_account: 退会
-        unhappy: 会員情報を削除します。よろしければ「退会」ボタンをクリックしてください。元に戻すことはできませんのでご注意ください。 
+        unhappy: アカウントを削除します。よろしければ「退会」ボタンをクリックしてください。元に戻すことはできませんのでご注意ください。
         confirm: 本当によろしいですか？
         currently_waiting_confirmation_for: '%{email}は承認待ちです。確認メールの内容に従って本登録を行ってください。'
         cancel: キャンセル
@@ -36,7 +36,7 @@ ja:
       confirmation_instructions:
         welcome: '%{email}様'
         info: この度は「imoriH」にご登録いただきありがとうございます。以下のリンクをクリックしてメールアドレスを承認していただくと本登録となります。
-        link: 会員登録（無料）およびメールアドレスの承認はこちら
+        link: アカウント登録（無料）およびメールアドレスの承認はこちら
       reset_password_instructions:
         hello: '%{email}様'
         info: パスワードを再発行するには以下のリンクをクリックして手続きを行ってください。
