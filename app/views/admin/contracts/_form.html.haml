@@ -9,11 +9,12 @@
       = f.label :user_id, User.human_attribute_name(:customer_code),
          class: 'control-label col-lg-2'
       .col-lg-10
-        - if @contract.user.present?
-          - options = {selected: @contract.user.id}
+        - if @contract.new_record?
+          = f.collection_select(:user_id, @users, :id,
+            :customer_code_and_fullname, include_blank: true)
+          %i= t('views.auto_generation')
         - else
-          - options = {include_blank: true}
-        = f.collection_select(:user_id, @users, :id, :customer_code_and_fullname, options)
+          = @contract.try(:user).customer_code_and_fullname
       = f.error_span(:user_id)
     - unless @contract.new_record?
       .form-group
@@ -25,8 +26,9 @@
       .col-lg-10
         - if @contract.new_record?
           - Contract.enum_i18n(:kind).invert.each do |key, value|
-            = key
-            = f.radio_button :kind, value, onclick: "select_kind('#{value}');"
+            = f.radio_button :kind, value, onclick: "select_kind('#{value}');",
+              id: "kind_#{value}"
+            %label{for: "kind_#{value}"}= key
         - else
           = @contract.enum_i18n(:kind)
       = f.error_span(:kind)
@@ -35,11 +37,12 @@
       = f.label :status, class: 'control-label col-lg-2'
       .col-lg-10
         - Contract.enum_i18n(:status).invert.each do |key, value|
-          = key
-          = f.radio_button :status, value
+          = f.radio_button :status, value, id: "status_#{value}"
+          %label{for: "status_#{value}"}= key
       = f.error_span(:status)
     .form-group
       = f.label :rent, class: 'control-label col-lg-2'
+      %span.text-danger= t('views.required')
       .col-lg-10
         = f.number_field :rent
       = f.error_span(:rent)
@@ -57,13 +60,13 @@
       = f.label :auto_updating, class: 'control-label col-lg-2'
       .col-lg-10
         - {yes: true, no: false}.each do |key, value|
-          = t("views.boolean.#{key}")
-          = f.radio_button :auto_updating, value
+          = f.radio_button :auto_updating, value, id: "auto_updating_#{value}"
+          %label{for: "auto_updating_#{value}"}= t("views.boolean.#{key}")
       = f.error_span(:auto_updating)
     .form-group
       = f.label :note, class: 'control-label col-lg-2'
       .col-lg-10
-        = f.text_area :note
+        = f.text_area :note, class: 'form-control'
       = f.error_span(:note)
     .form-group
       .col-lg-offset-2.col-lg-10

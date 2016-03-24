@@ -14,6 +14,10 @@ en:
     signin: Sign in
     signup: Sign up
     guest: Guest
+    required: (Required)
+    auto_generation: (Auto-generation)
+    money_unit: '$%{money}'
+    money_per_month: '$%{money}/month'
     welcome: 'Welcome %{name} !'
     boolean:
       'yes': yes

@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 20160323084917) do
   add_index "contracts", ["user_id"], name: "index_contracts_on_user_id", using: :btree
 
   create_table "managements", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",       null: false
     t.string   "email",      null: false
     t.string   "address"
     t.string   "phone"
@@ -88,15 +88,15 @@ ActiveRecord::Schema.define(version: 20160323084917) do
   add_index "parkings", ["management_id"], name: "index_parkings_on_management_id", using: :btree
 
   create_table "payments", force: :cascade do |t|
-    t.integer  "contract_id",  null: false
-    t.date     "payday",       null: false
-    t.integer  "amount",       null: false
+    t.integer  "contract_id",              null: false
+    t.date     "payday",                   null: false
+    t.integer  "amount",       default: 0, null: false
     t.date     "date_started"
     t.date     "date_ended"
     t.text     "message"
     t.text     "note"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   add_index "payments", ["contract_id"], name: "index_payments_on_contract_id", using: :btree

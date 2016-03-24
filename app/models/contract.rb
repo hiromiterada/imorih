@@ -10,7 +10,9 @@ class Contract < ActiveRecord::Base
   validates :kind, presence: true
   validates :status, presence: true
   validates :number, presence: true, uniqueness: true
-  validates :rent, numericality: :only_integer
+  validates :rent, numericality: {
+    only_integer: true, greater_than_or_equal_to: 0
+  }
   validates :areas, presence: true, if: :about_parking?
 
   belongs_to :user

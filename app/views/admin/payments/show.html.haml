@@ -14,7 +14,7 @@
     = @payment.payday
   %p
     %b= Payment.human_attribute_name(:amount) + ':'
-    = @payment.amount
+    = money(@payment.amount)
   %p
     %b= Payment.human_attribute_name(:period) + ':'
     = [@payment.date_started, @payment.date_ended].join(' - ')

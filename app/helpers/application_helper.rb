@@ -7,4 +7,14 @@ module ApplicationHelper
     end
     I18n.t('views.welcome', name: name)
   end
+
+  def money(money)
+    return if money.blank?
+    I18n.t('views.money_unit', money: money)
+  end
+
+  def money_per_month(money)
+    return if money.blank?
+    I18n.t('views.money_per_month', money: money)
+  end
 end

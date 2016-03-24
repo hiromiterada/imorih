@@ -17,6 +17,10 @@ ja:
     signin: ログイン
     signup: アカウント登録
     guest: ゲスト
+    required: (必須)
+    auto_generation: (未選択の場合は自動生成)
+    money_unit: '%{money}円'
+    money_per_month: '%{money}円/月'
     welcome: 'ようこそ %{name} さん。'
     boolean:
       'yes': はい

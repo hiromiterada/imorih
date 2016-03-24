@@ -11,7 +11,7 @@
         %dt= Contract.human_attribute_name(:number)
         %dd= [contract.number, '(', contract.enum_i18n(:kind), ')'].join
         %dt= Contract.human_attribute_name(:rent)
-        %dd= contract.rent
+        %dd= money_per_month(contract.rent)
         %dt= Contract.human_attribute_name(:period)
         %dd= contract.period
 
@@ -35,7 +35,7 @@
       %tr
         %td= payment.contract.try(:number)
         %td= payment.payday
-        %td= payment.amount
+        %td= money(payment.amount)
         %td= payment.contract.enum_i18n(:kind) if payment.contract.present?
         %td= payment.period
         %td= payment.message
