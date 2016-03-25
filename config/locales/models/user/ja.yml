@@ -9,7 +9,7 @@ ja:
         female: 女
       role:
         normal: 一般
-        owner: オーナー
+        master: 大家さん
         admin: システム管理者
   activerecord:
     models:
@@ -33,7 +33,7 @@ ja:
         role: 権限
         customer_code: お客様番号
         customer_code_and_fullname: お客様番号(氏名)
-        send_of_dm: imoriHからの通知を受け取る
+        send_of_dm: imoriH.netからのメール(入金確認の通知、本サービスのメンテナンスのお知らせなど)を受け取る
         reset_password_token: パスワード再発行トークン
         reset_password_sent_at: パスワード再発行メールの送信時刻
         remember_created_at: 「ログインをそのままにする」の設定時刻

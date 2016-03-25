@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160323084917) do
+ActiveRecord::Schema.define(version: 20160325112343) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,16 @@ ActiveRecord::Schema.define(version: 20160323084917) do
   add_index "contracts", ["parking_id"], name: "index_contracts_on_parking_id", using: :btree
   add_index "contracts", ["status"], name: "index_contracts_on_status", using: :btree
   add_index "contracts", ["user_id"], name: "index_contracts_on_user_id", using: :btree
+
+  create_table "owner_users", force: :cascade do |t|
+    t.integer  "owner_id",   null: false
+    t.integer  "user_id",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "owner_users", ["owner_id"], name: "index_owner_users_on_owner_id", using: :btree
+  add_index "owner_users", ["user_id"], name: "index_owner_users_on_user_id", using: :btree
 
   create_table "owners", force: :cascade do |t|
     t.string   "name",       null: false
@@ -146,6 +156,8 @@ ActiveRecord::Schema.define(version: 20160323084917) do
   add_foreign_key "contracts", "owners"
   add_foreign_key "contracts", "parkings"
   add_foreign_key "contracts", "users"
+  add_foreign_key "owner_users", "owners"
+  add_foreign_key "owner_users", "users"
   add_foreign_key "parkings", "owners"
   add_foreign_key "payments", "contracts"
 end

@@ -16,10 +16,12 @@ class User < ActiveRecord::Base
   validates :customer_code, presence: true, uniqueness: true
 
   has_many :contracts, -> { order('date_signed') }
+  has_many :owner_users
+  has_many :owners, through: :owner_users
 
   enum locale: %i(ja en)
   enum gender: %i(male female)
-  enum role: %i(normal owner admin)
+  enum role: %i(normal master admin)
 
   DUMMY_DOMAINNAME = '@example.com'
 

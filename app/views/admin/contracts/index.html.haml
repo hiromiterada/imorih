@@ -23,7 +23,7 @@
       %tr
         %td= contract.user.try(:customer_code_and_fullname)
         %td= contract.number
-        %td= contract.enum_i18n(:kind)
+        %td= contract.kind_and_parking_name
         %td= contract.enum_i18n(:status)
         %td= money_per_month(contract.rent)
         %td= contract.period

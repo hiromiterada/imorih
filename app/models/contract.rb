@@ -25,7 +25,7 @@ class Contract < ActiveRecord::Base
     end
   end
   has_many :contract_areas
-  has_many :areas, :through => :contract_areas
+  has_many :areas, through: :contract_areas
 
   enum kind: %i(leased_land monthly_parking)
   enum status: %i(pending in_process completed canceled)

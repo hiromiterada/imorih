@@ -18,7 +18,7 @@
   - if @contract.about_parking?
     %p
       %b= Contract.human_attribute_name(:parking_name_and_area_names) + ':'
-      = @contract.parking_name_and_area_names
+      = link_to @contract.parking_name_and_area_names, [:admin, @contract.parking]
   %p
     %b= Contract.human_attribute_name(:status) + ':'
     = @contract.enum_i18n(:status)

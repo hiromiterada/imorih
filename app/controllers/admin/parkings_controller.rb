@@ -1,5 +1,6 @@
 class Admin::ParkingsController < ApplicationController
   before_action :set_parking, only: [:show, :edit, :update, :destroy]
+  before_action :set_parameters, only: [:new, :edit, :create, :update]
 
   def index
     @parkings = Parking.order('created_at DESC').page(params[:page]).decorate
@@ -9,19 +10,16 @@ class Admin::ParkingsController < ApplicationController
   end
 
   def new
-    @owners = Owner.all
     @parking = Parking.new
     @parking.owner = Owner.find(params[:owner_id]) if params[:owner_id]
     @parking.areas.build
   end
 
   def edit
-    @owners = Owner.all
     @parking.areas.build if @parking.areas.blank?
   end
 
   def create
-    @owners = Owner.all
     @parking = Parking.new(parking_params)
     if @parking.save
       redirect_to admin_parkings_url,
@@ -32,7 +30,6 @@ class Admin::ParkingsController < ApplicationController
   end
 
   def update
-    @owners = Owner.all
     if @parking.update(parking_params)
       redirect_to admin_parkings_url,
         notice: t('views.messages.successfully_updated')
@@ -51,6 +48,10 @@ class Admin::ParkingsController < ApplicationController
 
   def set_parking
     @parking = Parking.find(params[:id]).decorate
+  end
+
+  def set_parameters
+    @owners = Owner.all
   end
 
   def parking_params

@@ -1,7 +1,7 @@
 ja:
   activerecord:
     models:
-      owner: オーナー 
+      owner: お問い合わせ先
     attributes:
       owner:
         name: 名称

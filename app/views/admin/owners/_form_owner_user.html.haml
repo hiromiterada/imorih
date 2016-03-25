@@ -1,0 +1,13 @@
+- master = User.enum_i18n(:role)['master']
+.well
+  %fieldset
+    %legend= master
+    = f.fields_for :owner_users do |form_owner_user|
+      .row{style: "vertical-align:middle;"}
+        .col-xs-12.col-sm-12
+          = form_owner_user.collection_select(:user_id, users,
+            :id, :fullname_or_email, prompt: true)
+          = form_owner_user.link_to_remove master + t('views.delete'),
+            class: 'btn btn-danger'
+    = f.link_to_add master + t('views.add'), :owner_users,
+      class: 'btn btn-default'

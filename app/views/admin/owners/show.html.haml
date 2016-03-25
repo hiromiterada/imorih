@@ -20,6 +20,12 @@
   %p
     %b= Owner.human_attribute_name(:signature) + ':'
     = @owner.signature
+  .well
+    %fieldset
+      %legend= User.enum_i18n(:role)['master']
+      %ul
+      - @owner.users.each do |user|
+        %li= link_to user.fullname_or_email, [:admin, user]
 
   = link_to t('views.edit'), [:edit, :admin, @owner],
     class: 'btn btn-default'

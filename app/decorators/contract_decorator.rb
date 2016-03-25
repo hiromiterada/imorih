@@ -17,4 +17,9 @@ class ContractDecorator < Draper::Decorator
   def period
     [object.date_signed, object.date_terminated].join(' - ')
   end
+
+  def kind_and_parking_name
+    return object.enum_i18n(:kind) if object.leased_land?
+    [object.enum_i18n(:kind), '-', parking_name_and_area_names].join
+  end
 end

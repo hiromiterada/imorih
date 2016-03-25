@@ -25,5 +25,5 @@ ja:
         date_signed: 契約締結日
         date_terminated: 契約終了日
         period: ご契約期間
-        auto_updating: 契約期間を自動更新する
+        auto_updating: 契約期間を自動延長する
         note: 備考

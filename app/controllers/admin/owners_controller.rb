@@ -1,5 +1,6 @@
 class Admin::OwnersController < ApplicationController
   before_action :set_owner, only: [:show, :edit, :update, :destroy]
+  before_action :set_parameters, only: [:new, :edit, :create, :update]
 
   def index
     @owners = Owner.order('created_at DESC').page(params[:page]).decorate
@@ -10,9 +11,11 @@ class Admin::OwnersController < ApplicationController
 
   def new
     @owner = Owner.new
+    @owner.owner_users.build
   end
 
   def edit
+    @owner.owner_users.build if @owner.owner_users.blank?
   end
 
   def create
@@ -46,7 +49,13 @@ class Admin::OwnersController < ApplicationController
     @owner = Owner.find(params[:id]).decorate
   end
 
+  def set_parameters
+    @users = User.master.decorate
+  end
+
   def owner_params
-    params.require(:owner).permit(:name, :email, :address, :phone, :signature)
+    params.require(:owner).permit(:name, :email, :address, :phone, :signature,
+      owner_users_attributes: [:id, :user_id, :_destroy]
+    )
   end
 end
