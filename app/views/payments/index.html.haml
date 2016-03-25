@@ -23,6 +23,8 @@
 
 %h2= t('views.payment_history')
 
+%p= t('.warning_notice')
+
 %p= page_entries_info @payments
 
 %table.table.table-striped
@@ -38,7 +40,7 @@
 
   %tbody
     - @payments.each do |payment|
-      %tr
+      %tr{class: "#{payment.pay_later? ? 'danger' : ''}"}
         - if @contracts.count > 1
           %td= [Contract.model_name.human,
             @contracts.map(&:id).index(payment.contract.id)+1].join

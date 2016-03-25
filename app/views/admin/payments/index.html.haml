@@ -22,7 +22,7 @@
 
   %tbody
     - @payments.each do |payment|
-      %tr
+      %tr{class: "#{payment.pay_later? ? 'danger' : ''}"}
         %td= payment.contract.try(:number_and_fullname)
         %td= payment.contract.enum_i18n(:kind) if payment.contract.present?
         %td= payment.payday
