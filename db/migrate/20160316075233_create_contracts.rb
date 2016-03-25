@@ -2,6 +2,7 @@ class CreateContracts < ActiveRecord::Migration
   def change
     create_table :contracts do |t|
       t.references :user,           null: false, index: true, foreign_key: true
+      t.references :owner,          null: false, index: true, foreign_key: true
       t.references :parking,                     index: true, foreign_key: true
       t.string     :number,         null: false
       t.integer    :kind,           null: false, index: true, default: 0

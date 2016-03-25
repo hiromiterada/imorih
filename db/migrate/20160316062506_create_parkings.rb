@@ -1,7 +1,7 @@
 class CreateParkings < ActiveRecord::Migration
   def change
     create_table :parkings do |t|
-      t.references :management,     null: false, index: true, foreign_key: true
+      t.references :owner,          null: false, index: true, foreign_key: true
       t.string     :name,           null: false
       t.string     :code,           null: false
       t.string     :canonical_name, null: false

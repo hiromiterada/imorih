@@ -11,9 +11,9 @@
   %thead
     %tr
       %th= Contract.human_attribute_name(:number_and_fullname)
+      %th= Contract.human_attribute_name(:kind)
       %th= Payment.human_attribute_name(:payday)
       %th= Payment.human_attribute_name(:amount)
-      %th= Contract.human_attribute_name(:kind)
       %th= Payment.human_attribute_name(:period)
       %th= Payment.human_attribute_name(:message)
       %th= Payment.human_attribute_name(:note)
@@ -24,9 +24,9 @@
     - @payments.each do |payment|
       %tr
         %td= payment.contract.try(:number_and_fullname)
+        %td= payment.contract.enum_i18n(:kind) if payment.contract.present?
         %td= payment.payday
         %td= money(payment.amount)
-        %td= payment.contract.enum_i18n(:kind) if payment.contract.present?
         %td= payment.period
         %td= payment.message
         %td= payment.note

@@ -1,4 +1,5 @@
 class Payment < ActiveRecord::Base
+
   validates :contract_id, presence: true
   validates :payday, presence: true
   validates :amount, numericality: {

@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
 
   validates :customer_code, presence: true, uniqueness: true
 
-  has_many :contracts
+  has_many :contracts, -> { order('date_signed') }
 
   enum locale: %i(ja en)
   enum gender: %i(male female)

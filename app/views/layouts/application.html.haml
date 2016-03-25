@@ -35,7 +35,7 @@
             %li= link_to t('views.home'), root_path
             %li= link_to t('views.search_parking'), [:parkings]
             - if user_signed_in?
-              %li= link_to t('views.search_payment'), [:payments]
+              %li= link_to t('views.payment_history'), [:payments]
               - if current_user.admin?
                 %li
                   %a{'data-toggle' => 'dropdown', href: '#'}
@@ -43,7 +43,7 @@
                     %span.caret
                   %ul.dropdown-menu
                     %li= link_to User.model_name.human, [:admin, :users]
-                    %li= link_to Management.model_name.human, [:admin, :managements]
+                    %li= link_to Owner.model_name.human, [:admin, :owners]
                     %li= link_to Parking.model_name.human, [:admin, :parkings]
                     %li= link_to Contract.model_name.human, [:admin, :contracts]
                     %li= link_to Payment.model_name.human, [:admin, :payments]

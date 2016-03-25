@@ -14,6 +14,7 @@
       %th= Parking.human_attribute_name(:capacity)
       %th= Parking.human_attribute_name(:address)
       %th
+      %th
 
   %tbody
     - @parkings.each do |parking|
@@ -23,6 +24,8 @@
         %td= parking.capacity
         %td= parking.address
         %td= link_to t('views.show'), [:admin, parking], class: 'btn btn-default'
+        %td= link_to [Contract.model_name.human, t('views.new')].join,
+          [:new, :admin, parking, :contract], class: 'btn btn-default'
 
 %br
 

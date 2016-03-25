@@ -1,0 +1,32 @@
+= provide :title, [Owner.model_name.human, t('views.index')].join
+
+%h2= Owner.model_name.human
+
+%p= link_to t('views.new'), [:new, :admin, :owner], class: 'btn btn-default'
+
+%p= page_entries_info @owners
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th= Owner.human_attribute_name(:name)
+      %th= Owner.human_attribute_name(:email)
+      %th= Owner.human_attribute_name(:address)
+      %th= Owner.human_attribute_name(:phone)
+      %th
+      %th
+
+  %tbody
+    - @owners.each do |owner|
+      %tr
+        %td= owner.name
+        %td= owner.email
+        %td= owner.address
+        %td= owner.phone
+        %td= link_to t('views.show'), [:admin, owner], class: 'btn btn-default'
+        %td= link_to [Parking.model_name.human, t('views.new')].join,
+          [:new, :admin, owner, :parking], class: 'btn btn-default'
+
+%br
+
+= paginate @owners

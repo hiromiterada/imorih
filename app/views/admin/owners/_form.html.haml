@@ -1,23 +1,23 @@
 .well.bs-component
-  = form_for [:admin, @management], html: { class: "form-horizontal management" } do |f|
+  = form_for [:admin, @owner], html: { class: "form-horizontal owner" } do |f|
     %fieldset
-      %legend= Management.model_name.human
-    - if @management.errors.any?
+      %legend= Owner.model_name.human
+    - if @owner.errors.any?
       %p.text-danger= t('errors.messages.not_saved')
 
-    .form-group
-      = f.label :email, Management.human_attribute_name(:email),
-         class: 'control-label col-lg-2'
-      %span.text-danger= t('views.required')
-      .col-lg-10
-        = f.email_field :email, class: 'form-control'
-      = f.error_span(:email)
     .form-group
       = f.label :name, class: 'control-label col-lg-2'
       %span.text-danger= t('views.required')
       .col-lg-10
         = f.text_field :name, class: 'form-control'
       = f.error_span(:name)
+    .form-group
+      = f.label :email, Owner.human_attribute_name(:email),
+         class: 'control-label col-lg-2'
+      %span.text-danger= t('views.required')
+      .col-lg-10
+        = f.email_field :email, class: 'form-control'
+      = f.error_span(:email)
     .form-group
       = f.label :address, class: 'control-label col-lg-2'
       .col-lg-10
@@ -29,6 +29,11 @@
         = f.text_field :phone
       = f.error_span(:phone)
     .form-group
+      = f.label :signature, class: 'control-label col-lg-2'
+      .col-lg-10
+        = f.text_area :signature, class: 'form-control'
+      = f.error_span(:signature)
+    .form-group
       .col-lg-offset-2.col-lg-10
       = f.submit t('views.save'), class: 'btn btn-primary'
-      = link_to t('views.cancel'), admin_managements_path, class: 'btn btn-default'
+      = link_to t('views.cancel'), admin_owners_path, class: 'btn btn-default'

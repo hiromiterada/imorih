@@ -3,12 +3,12 @@ class Parking < ActiveRecord::Base
 
   before_validation :set_code
 
-  validates :management_id, presence: true
+  validates :owner_id, presence: true
   validates :name, presence: true
   validates :code, presence: true, uniqueness: true
   validates :canonical_name, presence: true, uniqueness: true
 
-  belongs_to :management
+  belongs_to :owner
   has_many :contracts
   has_many :areas, dependent: :destroy
   accepts_nested_attributes_for :areas, allow_destroy: true,

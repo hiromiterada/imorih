@@ -9,19 +9,19 @@ class Admin::ParkingsController < ApplicationController
   end
 
   def new
-    @managements = Management.all
+    @owners = Owner.all
     @parking = Parking.new
-    @parking.management = Management.find(params[:management_id]) if params[:management_id]
+    @parking.owner = Owner.find(params[:owner_id]) if params[:owner_id]
     @parking.areas.build
   end
 
   def edit
-    @managements = Management.all
+    @owners = Owner.all
     @parking.areas.build if @parking.areas.blank?
   end
 
   def create
-    @managements = Management.all
+    @owners = Owner.all
     @parking = Parking.new(parking_params)
     if @parking.save
       redirect_to admin_parkings_url,
@@ -32,7 +32,7 @@ class Admin::ParkingsController < ApplicationController
   end
 
   def update
-    @managements = Management.all
+    @owners = Owner.all
     if @parking.update(parking_params)
       redirect_to admin_parkings_url,
         notice: t('views.messages.successfully_updated')
@@ -55,10 +55,10 @@ class Admin::ParkingsController < ApplicationController
 
   def parking_params
     params.require(:parking).permit(
-      :management_id, :name, :code, :canonical_name, :address,
+      :owner_id, :name, :code, :canonical_name, :address,
       :latitude, :longitude, :description, :price, :message, :cautions,
       areas_attributes: [
-      :id, :parking_id, :name, :status, :note, :_destroyi
+      :id, :parking_id, :name, :status, :note, :_destroy
       ]
     )
   end

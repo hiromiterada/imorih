@@ -13,8 +13,11 @@ Rails.application.routes.draw do
     resources :users do
       resources :contracts, only: [:new]
     end
-    resources :managements do
+    resources :owners do
       resources :parkings, only: [:new]
+    end
+    resources :parkings do
+      resources :contracts, only: [:new]
     end
     resources :contracts do
       resources :payments, only: [:new]

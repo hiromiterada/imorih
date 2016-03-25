@@ -1,0 +1,30 @@
+= provide :title, [Owner.model_name.human, t('views.show')].join
+
+%h2= t('views.show')
+
+.well.bs-component
+  %fieldset
+    %legend= Owner.model_name.human
+  %p
+    %b= Owner.human_attribute_name(:email) + ':'
+    = @owner.email
+  %p
+    %b= Owner.human_attribute_name(:name) + ':'
+    = @owner.name
+  %p
+    %b= Owner.human_attribute_name(:address) + ':'
+    = @owner.address
+  %p
+    %b= Owner.human_attribute_name(:phone) + ':'
+    = @owner.phone
+  %p
+    %b= Owner.human_attribute_name(:signature) + ':'
+    = @owner.signature
+
+  = link_to t('views.edit'), [:edit, :admin, @owner],
+    class: 'btn btn-default'
+  = link_to t('views.delete'), [:admin, @owner], method: :delete,
+    data: { confirm: t('views.messages.confirm')}, class: 'btn btn-danger'
+= link_to [Parking.model_name.human, t('views.new')].join,
+  [:new, :admin, @owner, :parking], class: 'btn btn-default'
+= link_to t('views.back'), [:admin, :owners], class: 'btn btn-default'

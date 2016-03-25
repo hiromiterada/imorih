@@ -1,10 +1,11 @@
 ja:
   activerecord:
     models:
-      management: 管理会社 
+      owner: オーナー 
     attributes:
-      management:
+      owner:
         name: 名称
         address: 住所
         phone: 電話番号
         email: メールアドレス
+        signature: 署名

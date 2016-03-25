@@ -1,4 +1,5 @@
 ja:
   payments:
     index:
-      panel_title: 現在お客様がご契約中の内容
+      my_contracts: ご契約の概要
+      overdue_message: '%{date}以降のご入金が滞っております。ご確認をお願いいたします。'

@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20160323084917) do
 
   create_table "contracts", force: :cascade do |t|
     t.integer  "user_id",                        null: false
+    t.integer  "owner_id",                       null: false
     t.integer  "parking_id"
     t.string   "number",                         null: false
     t.integer  "kind",            default: 0,    null: false
@@ -54,21 +55,23 @@ ActiveRecord::Schema.define(version: 20160323084917) do
 
   add_index "contracts", ["auto_updating"], name: "index_contracts_on_auto_updating", using: :btree
   add_index "contracts", ["kind"], name: "index_contracts_on_kind", using: :btree
+  add_index "contracts", ["owner_id"], name: "index_contracts_on_owner_id", using: :btree
   add_index "contracts", ["parking_id"], name: "index_contracts_on_parking_id", using: :btree
   add_index "contracts", ["status"], name: "index_contracts_on_status", using: :btree
   add_index "contracts", ["user_id"], name: "index_contracts_on_user_id", using: :btree
 
-  create_table "managements", force: :cascade do |t|
+  create_table "owners", force: :cascade do |t|
     t.string   "name",       null: false
     t.string   "email",      null: false
     t.string   "address"
     t.string   "phone"
+    t.text     "signature"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "parkings", force: :cascade do |t|
-    t.integer  "management_id",  null: false
+    t.integer  "owner_id",       null: false
     t.string   "name",           null: false
     t.string   "code",           null: false
     t.string   "canonical_name", null: false
@@ -85,7 +88,7 @@ ActiveRecord::Schema.define(version: 20160323084917) do
 
   add_index "parkings", ["canonical_name"], name: "index_parkings_on_canonical_name", unique: true, using: :btree
   add_index "parkings", ["code"], name: "index_parkings_on_code", unique: true, using: :btree
-  add_index "parkings", ["management_id"], name: "index_parkings_on_management_id", using: :btree
+  add_index "parkings", ["owner_id"], name: "index_parkings_on_owner_id", using: :btree
 
   create_table "payments", force: :cascade do |t|
     t.integer  "contract_id",              null: false
@@ -140,8 +143,9 @@ ActiveRecord::Schema.define(version: 20160323084917) do
   add_foreign_key "areas", "parkings"
   add_foreign_key "contract_areas", "areas"
   add_foreign_key "contract_areas", "contracts"
+  add_foreign_key "contracts", "owners"
   add_foreign_key "contracts", "parkings"
   add_foreign_key "contracts", "users"
-  add_foreign_key "parkings", "managements"
+  add_foreign_key "parkings", "owners"
   add_foreign_key "payments", "contracts"
 end

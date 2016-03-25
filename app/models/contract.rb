@@ -6,6 +6,7 @@ class Contract < ActiveRecord::Base
   before_validation :set_number
 
   validates :user_id, presence: true
+  validates :owner_id, presence: true
   validates :parking_id, presence: true, if: :about_parking?
   validates :kind, presence: true
   validates :status, presence: true
@@ -17,7 +18,12 @@ class Contract < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :parking
-  has_many :payments
+  belongs_to :owner
+  has_many :payments do
+    def newest
+      order('date_ended').last
+    end
+  end
   has_many :contract_areas
   has_many :areas, :through => :contract_areas
 
@@ -26,6 +32,11 @@ class Contract < ActiveRecord::Base
 
   def about_parking?
     kind == 'monthly_parking'
+  end
+
+  def overdue?
+    return if payments.blank?
+    Date.today > payments.newest.date_ended
   end
 
   private

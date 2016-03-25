@@ -9,6 +9,8 @@ en:
     cancel: Cancel
     save: Save
     home: Home
+    search_parking: Search parking
+    payment_history: Payment history
     settings: Account settings
     signout: Sign out
     signin: Sign in
