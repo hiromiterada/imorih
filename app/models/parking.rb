@@ -14,6 +14,10 @@ class Parking < ActiveRecord::Base
   accepts_nested_attributes_for :areas, allow_destroy: true,
     reject_if: proc { |attributes| attributes['name'].blank? }
 
+  scope :by_master, -> (user) {
+    where(owner_id: user.owners.pluck(:id))
+  }
+
   def set_code
     retry_counter = 0
     begin

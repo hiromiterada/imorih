@@ -1,9 +1,19 @@
 class Admin::ParkingsController < ApplicationController
   before_action :set_parking, only: [:show, :edit, :update, :destroy]
   before_action :set_parameters, only: [:new, :edit, :create, :update]
+  before_filter :authenticate_user!
 
   def index
-    @parkings = Parking.order('created_at DESC').page(params[:page]).decorate
+    if current_user.admin?
+      parkings = Parking.all
+    else
+      parkings = Parking.by_master(current_user)
+    end
+    @parkings = parkings.page(params[:page]).decorate
+    respond_to do |format|
+      format.html
+      format.json { render json: parkings }
+    end
   end
 
   def show
@@ -51,7 +61,11 @@ class Admin::ParkingsController < ApplicationController
   end
 
   def set_parameters
-    @owners = Owner.all
+    if current_user.admin?
+      @owners = Owner.all
+    else
+      @owners = current_user.owners
+    end
   end
 
   def parking_params

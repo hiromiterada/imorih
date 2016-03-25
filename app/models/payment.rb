@@ -11,6 +11,9 @@ class Payment < ActiveRecord::Base
   scope :by_user, -> (user) {
     where(contract_id: user.contracts.pluck(:id))
   }
+  scope :by_master, -> (user) {
+    where(contract_id: Contract.by_master(user).pluck(:id))
+  }
 
   def pay_later?
     payday >= date_started

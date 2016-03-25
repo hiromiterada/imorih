@@ -30,6 +30,10 @@ class Contract < ActiveRecord::Base
   enum kind: %i(leased_land monthly_parking)
   enum status: %i(pending in_process completed canceled)
 
+  scope :by_master, -> (user) {
+    where(owner_id: user.owners.pluck(:id))
+  }
+
   def about_parking?
     kind == 'monthly_parking'
   end

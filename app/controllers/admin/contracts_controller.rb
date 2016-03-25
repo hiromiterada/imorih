@@ -1,9 +1,15 @@
 class Admin::ContractsController < ApplicationController
   before_action :set_contract, only: [:show, :edit, :update, :destroy]
   before_action :set_parameters, only: [:new, :edit, :create, :update]
+  before_filter :authenticate_user!
 
   def index
-    @contracts = Contract.order('created_at DESC').page(params[:page]).decorate
+    if current_user.admin?
+      contracts = Contract.all
+    else
+      contracts = Contract.by_master(current_user)
+    end
+    @contracts = contracts.page(params[:page]).decorate
   end
 
   def show
@@ -55,8 +61,13 @@ class Admin::ContractsController < ApplicationController
 
   def set_parameters
     @users = User.all.decorate
-    @owners = Owner.all
-    @parkings = Parking.all
+    if current_user.admin?
+      @owners = Owner.all
+      @parkings = Parking.all
+    else
+      @owners = current_user.owners
+      @parkings = Parking.by_master(current_user)
+    end
   end
 
   def contract_params

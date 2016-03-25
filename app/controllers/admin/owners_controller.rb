@@ -1,6 +1,7 @@
 class Admin::OwnersController < ApplicationController
   before_action :set_owner, only: [:show, :edit, :update, :destroy]
   before_action :set_parameters, only: [:new, :edit, :create, :update]
+  before_filter :authenticate_user!
 
   def index
     @owners = Owner.order('created_at DESC').page(params[:page]).decorate

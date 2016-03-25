@@ -4,7 +4,12 @@ class Admin::PaymentsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @payments = Payment.all.order('payday DESC').page(params[:page]).decorate
+    if current_user.admin?
+      payments = Payment.all
+    else
+      payments = Payment.by_master(current_user)
+    end
+    @payments = payments.order('payday ASC').page(params[:page]).decorate
   end
 
   def show
@@ -50,7 +55,11 @@ class Admin::PaymentsController < ApplicationController
   end
 
   def set_parameters
-    @contracts = Contract.all.decorate
+    if current_user.admin?
+      @contracts = Contract.all.decorate
+    else
+      @contracts = Contract.by_master(current_user).decorate
+    end
   end
 
   def payment_params

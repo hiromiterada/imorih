@@ -5,9 +5,6 @@ Rails.application.routes.draw do
 
   resources :payments, only: [:index]
   resources :parkings, param: :canonical_name, only: [:index, :show]
-  resources :parkings, only: [] do
-    resources :areas, only: [:index]
-  end
 
   namespace :admin do
     resources :users do
@@ -22,7 +19,9 @@ Rails.application.routes.draw do
     resources :contracts do
       resources :payments, only: [:new]
     end
-    resources :parkings
+    resources :parkings do
+      resources :areas, only: [:index]
+    end
     resources :payments
   end
 
