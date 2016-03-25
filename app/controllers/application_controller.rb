@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
       :customer_code, :email, :password
     )}
     devise_parameter_sanitizer.for(:account_update) << [
-      :lastname, :firstname, :locale, :gender, :birthday,
+      :email, :lastname, :firstname, :locale, :gender, :birthday,
       :address, :phone, :send_of_dm
     ]
   end
