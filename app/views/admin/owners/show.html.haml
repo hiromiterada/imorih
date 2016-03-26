@@ -22,7 +22,7 @@
     = @owner.signature
   .well
     %fieldset
-      %legend= User.enum_i18n(:role)['master']
+      %legend.h5= User.enum_i18n(:role)['master']
       %ul
       - @owner.users.each do |user|
         %li= link_to user.fullname_or_email, [:admin, user]
@@ -31,6 +31,8 @@
     class: 'btn btn-default'
   = link_to t('views.delete'), [:admin, @owner], method: :delete,
     data: { confirm: t('views.messages.confirm')}, class: 'btn btn-danger'
+= link_to [Contract.model_name.human, t('views.new')].join,
+  [:new, :admin, @owner, :contract], class: 'btn btn-default'
 = link_to [Parking.model_name.human, t('views.new')].join,
   [:new, :admin, @owner, :parking], class: 'btn btn-default'
 = link_to t('views.back'), [:admin, :owners], class: 'btn btn-default'

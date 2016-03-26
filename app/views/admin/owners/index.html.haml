@@ -15,6 +15,7 @@
       %th= Owner.human_attribute_name(:phone)
       %th
       %th
+      %th
 
   %tbody
     - @owners.each do |owner|
@@ -24,6 +25,8 @@
         %td= owner.address
         %td= owner.phone
         %td= link_to t('views.show'), [:admin, owner], class: 'btn btn-default'
+        %td= link_to [Contract.model_name.human, t('views.new')].join,
+          [:new, :admin, owner, :contract], class: 'btn btn-default'
         %td= link_to [Parking.model_name.human, t('views.new')].join,
           [:new, :admin, owner, :parking], class: 'btn btn-default'
 

@@ -15,7 +15,7 @@ class ContractDecorator < Draper::Decorator
   end
 
   def period
-    [object.date_signed, object.date_terminated].join(' - ')
+    [l(object.date_signed), l(object.date_terminated)].join(' - ')
   end
 
   def kind_and_parking_name

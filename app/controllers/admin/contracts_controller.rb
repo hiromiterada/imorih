@@ -18,6 +18,9 @@ class Admin::ContractsController < ApplicationController
   def new
     @contract = Contract.new
     @contract.user = User.find(params[:user_id]) if params[:user_id]
+    if params[:owner_id]
+      @contract.owner = Owner.find(params[:owner_id])
+    end
     if params[:parking_id]
       @contract.parking = Parking.find(params[:parking_id])
       @contract.owner = @contract.parking.owner

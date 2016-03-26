@@ -19,4 +19,8 @@ class UserDecorator < Draper::Decorator
     return object.customer_code if fullname.blank?
     [object.customer_code, '(', fullname, ')'].join
   end
+
+  def owner_names
+    object.owners.pluck(:name).join(',')
+  end
 end

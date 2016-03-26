@@ -6,6 +6,9 @@
   %fieldset
     %legend= Parking.model_name.human
   %p
+    %b= Owner.model_name.human + ':'
+    = link_to @parking.owner.try(:name), [:admin, @parking.owner]
+  %p
     %b= Parking.human_attribute_name(:name) + ':'
     = @parking.name
   %p
@@ -51,4 +54,6 @@
     class: 'btn btn-default'
   = link_to t('views.delete'), [:admin, @parking], method: :delete,
     data: { confirm: t('views.messages.confirm')}, class: 'btn btn-danger'
+= link_to [Contract.model_name.human, t('views.new')].join,
+  [:new, :admin, @parking, :contract], class: 'btn btn-default'
 = link_to t('views.back'), [:admin, :parkings], class: 'btn btn-default'

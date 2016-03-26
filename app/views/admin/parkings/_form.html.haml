@@ -22,11 +22,19 @@
       .col-lg-10
         = f.text_field :name, class: 'form-control'
       = f.error_span(:name)
-    - unless @parking.new_record?
+    - if current_user.admin?
       .form-group
         = f.label :code, class: 'control-label col-lg-2'
         .col-lg-10
-          = @parking.code
+          = f.text_field :code, class: 'form-control'
+          %i= t('views.auto_generation')
+        = f.error_span(:code)
+    - else
+      - unless @parking.new_record?
+        .form-group
+          = f.label :code, class: 'control-label col-lg-2'
+          .col-lg-10
+            = @parking.code
     .form-group
       = f.label :canonical_name, class: 'control-label col-lg-2'
       %span.text-danger= t('views.required')

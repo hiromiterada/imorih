@@ -27,11 +27,11 @@
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
+          .navbar-brand{style: 'position:relative; top:-15px'}
+            = link_to root_path do
+              = image_tag 'logo.png'
         .navbar-collapse.collapse.navbar-responsive-collapse
           %ul.nav.navbar-nav
-            %li.navbar-brand{style: 'position:relative; top:-25px'}
-              = link_to root_path do
-                = image_tag 'logo.png'
             %li= link_to t('views.home'), root_path
             %li= link_to t('views.search_parking'), [:parkings]
             - if user_signed_in?

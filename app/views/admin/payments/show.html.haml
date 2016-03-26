@@ -10,8 +10,12 @@
     - if @payment.contract.present?
       = link_to @payment.contract.number_and_fullname, [:admin, @payment.contract]
   %p
+    %b= Contract.human_attribute_name(:kind) + ':'
+    - if @payment.contract.present?
+      = @payment.contract.kind_and_parking_name
+  %p
     %b= Payment.human_attribute_name(:payday) + ':'
-    = @payment.payday
+    = l(@payment.payday)
   %p
     %b= Payment.human_attribute_name(:amount) + ':'
     = money(@payment.amount)

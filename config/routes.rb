@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     end
     resources :owners do
       resources :parkings, only: [:new]
+      resources :contracts, only: [:new]
     end
     resources :parkings do
       resources :contracts, only: [:new]

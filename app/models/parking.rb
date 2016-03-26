@@ -5,7 +5,8 @@ class Parking < ActiveRecord::Base
 
   validates :owner_id, presence: true
   validates :name, presence: true
-  validates :code, presence: true, uniqueness: true
+  validates :code, presence: true, uniqueness: true,
+    length: { is: 4 }
   validates :canonical_name, presence: true, uniqueness: true
 
   belongs_to :owner
@@ -19,6 +20,7 @@ class Parking < ActiveRecord::Base
   }
 
   def set_code
+    return if !new_record? && code.present?
     retry_counter = 0
     begin
       self.code = make_rand_string(4)

@@ -2,7 +2,8 @@
 
 %h2= Payment.model_name.human
 
-%p= link_to t('views.new'), [:new, :admin, :payment], class: 'btn btn-default'
+- if current_user.admin?
+  %p= link_to t('views.new'), [:new, :admin, :payment], class: 'btn btn-default'
 
 %p= page_entries_info @payments
 
@@ -21,9 +22,9 @@
   %tbody
     - @payments.each do |payment|
       %tr{class: "#{payment.pay_later? ? 'danger' : ''}"}
-        %td= payment.contract.try(:number_and_fullname)
-        %td= payment.contract.enum_i18n(:kind) if payment.contract.present?
-        %td= payment.payday
+        %td= link_to payment.contract.try(:number_and_fullname), [:admin, payment.contract]
+        %td= payment.contract.kind_and_parking_name if payment.contract.present?
+        %td= l(payment.payday)
         %td= money(payment.amount)
         %td= payment.period
         %td= payment.message

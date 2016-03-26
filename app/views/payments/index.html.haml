@@ -44,7 +44,7 @@
         - if @contracts.count > 1
           %td= [Contract.model_name.human,
             @contracts.map(&:id).index(payment.contract.id)+1].join
-        %td= payment.payday
+        %td= l(payment.payday)
         %td= money(payment.amount)
         %td= payment.period
         %td= payment.message

@@ -14,11 +14,14 @@
          class: 'control-label col-lg-2'
       %span.text-danger= t('views.required')
       .col-lg-10
-        - if @payment.contract.present?
-          - options = {selected: @payment.contract.id}
+        - if current_user.admin?
+          - if @payment.contract.present?
+            - options = {selected: @payment.contract.id}
+          - else
+            - options = {prompt: true}
+          = f.collection_select(:contract_id, @contracts, :id, :number_and_fullname, options)
         - else
-          - options = {prompt: true}
-        = f.collection_select(:contract_id, @contracts, :id, :number_and_fullname, options)
+          = @payment.decorate.contract.number_and_fullname
       = f.error_span(:contract_id)
     .form-group
       = f.label :payday, class: 'control-label col-lg-2'

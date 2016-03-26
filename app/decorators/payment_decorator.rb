@@ -3,6 +3,6 @@ class PaymentDecorator < Draper::Decorator
   decorates_association :contract
 
   def period
-    [object.date_started, object.date_ended].join(' - ')
+    [l(object.date_started), l(object.date_ended)].join(' - ')
   end
 end

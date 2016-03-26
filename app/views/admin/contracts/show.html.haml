@@ -27,10 +27,10 @@
     = money_per_month(@contract.rent)
   %p
     %b= Contract.human_attribute_name(:date_signed) + ':'
-    = @contract.date_signed
+    = l(@contract.date_signed)
   %p
     %b= Contract.human_attribute_name(:date_terminated) + ':'
-    = @contract.date_terminated
+    = l(@contract.date_terminated)
   %p
     %b= Contract.human_attribute_name(:auto_updating) + ':'
     = @contract.boolean_i18n(:auto_updating)
@@ -41,4 +41,6 @@
   = link_to t('views.edit'), [:edit, :admin, @contract], class: 'btn btn-default'
   = link_to t('views.delete'), [:admin, @contract], method: :delete,
     data: { confirm: t('views.messages.confirm')}, class: 'btn btn-danger'
+= link_to [Payment.model_name.human, t('views.new')].join,
+  [:new, :admin, @contract, :payment], class: 'btn btn-default'
 = link_to t('views.back'), [:admin, :contracts], class: 'btn btn-default'
