@@ -1,0 +1,18 @@
+en:
+  activerecord:
+    models:
+      parking: Parking
+    attributes:
+      parking:
+        name: Name
+        code: Code
+        name_and_code: Name(code)
+        canonical_name: Canonical Name
+        address: Address
+        latitude: Latitude
+        longitude: Longitude
+        description: Description
+        price: Price
+        message: Message
+        cautions: Cautions
+        capacity: Capacity

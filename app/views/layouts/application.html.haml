@@ -33,13 +33,13 @@
         .navbar-collapse.collapse.navbar-responsive-collapse
           %ul.nav.navbar-nav
             %li= link_to t('views.home'), root_path
-            %li= link_to t('views.search_parking'), [:parkings]
+            %li= link_to t('views.parking_info'), [:parkings]
             - if user_signed_in?
               %li= link_to t('views.payment_history'), [:payments]
               - if current_user.admin? || current_user.master?
                 %li
                   %a{'data-toggle' => 'dropdown', href: '#'}
-                    管理
+                    = t('views.management')
                     %span.caret
                   %ul.dropdown-menu
                     - if current_user.admin?

@@ -10,8 +10,9 @@ ja:
     save: 保存
     add: 追加
     home: ホーム
-    search_parking: 駐車場検索
+    parking_info: 駐車場情報
     payment_history: お支払い照会
+    management: 管理
     settings: アカウント設定
     signout: ログアウト
     signin: ログイン
@@ -19,6 +20,7 @@ ja:
     guest: ゲスト
     required: (必須)
     auto_generation: (空の場合は自動生成)
+    auto_update: (自動更新)
     money_unit: '%{money}円'
     money_per_month: '%{money}円/月'
     welcome: 'ようこそ %{name} さん。'

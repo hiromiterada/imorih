@@ -6,7 +6,7 @@ ja:
       parking:
         name: 名称
         code: コード
-        name_and_code: 名称（コード）
+        name_and_code: 名称(コード)
         canonical_name: URLのパス名
         address: 住所
         latitude: 緯度

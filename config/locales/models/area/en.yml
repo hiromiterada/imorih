@@ -1,0 +1,16 @@
+en:
+  enums:
+    area:
+      status:
+        available: Available
+        unavailable: Unavailable
+  activerecord:
+    models:
+      area: Area
+    attributes:
+      area:
+        parking_id: Parking ID
+        name: Name
+        canonical_name: Canonical Name
+        status: Status
+        note: Note

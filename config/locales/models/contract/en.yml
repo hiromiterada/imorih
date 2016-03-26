@@ -1,0 +1,29 @@
+en:
+  enums:
+    contract:
+      kind:
+        leased_land: Leased Land
+        monthly_parking: Monthly Parking
+      status:
+        pending: Pending
+        in_process: In Process
+        completed: Completed
+        canceled: Canceled
+  activerecord:
+    models:
+      contract: Contract
+    attributes:
+      contract:
+        user_id: Account ID
+        parking_id: Parking ID
+        parking_name_and_area_names: Parking Name(Area)
+        number: Number
+        number_and_fullname: Number(Name)
+        kind: Kind
+        status: Status
+        rent: Rent
+        date_signed: Date Signed
+        date_terminated: Date Terminated
+        period: Preiod
+        auto_updating: Auto Updating
+        note: Note

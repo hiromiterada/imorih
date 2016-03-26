@@ -1,29 +1,31 @@
 Rails.application.routes.draw do
-  get 'home/index'
+  scope '(/:locale)', constraints: { locale: /\w{2}/ } do
+    get 'home/index'
 
-  devise_for :users
+    devise_for :users
 
-  resources :payments, only: [:index]
-  resources :parkings, param: :canonical_name, only: [:index, :show]
+    resources :payments, only: [:index]
+    resources :parkings, param: :canonical_name, only: [:index, :show]
 
-  namespace :admin do
-    resources :users do
-      resources :contracts, only: [:new]
+    namespace :admin do
+      resources :users do
+        resources :contracts, only: [:new]
+      end
+      resources :owners do
+        resources :parkings, only: [:new]
+        resources :contracts, only: [:new]
+      end
+      resources :parkings do
+        resources :contracts, only: [:new]
+      end
+      resources :contracts do
+        resources :payments, only: [:new]
+      end
+      resources :parkings do
+        resources :areas, only: [:index]
+      end
+      resources :payments
     end
-    resources :owners do
-      resources :parkings, only: [:new]
-      resources :contracts, only: [:new]
-    end
-    resources :parkings do
-      resources :contracts, only: [:new]
-    end
-    resources :contracts do
-      resources :payments, only: [:new]
-    end
-    resources :parkings do
-      resources :areas, only: [:index]
-    end
-    resources :payments
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -17,7 +17,10 @@
         %dt= Contract.human_attribute_name(:rent)
         %dd= money_per_month(contract.rent)
         %dt= Contract.human_attribute_name(:period)
-        %dd= contract.period
+        %dd
+          = contract.period
+          - if contract.auto_updating?
+            = t('views.auto_update')
       - if contract.overdue?
         %p.text-danger= t('.overdue_message', date: contract.payments.newest.date_ended + 1)
 

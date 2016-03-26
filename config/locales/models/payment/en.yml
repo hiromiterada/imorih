@@ -1,0 +1,14 @@
+en:
+  activerecord:
+    models:
+      payment: Payment
+    attributes:
+      payment:
+        contract_id: Contract ID
+        payday: Payday
+        amount: Amount
+        period: Period
+        date_started: Date Started
+        date_ended: Date Ended
+        message: Message
+        note: Note

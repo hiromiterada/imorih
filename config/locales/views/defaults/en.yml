@@ -9,8 +9,9 @@ en:
     cancel: Cancel
     save: Save
     home: Home
-    search_parking: Search parking
+    parking_info: Parking information
     payment_history: Payment history
+    management: Management
     settings: Account settings
     signout: Sign out
     signin: Sign in
@@ -18,6 +19,7 @@ en:
     guest: Guest
     required: (Required)
     auto_generation: (Auto-generation)
+    auto_update: (Auto-update)
     money_unit: '$%{money}'
     money_per_month: '$%{money}/month'
     welcome: 'Welcome %{name} !'

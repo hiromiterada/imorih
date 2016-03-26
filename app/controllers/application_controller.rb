@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_filter :set_locale
 
   rescue_from Exception do |ex|
     puts ex.message
@@ -25,5 +26,40 @@ class ApplicationController < ActionController::Base
       :email, :lastname, :firstname, :locale, :gender, :birthday,
       :address, :phone, :send_of_dm
     ]
+  end
+
+  private
+
+  def default_url_options(options={})
+    { locale: I18n.locale }
+  end
+
+  def set_locale
+    I18n.locale = locale_in_user_info || locale_in_params ||
+      locale_in_accept_language || I18n.default_locale
+  end
+
+  def locale_in_user_info
+    if user_signed_in?
+      current_user.locale.to_sym
+    else
+      nil
+    end
+  end
+
+  def locale_in_params
+    if params[:locale].present?
+      params[:locale].to_sym.presence_in(I18n::available_locales)
+    else
+      nil
+    end
+  end
+
+  def locale_in_accept_language
+    request.env['HTTP_ACCEPT_LANGUAGE']
+      .to_s.split(',')
+      .map { |_| _[0..1].to_sym }
+      .select { |_| I18n::available_locales.include?(_) }
+      .first
   end
 end

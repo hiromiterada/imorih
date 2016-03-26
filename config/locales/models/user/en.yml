@@ -1,0 +1,49 @@
+en:
+  enums:
+    user:
+      locale:
+        ja: Japanese
+        en: English
+      gender:
+        male: Male
+        female: Female
+      role:
+        normal: Customer
+        master: Master
+        admin: Administrator
+  activerecord:
+    models:
+      user: Account
+    attributes:
+      user:
+        login: Email or Customer Code
+        email: Email
+        password: Password
+        password_confirmation: Password Confirmation
+        current_password: Currnet Password
+        remember_me: Remember Me
+        fullname: Name
+        lastname: Lastname
+        firstname: Firstname
+        locale: Locale
+        gender: Gender
+        birthday: Birthday
+        address: Address
+        phone: Phone
+        role: Role
+        customer_code: Customer Code
+        customer_code_and_fullname: Customer Code(Name)
+        send_of_dm: Send Of DM
+        owner_names: Owner Names
+        reset_password_token: Reset password token
+        reset_password_sent_at: Reset password sent at
+        remember_created_at: Remember created at
+        sign_in_count: Sign in count
+        current_sign_in_at: Current sign in at
+        last_sign_in_at: Last sign in at
+        current_sign_in_ip: Current sign in IP
+        last_sign_in_ip: Last sign in IP
+        confirmation_token: Confirmation token
+        confirmed_at: Confirmed at
+        confirmation_sent_at: Confirmation sent t
+        unconfirmed_email: Unconfirmed Email

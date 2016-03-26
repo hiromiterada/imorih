@@ -36,15 +36,15 @@
         = f.label :locale, class: 'control-label col-lg-2'
         .col-lg-10
           - User.enum_i18n(:locale).invert.each do |key, value|
-            = key
             = f.radio_button :locale, value
+            = key
         = f.error_span(:locale)
       .form-group
         = f.label :gender, class: 'control-label col-lg-2'
         .col-lg-10
           - User.enum_i18n(:gender).invert.each do |key, value|
-            = key
             = f.radio_button :gender, value
+            = key
         = f.error_span(:gender)
       .form-group
         = f.label :birthday, class: 'control-label col-lg-2'
@@ -66,8 +66,9 @@
         = f.label :send_of_dm, class: 'control-label col-lg-2'
         .col-lg-10
           - {yes: true, no: false}.each do |key, value|
-            = t("views.boolean.#{key}")
             = f.radio_button :send_of_dm, value
+            = t("views.boolean.#{key}")
+            = key
         = f.error_span(:send_of_dm)
       .well
         .form-group

@@ -1,0 +1,11 @@
+en:
+  activerecord:
+    models:
+      owner: Owner
+    attributes:
+      owner:
+        name: Name
+        address: Address
+        phone: Phone
+        email: Email
+        signature: Signature
