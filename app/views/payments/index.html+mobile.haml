@@ -1,0 +1,56 @@
+= provide :title, t('views.payment_history')
+
+.panel.panel-default
+  .panel-heading
+    %h3.panel-title= t('.my_contracts')
+  .panel-body
+    - @contracts.each_with_index do |contract, i|
+      - if @contracts.count > 1
+        %fieldset
+          %legend.h5= [Contract.model_name.human, i+1].join
+      %dl.dl-horizontal
+        %dt= Contract.human_attribute_name(:kind)
+        %dd= contract.enum_i18n(:kind)
+        - if contract.monthly_parking?
+          %dt= Contract.human_attribute_name(:parking_name_and_area_names)
+          %dd= contract.parking_name_and_area_names
+        %dt= Contract.human_attribute_name(:rent)
+        %dd= money_per_month(contract.rent)
+        %dt= Contract.human_attribute_name(:period)
+        %dd
+          = contract.period
+          - if contract.auto_updating?
+            = t('views.auto_update')
+      - if contract.overdue?
+        %p.text-danger= t('.overdue_message', date: contract.payments.newest.date_ended + 1)
+
+%h2= t('views.payment_history')
+
+%p= t('.warning_notice')
+
+%p= page_entries_info @payments
+
+%table.table
+  %tbody
+    - @payments.each do |payment|
+      %tr{class: 'active'}
+        %th{colspan: '6'}
+          - if @contracts.count > 1
+            = [Contract.model_name.human,
+              @contracts.map(&:id).index(payment.contract.id)+1].join
+      %tr{class: "#{payment.pay_later? ? 'danger' : ''}"}
+        %th= Payment.human_attribute_name(:payday)
+        %td= l(payment.payday)
+        %th= Payment.human_attribute_name(:amount)
+        %td= money(payment.amount)
+        %th= Payment.human_attribute_name(:period)
+        %td= payment.period
+      %tr{class: "#{payment.pay_later? ? 'danger' : ''}"}
+        %th= Payment.human_attribute_name(:message)
+        %td{colspan: '3'}= payment.message
+        %th= Payment.human_attribute_name(:note)
+        %td= payment.note
+
+%br
+
+= paginate @payments

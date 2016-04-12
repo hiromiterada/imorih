@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :detect_devise_variant
   before_filter :set_locale
 
   rescue_from Exception do |ex|
@@ -61,5 +62,13 @@ class ApplicationController < ActionController::Base
       .map { |_| _[0..1].to_sym }
       .select { |_| I18n::available_locales.include?(_) }
       .first
+  end
+
+  def detect_devise_variant
+    case request.user_agent
+    when /iPhone/, /Android.*Mobi/, /Windows.*Phone/, /Mobi.*Firefox/,
+      /Nexus [4|5|6]/, /BlackBerry/
+      request.variant = :mobile
+    end
   end
 end
