@@ -3,4 +3,5 @@ ja:
     index:
       my_contracts: ご契約の概要
       overdue_message: '%{date}以降のご入金が滞っております。ご確認をお願いいたします。'
-      warning_notice: 前月末日までにお支払いを済ませてくださいますようお願いいたします。
+      warning_notice: ※前月末日までにお支払いを済ませてくださいますようお願いいたします。
+      limit_message: '本サービスでは、2年前(%{date})までの履歴を確認することができます。'

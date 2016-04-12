@@ -4,3 +4,4 @@ en:
       my_contracts: My contracts
       overdue_message: 'Payment after %{date} is delayed. Please check it out.'
       warning_notice: Please, as the rent will be paid by the last day of the previous month.
+      limit_message: 'This service confirms the history until 2 years ago(%{date}).'
