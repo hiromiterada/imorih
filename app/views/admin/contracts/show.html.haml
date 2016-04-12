@@ -43,4 +43,6 @@
     data: { confirm: t('views.messages.confirm')}, class: 'btn btn-danger'
 = link_to [Payment.model_name.human, t('views.new')].join,
   [:new, :admin, @contract, :payment], class: 'btn btn-default'
+= link_to [Payment.model_name.human, t('views.index')].join,
+  [:admin, @contract, :payments], class: 'btn btn-default'
 = link_to t('views.back'), [:admin, :contracts], class: 'btn btn-default'

@@ -19,7 +19,7 @@ Rails.application.routes.draw do
         resources :contracts, only: [:new]
       end
       resources :contracts do
-        resources :payments, only: [:new]
+        resources :payments, only: [:index, :new]
       end
       resources :parkings do
         resources :areas, only: [:index]

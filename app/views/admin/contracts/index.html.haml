@@ -17,6 +17,7 @@
       %th= User.human_attribute_name(:customer_code_and_fullname)
       %th
       %th
+      %th
 
   %tbody
     - @contracts.each do |contract|
@@ -30,6 +31,8 @@
         %td= link_to t('views.show'), [:admin, contract], class: 'btn btn-default'
         %td= link_to [Payment.model_name.human, t('views.new')].join,
           [:new, :admin, contract, :payment], class: 'btn btn-default'
+        %td= link_to [Payment.model_name.human, t('views.index')].join,
+          [:admin, contract, :payments], class: 'btn btn-default'
 
 %br
 

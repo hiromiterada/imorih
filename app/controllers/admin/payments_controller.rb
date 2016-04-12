@@ -4,10 +4,15 @@ class Admin::PaymentsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    if current_user.admin?
-      payments = Payment.all
+    if params[:contract_id]
+      contract = Contract.find(params[:contract_id])
+      payments = contract.payments
     else
-      payments = Payment.by_master(current_user)
+      if current_user.admin?
+        payments = Payment.all
+      else
+        payments = Payment.by_master(current_user)
+      end
     end
     @payments = payments.order('payday ASC').page(params[:page]).decorate
   end
