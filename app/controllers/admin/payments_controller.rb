@@ -1,6 +1,6 @@
 class Admin::PaymentsController < ApplicationController
   before_action :set_payment, only: [:show, :edit, :update, :destroy]
-  before_action :set_parameters, only: [:new, :edit, :create, :update]
+  before_action :set_parameters, only: [:new, :edit, :confirm, :update]
   before_filter :authenticate_user!
 
   def index
@@ -25,9 +25,18 @@ class Admin::PaymentsController < ApplicationController
 
   def create
     @payment = Payment.new(payment_params)
-    if @payment.save
-      redirect_to admin_payments_url,
-        notice: t('views.messages.successfully_created')
+    if params[:edit]
+      render :new
+    elsif @payment.save
+      if params[:send_mail] && @payment.user.send_mail?
+        I18n.with_locale(@payment.user.locale.to_sym) do
+          CustomerMailer.payment_confirmation(@payment).deliver
+        end
+        notice = t('views.messages.successfully_sent_mail')
+      else
+        notice = t('views.messages.successfully_created')
+      end
+      redirect_to admin_payments_url, notice: notice
     else
       render :new
     end
@@ -46,6 +55,11 @@ class Admin::PaymentsController < ApplicationController
     @payment.destroy
     redirect_to admin_payments_url,
       notice: t('views.messages.successfully_destroyed')
+  end
+
+  def confirm
+    @payment = Payment.new(payment_params).decorate
+    render :new if @payment.invalid?
   end
 
   private

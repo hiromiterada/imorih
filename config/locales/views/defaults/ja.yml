@@ -9,6 +9,7 @@ ja:
     cancel: キャンセル
     save: 保存
     add: 追加
+    confirm: 確認
     home: ホーム
     parking_info: 駐車場情報
     payment_history: お支払い照会
@@ -32,3 +33,4 @@ ja:
       successfully_created: 登録しました。
       successfully_updated: 更新しました。
       successfully_destroyed: 削除しました。
+      successfully_sent_mail: メールを送信しました。

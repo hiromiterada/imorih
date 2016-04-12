@@ -24,7 +24,11 @@ Rails.application.routes.draw do
       resources :parkings do
         resources :areas, only: [:index]
       end
-      resources :payments
+      resources :payments do
+        collection do
+          post 'confirm'
+        end
+      end
     end
   end
 

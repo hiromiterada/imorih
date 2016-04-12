@@ -1,9 +1,16 @@
 - today = Date.today
 - start_day = Date.new(today.year, today.month, 1) >> 1
 - end_day = (start_day >> 1) - 1
+- case controller.action_name
+- when 'edit', 'update'
+  - url = admin_payment_url @payment
+  - button = 'save'
+- else
+  - url = confirm_admin_payments_url
+  - button = 'confirm'
 
 .well.bs-component
-  = form_for [:admin, @payment], html: { class: "form-horizontal payment" } do |f|
+  = form_for @payment, url: url, html: { class: "form-horizontal payment" } do |f|
     %fieldset
       %legend= Payment.model_name.human
     - if @payment.errors.any?
@@ -56,5 +63,5 @@
       = f.error_span(:note)
     .form-group
       .col-lg-offset-2.col-lg-10
-      = f.submit t('views.save'), class: 'btn btn-primary'
+      = f.submit t("views.#{button}"), class: 'btn btn-primary'
       = link_to t('views.cancel'), [:admin, :payments], class: 'btn btn-default'

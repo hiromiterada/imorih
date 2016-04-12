@@ -7,19 +7,7 @@
         - if contracts.count > 1
           %fieldset
             %legend.h5= [Contract.model_name.human, i+1].join
-        %dl.dl-horizontal
-          %dt= Contract.human_attribute_name(:kind)
-          %dd= contract.enum_i18n(:kind)
-          - if contract.monthly_parking?
-            %dt= Contract.human_attribute_name(:parking_name_and_area_names)
-            %dd= contract.parking_name_and_area_names
-          %dt= Contract.human_attribute_name(:rent)
-          %dd= money_per_month(contract.rent)
-          %dt= Contract.human_attribute_name(:period)
-          %dd
-            = contract.period
-            - if contract.auto_updating?
-              = t('views.auto_update')
+        = render 'shared/contract_info', contract: contract
         - if contract.overdue?
           %p.text-danger
             = t('payments.index.overdue_message',

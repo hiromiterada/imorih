@@ -25,6 +25,13 @@ class User < ActiveRecord::Base
 
   DUMMY_DOMAINNAME = '@example.com'
 
+  def send_mail?
+    return false unless send_of_dm
+    email =~ /#{DUMMY_DOMAINNAME}$/ ? false : true
+  end
+
+  private
+
   def set_customer_code
     return if customer_code.present?
     retry_counter = 0

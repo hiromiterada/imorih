@@ -1,0 +1,8 @@
+ja:
+  customer_mailer:
+    payment_confirmation:
+      subject: '[imoriH]ご入金を確認いたしました'
+      name: '%{name}様'
+      messages: |
+        上記のURLからお客様のお支払い履歴を確認することができます。
+        引き続きよろしくお願いいたします。

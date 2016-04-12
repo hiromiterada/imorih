@@ -1,0 +1,51 @@
+= provide :title, [Payment.model_name.human, t('views.confirm')].join
+
+%h2= t('views.confirm')
+
+.well.bs-component
+  = form_for [:admin, @payment], html: { class: "form-horizontal payment" } do |f|
+    %fieldset
+      %legend= Payment.model_name.human
+
+    %p
+      %b= Contract.human_attribute_name(:number) + ':'
+      = @payment.contract.number_and_fullname
+      = f.hidden_field :contract_id
+      .well
+        = render 'shared/contract_info', contract: @payment.contract
+    %p
+      %b= Payment.human_attribute_name(:payday) + ':'
+      = l(@payment.payday)
+      = f.hidden_field :payday
+    %p
+      %b= Payment.human_attribute_name(:amount) + ':'
+      = money(@payment.amount)
+      = f.hidden_field :amount
+    %p
+      %b= Payment.human_attribute_name(:period) + ':'
+      = @payment.period
+      = f.hidden_field :date_started
+      = f.hidden_field :date_ended
+    %p
+      %b= Payment.human_attribute_name(:message) + ':'
+      = @payment.message
+      = f.hidden_field :message
+    %p
+      %b= Payment.human_attribute_name(:note) + ':'
+      = @payment.note
+      = f.hidden_field :note
+    %p
+      = f.submit t('views.save'), class: 'btn btn-primary'
+      = f.submit t('views.edit'), name: 'edit', class: 'btn btn-default'
+
+    - if @payment.user.send_mail?
+      %br
+      %fieldset
+        %legend= t('.mail_body')
+        %p= t('.mail_to', email: @payment.user.email)
+        %pre
+          = I18n.with_locale(@payment.user.locale) do
+            - CustomerMailer.payment_confirmation(@payment).body
+      %p
+        = f.submit t('.send_mail_and_save'), name: 'send_mail',
+          class: 'btn btn-primary'

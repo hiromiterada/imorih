@@ -1,0 +1,8 @@
+en:
+  customer_mailer:
+    payment_confirmation:
+      subject: '[imoriH]confirmed the payment'
+      name: 'Hello %{name}'
+      messages: |
+        It's possible to confirm your payment history from upper URL.
+        Please take care continuously. Thank you.

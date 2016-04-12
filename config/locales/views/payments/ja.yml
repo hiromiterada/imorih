@@ -4,4 +4,10 @@ ja:
       my_contracts: ご契約の概要
       overdue_message: '%{date}以降のご入金が滞っております。ご確認をお願いいたします。'
       warning_notice: ※前月末日までにお支払いを済ませてくださいますようお願いいたします。
-      limit_message: '本サービスでは、2年前(%{date})までの履歴を確認することができます。'
+      limit_message: '本サービスでは、%{date}までの履歴を確認することができます。'
+  admin:
+    payments:
+      confirm:
+        mail_body: お客様に送信するメールの内容
+        mail_to: '宛先: %{email}'
+        send_mail_and_save: 上記の内容でメールを送信して保存

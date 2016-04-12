@@ -3,6 +3,7 @@ class PaymentsController < ApplicationController
 
   def index
     @contracts = current_user.contracts.decorate
-    @payments = Payment.by_user(current_user).order('payday DESC').page(params[:page]).decorate
+    @payments = Payment.by_user(current_user).payday_limit
+       .order('payday DESC').page(params[:page]).decorate
   end
 end

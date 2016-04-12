@@ -1,11 +1,4 @@
-= provide :title, t('views.payment_history')
-
-= render 'my_contracts', contracts: @contracts
-
-%h2= t('views.payment_history')
-
-%p= t('.limit_message', date: Date.today - 2.year)
-%p= t('.warning_notice')
+= render 'index_header', contracts: @contracts
 
 %p= page_entries_info @payments
 
