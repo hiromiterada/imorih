@@ -11,6 +11,9 @@ en:
       area:
         parking_id: Parking ID
         name: Name
-        canonical_name: Canonical Name
         status: Status
         note: Note
+        occupancy: Occupancy
+        vacant: Vacant
+        occupied: Occupied
+        contract_period: Contract period

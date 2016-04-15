@@ -11,6 +11,9 @@ ja:
       area:
         parking_id: 駐車場ID
         name: 名称
-        canonical_name: URLのパス名
         status: 状態
         note: 備考
+        occupancy: 現在の空き状況
+        vacant: 空
+        occupied: 満
+        contract_period: 契約中

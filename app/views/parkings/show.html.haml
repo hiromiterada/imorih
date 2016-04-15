@@ -1,50 +1,70 @@
-= provide :title, [Parking.model_name.human, t('views.show')].join
+= provide :title, [@parking.name, t('views.show')].join
 
-%h2= t('views.show')
+.row
+  .col-xs-12.col-sm-6
+    .jumbotron
+      %h1= @parking.name
+      %p= [Parking.human_attribute_name(:address), ':', @parking.address].join
+      = @parking.message.html_safe
+  .col-xs-12.col-sm-6
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title= Parking.human_attribute_name(:map)
+      .panel-body
+        .centered{style:'width: 400px'}
+          #map{style:'width: 400px; height: 350px'}
 
-.well.bs-component
-  %fieldset
-    %legend= Parking.model_name.human
-  %p
-    %b= Parking.human_attribute_name(:name) + ':'
-    = @parking.name
-  %p
-    %b= Parking.human_attribute_name(:code) + ':'
-    = @parking.code
-  %p
-    %b= Parking.human_attribute_name(:address) + ':'
-    = @parking.address
-  %p
-    %b= Parking.human_attribute_name(:latitude) + ':'
-    = @parking.latitude
-  %p
-    %b= Parking.human_attribute_name(:longitude) + ':'
-    = @parking.longitude
-  %p
-    %b= Parking.human_attribute_name(:description) + ':'
-    = @parking.description
-  %p
-    %b= Parking.human_attribute_name(:price) + ':'
-    = @parking.price
-  %p
-    %b= Parking.human_attribute_name(:message) + ':'
-    = @parking.message
-  %p
-    %b= Parking.human_attribute_name(:cautions) + ':'
-    = @parking.cautions
+.row
+  .col-xs-12.col-sm-4
+    %div.panel.panel-default
+      %div.panel-heading
+        %h3.panel-title= Parking.human_attribute_name(:description)
+      %div.panel-body
+        = @parking.description.html_safe
+  .col-xs-12.col-sm-4
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title= Parking.human_attribute_name(:price)
+      .panel-body
+        = @parking.price.html_safe
+  .col-xs-12.col-sm-4
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title= Owner.model_name.human
+      .panel-body
+        %p
+          = fa_icon 'envelope fw'
+          = mail_to(@parking.owner.email)
+        - if @parking.owner.phone.present?
+          %p
+            = fa_icon 'phone fw'
+            = @parking.owner.phone
 
-  %fieldset
-    %legend= Area.model_name.human
-  %table.table.table-striped.table-hover.table-sortable
-    %thead
-      %th= Area.human_attribute_name(:name)
-      %th= Area.human_attribute_name(:note)
-      %th= Area.human_attribute_name(:status)
-    %tbody
-      - @parking.areas.each do |area|
-        %tr.item{data: { model_name: 'area' }}
-          %td= area.name
-          %td= area.note
-          %td= area.enum_i18n(:status)
+- unless @parking.cautions.empty?
+  .row
+    .col-sm-12
+      .panel.panel-default
+        .panel-heading
+          %h3.panel-title= Parking.human_attribute_name(:cautions) 
+        .panel-body
+          %pre= @parking.cautions.html_safe
+
+.row
+  .col-sm-12
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title= Area.model_name.human
+      .panel-body
+        %table.table.table-striped.table-hover.table-sortable
+          %thead
+            %th= Area.human_attribute_name(:name)
+            %th= Area.human_attribute_name(:note)
+            %th= Area.human_attribute_name(:occupancy)
+          %tbody
+            - @parking.areas.each do |area|
+              %tr.item{data: { model_name: 'area' }}
+                %td= area.name
+                %td= area.note
+                %td= area.occupancy
 
 = link_to t('views.back'), [:parkings], class: 'btn btn-default'

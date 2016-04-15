@@ -8,6 +8,9 @@ en:
     back: Back
     cancel: Cancel
     save: Save
+    add: Add
+    confirm: Confirm
+    public_page: Public page
     home: Home
     parking_info: Parking information
     payment_history: Payment history

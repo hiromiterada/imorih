@@ -11,8 +11,12 @@ en:
         address: Address
         latitude: Latitude
         longitude: Longitude
+        map: Map
         description: Description
         price: Price
         message: Message
         cautions: Cautions
         capacity: Capacity
+        occupancy: Occupancy(vacancy/total)
+        vacant: Vacant
+        occupied: Occupied

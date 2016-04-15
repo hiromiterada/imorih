@@ -11,8 +11,12 @@ ja:
         address: 住所
         latitude: 緯度
         longitude: 経度
-        description: 詳細
-        price: 価格
+        map: 地図
+        description: 詳細情報
+        price: 価格表
         message: メッセージ
-        cautions: 注意事項
+        cautions: ご利用上の注意
         capacity: 収容台数
+        occupancy: 空き状況(空き/総数)
+        vacant: 空有
+        occupied: 満

@@ -5,6 +5,6 @@ class ParkingsController < ApplicationController
   end
 
   def show
-    @parking = Parking.find_by canonical_name: params[:canonical_name]
+    @parking = Parking.find_by(canonical_name: params[:canonical_name]).decorate
   end
 end

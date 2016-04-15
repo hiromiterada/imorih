@@ -2,6 +2,6 @@
 #select-areas-form.col-lg-10
   - if contract.parking.present?
     = f.collection_check_boxes(:area_ids,
-      contract.parking.areas.actives, :id, :name) do |b|
+      contract.parking.areas.available, :id, :name) do |b|
       = b.label { b.check_box + b.text }
 = f.error_span(:areas)

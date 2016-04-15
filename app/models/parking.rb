@@ -19,6 +19,18 @@ class Parking < ActiveRecord::Base
     where(owner_id: user.owners.pluck(:id))
   }
 
+  # 収容台数
+  def capacity
+    areas.count
+  end
+
+  # 空き区画
+  def vacancies
+    areas.reject {|area| area.contracts.try(:in_process).present? }
+  end
+
+  private
+
   def set_code
     return if !new_record? && code.present?
     retry_counter = 0
