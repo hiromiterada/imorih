@@ -4,7 +4,7 @@ module BooleanI18n
   def boolean_i18n(field)
     field = field.to_s unless field.is_a?(String)
     label = self.try(field)
-    return "#{label}" if label.blank?
+    return "#{label}" unless label == true || label == false
     I18n.t(yes_or_no(label), scope: 'views.boolean')
   end
 

@@ -1,4 +1,5 @@
 class Parking < ActiveRecord::Base
+  include BooleanI18n
   include MakeRand
 
   before_validation :set_code
@@ -18,6 +19,7 @@ class Parking < ActiveRecord::Base
   scope :by_master, -> (user) {
     where(owner_id: user.owners.pluck(:id))
   }
+  scope :publics, -> { where(is_public: true) }
 
   # 収容台数
   def capacity

@@ -16,6 +16,7 @@ en:
         price: Price
         message: Message
         cautions: Cautions
+        is_public: Is public
         capacity: Capacity
         occupancy: Occupancy(vacancy/total)
         vacant: Vacant

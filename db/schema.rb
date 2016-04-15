@@ -71,20 +71,21 @@ ActiveRecord::Schema.define(version: 20160325112343) do
   add_index "owner_users", ["user_id"], name: "index_owner_users_on_user_id", using: :btree
 
   create_table "owners", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.string   "email",      null: false
+    t.string   "name",           null: false
+    t.string   "email",          null: false
     t.string   "address"
     t.string   "phone"
+    t.string   "representative"
     t.text     "signature"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "parkings", force: :cascade do |t|
-    t.integer  "owner_id",       null: false
-    t.string   "name",           null: false
-    t.string   "code",           null: false
-    t.string   "canonical_name", null: false
+    t.integer  "owner_id",                      null: false
+    t.string   "name",                          null: false
+    t.string   "code",                          null: false
+    t.string   "canonical_name",                null: false
     t.string   "address"
     t.float    "latitude"
     t.float    "longitude"
@@ -92,27 +93,31 @@ ActiveRecord::Schema.define(version: 20160325112343) do
     t.text     "price"
     t.text     "message"
     t.text     "cautions"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.boolean  "is_public",      default: true, null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
   add_index "parkings", ["canonical_name"], name: "index_parkings_on_canonical_name", unique: true, using: :btree
   add_index "parkings", ["code"], name: "index_parkings_on_code", unique: true, using: :btree
+  add_index "parkings", ["is_public"], name: "index_parkings_on_is_public", using: :btree
   add_index "parkings", ["owner_id"], name: "index_parkings_on_owner_id", using: :btree
 
   create_table "payments", force: :cascade do |t|
-    t.integer  "contract_id",              null: false
-    t.date     "payday",                   null: false
-    t.integer  "amount",       default: 0, null: false
+    t.integer  "contract_id",                  null: false
+    t.date     "payday",                       null: false
+    t.integer  "amount",       default: 0,     null: false
     t.date     "date_started"
     t.date     "date_ended"
     t.text     "message"
     t.text     "note"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.boolean  "sent_mail",    default: false, null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
   add_index "payments", ["contract_id"], name: "index_payments_on_contract_id", using: :btree
+  add_index "payments", ["sent_mail"], name: "index_payments_on_sent_mail", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",   null: false

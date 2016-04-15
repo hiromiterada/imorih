@@ -34,11 +34,7 @@
       %b= Payment.human_attribute_name(:note) + ':'
       = @payment.note
       = f.hidden_field :note
-    %p
-      = f.submit t('views.save'), class: 'btn btn-primary'
-      = f.submit t('views.edit'), name: 'edit', class: 'btn btn-default'
-
-    - if @payment.user.send_mail?
+    - if @payment.user.send_mail? && @payment.sent_mail
       %br
       %fieldset
         %legend= t('.mail_body')
@@ -46,6 +42,10 @@
         %pre
           = I18n.with_locale(@payment.user.locale) do
             - CustomerMailer.payment_confirmation(@payment).body
-      %p
-        = f.submit t('.send_mail_and_save'), name: 'send_mail',
-          class: 'btn btn-primary'
+      - button_label = t('.send_mail_and_save')
+    - else
+      - button_label = t('views.save')
+    %p
+      = f.hidden_field :sent_mail
+      = f.submit button_label, class: 'btn btn-primary'
+      = f.submit t('views.edit'), name: 'edit', class: 'btn btn-default'

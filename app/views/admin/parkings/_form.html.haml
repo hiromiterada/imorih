@@ -66,6 +66,13 @@
       .col-lg-10
         = f.text_area :cautions, class: 'form-control'
       = f.error_span(:cautions)
+    .form-group
+      = f.label :is_public, class: 'control-label col-lg-2'
+      .col-lg-10
+        - {yes: true, no: false}.each do |key, value|
+          = f.radio_button :is_public, value, id: "is_public_#{value}"
+          %label{for: "is_public_#{value}"}= t("views.boolean.#{key}")
+      = f.error_span(:is_public)
     = render 'form_area', f: f
     .form-group
       .col-lg-offset-2.col-lg-10

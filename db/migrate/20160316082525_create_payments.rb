@@ -8,6 +8,7 @@ class CreatePayments < ActiveRecord::Migration
       t.date       :date_ended
       t.text       :message
       t.text       :note
+      t.boolean    :sent_mail,   null: false, index: true, default: false
 
       t.timestamps null: false
     end

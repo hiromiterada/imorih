@@ -12,6 +12,7 @@ class CreateParkings < ActiveRecord::Migration
       t.text       :price
       t.text       :message
       t.text       :cautions
+      t.boolean    :is_public,      null: false, index: true, default: true
 
       t.timestamps null: false
     end

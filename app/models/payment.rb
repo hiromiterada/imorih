@@ -1,4 +1,5 @@
 class Payment < ActiveRecord::Base
+  include BooleanI18n
 
   validates :contract_id, presence: true
   validates :payday, presence: true
@@ -23,6 +24,7 @@ class Payment < ActiveRecord::Base
   end
 
   def user
+    return if contract.blank?
     contract.user
   end
 end

@@ -8,4 +8,5 @@ en:
         address: Address
         phone: Phone
         email: Email
+        representative: Representative
         signature: Signature

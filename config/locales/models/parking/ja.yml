@@ -16,6 +16,7 @@ ja:
         price: 価格表
         message: メッセージ
         cautions: ご利用上の注意
+        is_public: 公開する
         capacity: 収容台数
         occupancy: 空き状況(空き/総数)
         vacant: 空有

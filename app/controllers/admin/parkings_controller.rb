@@ -71,7 +71,8 @@ class Admin::ParkingsController < ApplicationController
   def parking_params
     params.require(:parking).permit(
       :owner_id, :name, :code, :canonical_name, :address,
-      :latitude, :longitude, :description, :price, :message, :cautions,
+      :latitude, :longitude, :description, :price, :message,
+      :cautions, :is_public,
       areas_attributes: [
       :id, :parking_id, :name, :status, :note, :_destroy
       ]

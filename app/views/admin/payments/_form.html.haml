@@ -62,6 +62,17 @@
         = f.text_area :note, class: 'form-control'
       = f.error_span(:note)
     .form-group
+      = f.label :sent_mail, class: 'control-label col-lg-2'
+      .col-lg-10
+        - if @payment.new_record? || current_user.admin?
+          - {yes: true, no: false}.each do |key, value|
+            = f.radio_button :sent_mail, value, {id: "sent_mail_#{value}",
+              disabled: !@payment.user.try(:send_mail?)}
+            %label{for: "sent_mail_#{value}"}= t("views.boolean.#{key}")
+        - else
+          = @payment.boolean_i18n(:sent_mail)
+      = f.error_span(:sent_mail)
+    .form-group
       .col-lg-offset-2.col-lg-10
       = f.submit t("views.#{button}"), class: 'btn btn-primary'
       = link_to t('views.cancel'), [:admin, :payments], class: 'btn btn-default'

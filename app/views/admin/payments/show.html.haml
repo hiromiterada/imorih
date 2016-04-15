@@ -28,6 +28,9 @@
   %p
     %b= Payment.human_attribute_name(:note) + ':'
     = @payment.note
+  %p
+    %b= Payment.human_attribute_name(:sent_mail) + ':'
+    = @payment.boolean_i18n(:sent_mail)
 
   = link_to t('views.edit'), [:edit, :admin, @payment],
     class: 'btn btn-default'

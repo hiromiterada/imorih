@@ -30,8 +30,6 @@ class User < ActiveRecord::Base
     email =~ /#{DUMMY_DOMAINNAME}$/ ? false : true
   end
 
-  private
-
   def set_customer_code
     return if customer_code.present?
     retry_counter = 0

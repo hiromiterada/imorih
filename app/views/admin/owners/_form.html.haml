@@ -28,6 +28,11 @@
         = f.text_field :phone
       = f.error_span(:phone)
     .form-group
+      = f.label :representative, class: 'control-label col-lg-2'
+      .col-lg-10
+        = f.text_field :representative
+      = f.error_span(:representative)
+    .form-group
       = f.label :signature, class: 'control-label col-lg-2'
       .col-lg-10
         = f.text_area :signature, class: 'form-control'
