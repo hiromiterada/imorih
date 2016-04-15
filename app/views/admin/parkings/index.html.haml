@@ -11,9 +11,10 @@
     %tr
       %th= Parking.human_attribute_name(:name)
       %th= Parking.human_attribute_name(:code)
-      %th= Parking.human_attribute_name(:occupancy)
       %th= Parking.human_attribute_name(:address)
-      %th= Owner.model_name.human
+      %th= Parking.human_attribute_name(:capacity)
+      %th= Parking.human_attribute_name(:occupancy)
+      %th= Parking.human_attribute_name(:contact)
       %th
       %th
       %th
@@ -23,8 +24,9 @@
       %tr
         %td= parking.name
         %td= parking.code
-        %td= parking.occupancy
         %td= parking.address
+        %td= parking.capacity
+        %td= parking.occupancy
         %td= link_to parking.owner.try(:name), [:admin, parking.owner]
         %td= link_to t('views.show'), [:admin, parking], class: 'btn btn-default'
         %td= link_to [Contract.model_name.human, t('views.new')].join,

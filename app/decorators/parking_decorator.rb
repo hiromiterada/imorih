@@ -7,11 +7,10 @@ class ParkingDecorator < Draper::Decorator
   end
 
   def occupancy
-    if object.vacancies.count == 0
-      status = Parking.human_attribute_name(:occupied)
+    if object.vacancies.count == object.capacity
+      Parking.human_attribute_name(:occupied)
     else
-      status = Parking.human_attribute_name(:vacant)
+      Parking.human_attribute_name(:vacant)
     end
-    [status, '(', object.vacancies.count, '/', object.capacity, ')'].join
   end
 end

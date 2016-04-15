@@ -17,7 +17,8 @@ ja:
         message: メッセージ
         cautions: ご利用上の注意
         is_public: 公開する
+        contact: お問合わせ先
         capacity: 収容台数
-        occupancy: 空き状況(空き/総数)
+        occupancy: 空き状況
         vacant: 空有
         occupied: 満

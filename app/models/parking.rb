@@ -1,8 +1,9 @@
 class Parking < ActiveRecord::Base
   include BooleanI18n
   include MakeRand
+  include Geocode
 
-  before_validation :set_code
+  before_validation :set_code, :set_geocode
 
   validates :owner_id, presence: true
   validates :name, presence: true
@@ -48,5 +49,10 @@ class Parking < ActiveRecord::Base
         raise
       end
     end
+  end
+
+  def set_geocode
+    return if address.blank?
+    self.address_to_geocode_by_google_map
   end
 end

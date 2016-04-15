@@ -8,16 +8,18 @@
   %thead
     %tr
       %th= Parking.human_attribute_name(:name)
-      %th= Parking.human_attribute_name(:occupancy)
       %th= Parking.human_attribute_name(:address)
+      %th= Parking.human_attribute_name(:capacity)
+      %th= Parking.human_attribute_name(:occupancy)
       %th
 
   %tbody
     - @parkings.each do |parking|
       %tr
         %td= parking.name
-        %td= parking.occupancy
         %td= parking.address
+        %td= parking.capacity
+        %td= parking.occupancy
         %td= link_to t('views.show'), parking_path(canonical_name: parking.canonical_name), class: 'btn btn-default'
 
 %br

@@ -17,7 +17,8 @@ en:
         message: Message
         cautions: Cautions
         is_public: Is public
+        contact: Contact
         capacity: Capacity
-        occupancy: Occupancy(vacancy/total)
+        occupancy: Occupancy
         vacant: Vacant
         occupied: Occupied

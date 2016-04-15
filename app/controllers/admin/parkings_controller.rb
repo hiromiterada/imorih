@@ -17,6 +17,7 @@ class Admin::ParkingsController < ApplicationController
   end
 
   def show
+    @parking = @parking.decorate
   end
 
   def new
@@ -44,6 +45,7 @@ class Admin::ParkingsController < ApplicationController
       redirect_to admin_parkings_url,
         notice: t('views.messages.successfully_updated')
     else
+      @parking.areas.build if @parking.areas.blank?
       render :edit
     end
   end
@@ -57,7 +59,7 @@ class Admin::ParkingsController < ApplicationController
   private
 
   def set_parking
-    @parking = Parking.find(params[:id]).decorate
+    @parking = Parking.find(params[:id])
   end
 
   def set_parameters

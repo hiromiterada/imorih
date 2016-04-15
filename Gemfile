@@ -37,6 +37,7 @@ gem 'font-awesome-sass'
 gem 'font-awesome-rails'
 gem 'draper', '~> 1.3'
 gem 'nested_form'
+gem 'gmaps4rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
