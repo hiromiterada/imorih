@@ -2,6 +2,7 @@ ja:
   payments:
     index:
       my_contracts: ご契約の概要
+      first_message: お客様のお支払い履歴を表示しています。
       overdue_message: '%{date}以降のご入金が滞っております。ご確認をお願いいたします。'
       warning_notice: ※前月末日までにお支払いを済ませてくださいますようお願いいたします。
       limit_message: '本サービスでは、%{date}までの履歴を確認することができます。'

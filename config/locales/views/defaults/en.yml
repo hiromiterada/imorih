@@ -22,7 +22,7 @@ en:
     guest: Guest
     required: (Required)
     auto_generation: (Auto-generation)
-    auto_update: (Auto-update)
+    auto_update: (Revised automatically)
     money_unit: '$%{money}'
     money_per_month: '$%{money}/month'
     welcome: 'Welcome %{name} !'

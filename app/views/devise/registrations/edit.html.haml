@@ -66,9 +66,8 @@
         = f.label :send_of_dm, class: 'control-label col-lg-2'
         .col-lg-10
           - {yes: true, no: false}.each do |key, value|
-            = f.radio_button :send_of_dm, value
-            = t("views.boolean.#{key}")
-            = key
+            = f.radio_button :send_of_dm, value, id: "send_of_dm_#{value}"
+            %label{for: "send_of_dm_#{value}"}= t("views.boolean.#{key}")
         = f.error_span(:send_of_dm)
       .well
         .form-group

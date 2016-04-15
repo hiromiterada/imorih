@@ -2,9 +2,10 @@ en:
   payments:
     index:
       my_contracts: My contracts
-      overdue_message: 'Payment after %{date} is delayed. Please check it out.'
-      warning_notice: Please, as the rent will be paid by the last day of the previous month.
-      limit_message: 'This service confirms the history until %{date}.'
+      first_message: Your payment history.
+      overdue_message: 'Payment has not been made since %{date}.'
+      warning_notice: "* Please pay for next month's rent fee by the end of previous month."
+      limit_message: 'You can check your payment history up to %{date}.'
   admin:
     payments:
       confirm:

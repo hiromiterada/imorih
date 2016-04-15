@@ -25,5 +25,5 @@ en:
         date_signed: Date Signed
         date_terminated: Date Terminated
         period: Preiod
-        auto_updating: Auto Updating
+        auto_updating: Revised automatically if not declared
         note: Note
