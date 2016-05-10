@@ -8,8 +8,7 @@ module MakeRand
   end
 
   def make_rand_string(size=1)
-    o = ('A'..'Z').to_a + (2..9).to_a
-    o.reject! {|i| i == 'I' || i == 'O' || i == 'O' }
+    o = ('A'..'Z').to_a + (0..9).to_a
     (0...size).map { o[rand(o.length)] }.join
   end
 end

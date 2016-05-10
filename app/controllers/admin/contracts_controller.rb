@@ -33,7 +33,13 @@ class Admin::ContractsController < ApplicationController
 
   def create
     @contract = Contract.new(contract_params)
+    new_user = false
+    if @contract.user.blank?
+      new_user = true
+      @contract.user = User.create_without_confirmation
+    end
     if @contract.save
+      OwnerMailer.user_created(@contract).deliver if new_user
       redirect_to admin_contracts_url,
         notice: t('views.messages.successfully_created')
     else

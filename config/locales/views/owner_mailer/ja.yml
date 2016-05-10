@@ -1,0 +1,23 @@
+ja:
+  owner_mailer:
+    user_created:
+      subject: '[imoriH]アカウントを作成しました'
+      name: '%{name}様'
+      messages: |
+        新しく登録した下記のご契約に対して、関連するお客様を新規登録いたしました。
+        お客様コード、パスワードをご確認の上、氏名等の情報をお客様情報編集ページから修正してください。
+      contract: |
+        ご契約内容
+          * ご契約番号: %{number}
+          * お問合わせ先: %{owner}
+          * 種類: %{kind}
+          * 状況: %{status}
+          * 賃料: %{rent}円
+          * 契約期間: %{period}
+          * 自動更新: %{auto_updating}
+          * 備考: %{note}
+      customer: |
+        お客様情報
+          * お客様コード: %{code}
+          * パスワード: %{password}
+          * お客様情報編集ページ: %{url}

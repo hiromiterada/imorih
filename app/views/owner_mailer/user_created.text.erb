@@ -1,0 +1,19 @@
+<%= I18n.t('owner_mailer.user_created.name',
+  name: @contract.owner.name) %>
+
+<%= I18n.t('owner_mailer.user_created.messages') %>
+
+<%= I18n.t('owner_mailer.user_created.contract',
+  {number: @contract.number,
+  owner: @contract.owner.name,
+  kind: @contract.decorate.kind_and_parking_name,
+  status: @contract.enum_i18n(:status),
+  rent: @contract.rent,
+  period: @contract.decorate.period,
+  auto_updating: @contract.boolean_i18n(:auto_updating),
+  note: @contract.note}) %>
+
+<%= I18n.t('owner_mailer.user_created.customer',
+  {code: @contract.user.customer_code,
+  password: @contract.user.password,
+  url: edit_admin_user_url(I18n.locale, @contract.user)}) %>

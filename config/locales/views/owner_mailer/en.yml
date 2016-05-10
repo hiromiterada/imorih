@@ -1,0 +1,22 @@
+en:
+  owner_mailer:
+    user_created:
+      subject: '[imoriH]created account'
+      name: 'Hello %{name}'
+      messages: |
+        Created Account. Thank you.
+      contract: |
+        Contract infomation
+          * Number: %{number}
+          * Owner: %{owner}
+          * Kind: %{kind}
+          * Status: %{status}
+          * Rent: %{rent}円
+          * Period: %{period}
+          * Auto Updating: %{auto_updating}
+          * Note: %{note}
+      customer: |
+        Customer infomation
+          * Customer code: %{code}
+          * Password: %{password}
+          * URL: %{url}
