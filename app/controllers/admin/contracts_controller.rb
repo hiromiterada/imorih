@@ -34,7 +34,7 @@ class Admin::ContractsController < ApplicationController
   def create
     @contract = Contract.new(contract_params)
     new_user = false
-    if @contract.user.blank?
+    if @contract.user.blank? && params[:new_user][:create] == '1'
       new_user = true
       @contract.user = User.create_without_confirmation
     end

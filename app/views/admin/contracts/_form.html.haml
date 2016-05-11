@@ -12,7 +12,10 @@
         - if @contract.new_record? || current_user.admin?
           = f.collection_select(:user_id, @users, :id,
             :customer_code_and_fullname, include_blank: true)
-          %i= t('views.auto_generation')
+          - if @contract.new_record?
+            %br
+            = check_box :new_user, :create
+            = label_tag :new_user_create, t('admin.contracts.new_user_create')
         - else
           = @contract.try(:user).customer_code_and_fullname
       = f.error_span(:user_id)
@@ -34,7 +37,6 @@
         .col-lg-10
           = f.text_field :number, class: 'form-control'
           %i= t('views.auto_generation')
-        = f.error_span(:number)
     - else
       - unless @contract.new_record?
         .form-group

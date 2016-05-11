@@ -46,8 +46,7 @@ class Contract < ActiveRecord::Base
   private
 
   def set_number
-    return if !new_record? && number.present?
-    self.user = User.create_without_confirmation if user.blank?
+    return if !new_record? || user.blank? || number.present?
     retry_counter = 0
     begin
       if about_parking?
