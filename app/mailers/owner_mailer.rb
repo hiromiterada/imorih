@@ -8,7 +8,8 @@ class OwnerMailer < ActionMailer::Base
   #
   def user_created(contract)
     @contract = contract
-    mail to: contract.owner.email,
-         bcc: Rails.application.secrets.mail_sender
+    mail to: current_user.email,
+         bcc: [contract.owner.email,
+           Rails.application.secrets.mail_sender]
   end
 end

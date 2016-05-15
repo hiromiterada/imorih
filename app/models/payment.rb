@@ -27,4 +27,9 @@ class Payment < ActiveRecord::Base
     return if contract.blank?
     contract.user
   end
+
+  def owner
+    return if contract.blank?
+    contract.owner
+  end
 end

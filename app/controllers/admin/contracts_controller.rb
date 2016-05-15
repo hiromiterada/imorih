@@ -39,7 +39,9 @@ class Admin::ContractsController < ApplicationController
       @contract.user = User.create_without_confirmation
     end
     if @contract.save
-      OwnerMailer.user_created(@contract).deliver if new_user
+      I18n.with_locale(current_user.locale.to_sym) do
+        OwnerMailer.user_created(@contract).deliver if new_user
+      end
       redirect_to admin_contracts_url,
         notice: t('views.messages.successfully_created')
     else

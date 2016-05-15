@@ -1,10 +1,10 @@
-<%= I18n.t('customer_mailer.payment_confirmation.name',
+<%= t('customer_mailer.payment_confirmation.name',
   name: @payment.user.decorate.fullname) %>
 
 <%= @payment.message %>
 
 <%= payments_url %>
 
-<%= I18n.t('customer_mailer.payment_confirmation.messages') %>
+<%= t('customer_mailer.payment_confirmation.messages') %>
 
 <%= @payment.owner.signature %>
