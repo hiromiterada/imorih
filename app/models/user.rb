@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
     return if customer_code.present?
     retry_counter = 0
     begin
-      self.customer_code = make_rand_integer(8)
+      self.customer_code = make_rand_string(2).downcase + make_rand_integer(4)
       raise if User.where(customer_code: customer_code).first.present?
     rescue
       retry_counter += 1

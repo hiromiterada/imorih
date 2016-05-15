@@ -38,7 +38,7 @@ class Parking < ActiveRecord::Base
     return if !new_record? && code.present?
     retry_counter = 0
     begin
-      self.code = make_rand_string(4)
+      self.code = 'P' + make_rand_string(3)
       raise if Parking.where(code: code).first.present?
     rescue
       retry_counter += 1

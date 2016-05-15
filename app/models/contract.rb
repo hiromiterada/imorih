@@ -51,21 +51,20 @@ class Contract < ActiveRecord::Base
     begin
       if about_parking?
         area_code = [areas.first.name.upcase]
-        (3 - area_code.length).times do
+        (2 - area_code.length).times do
           area_code.unshift('0')
         end
         area_code = area_code.join
         parking_code = parking.code
       else
-        area_code = '000'
-        parking_code = '0000'
+        area_code = '00'
+        parking_code = '000'
       end
       self.number = [
-        kind[0].upcase + area_code,
-        parking_code,
-        make_rand_string(4),
-        user.customer_code[0,4],
-        user.customer_code[4,4]
+        kind[0].upcase + parking_code[1,3],
+        area_code + user.customer_code[0,2].upcase,
+        user.customer_code[2,4],
+        make_rand_string(4)
       ].join('-')
       raise if Contract.where(number: number).first.present?
     rescue

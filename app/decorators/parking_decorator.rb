@@ -7,7 +7,7 @@ class ParkingDecorator < Draper::Decorator
   end
 
   def occupancy
-    if object.vacancies.count == object.capacity
+    if object.vacancies.count == 0
       Parking.human_attribute_name(:occupied)
     else
       Parking.human_attribute_name(:vacant)
