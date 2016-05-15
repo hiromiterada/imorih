@@ -76,7 +76,7 @@
     .form-group
       = f.label :date_terminated, class: 'control-label col-lg-2'
       .col-lg-10
-        = f.date_select :date_terminated, default: Date.today >> 12
+        = f.date_select :date_terminated, default: (Date.today >> 12) - 1
       = f.error_span(:date_terminated)
     .form-group
       = f.label :auto_updating, class: 'control-label col-lg-2'

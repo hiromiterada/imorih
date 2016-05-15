@@ -1,12 +1,13 @@
 en:
   owner_mailer:
     user_created:
-      subject: '[imoriH]created account'
+      subject: '[imoriH]created an account for a new contract'
       name: 'Hello %{name}'
       messages: |
-        Created Account. Thank you.
+        Customer information was made newly to the following contract.
+        After confirming the customer code and the password, please correct the name of the customer from an edit page. Thank you.
       contract: |
-        Contract infomation
+        Contract information
           * Number: %{number}
           * Owner: %{owner}
           * Kind: %{kind}
@@ -16,7 +17,7 @@ en:
           * Auto Updating: %{auto_updating}
           * Note: %{note}
       customer: |
-        Customer infomation
+        Customer information
           * Customer code: %{code}
           * Password: %{password}
-          * URL: %{url}
+          * Edit page: %{url}
