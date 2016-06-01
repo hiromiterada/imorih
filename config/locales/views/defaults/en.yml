@@ -34,3 +34,4 @@ en:
       successfully_created: Successfully created.
       successfully_updated: Successfully updated.
       successfully_destroyed: Successfully destroyed.
+      do_not_have_authorization: Do not have authorization.

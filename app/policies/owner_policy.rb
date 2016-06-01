@@ -1,0 +1,2 @@
+class OwnerPolicy < AdminPolicy
+end

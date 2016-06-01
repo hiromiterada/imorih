@@ -2,7 +2,8 @@
 
 %h2= Parking.model_name.human
 
-%p= link_to t('views.new'), [:new, :admin, :parking], class: 'btn btn-default'
+- if policy(Parking).new?
+  %p= link_to t('views.new'), [:new, :admin, :parking], class: 'btn btn-default'
 
 %p= page_entries_info @parkings
 

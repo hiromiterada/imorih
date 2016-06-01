@@ -1,7 +1,9 @@
 class Admin::PaymentsController < ApplicationController
   before_action :set_payment, only: [:show, :edit, :update, :destroy]
   before_action :set_parameters, only: [:new, :edit, :create, :update, :confirm]
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
+  before_action :pundit_auth
+  before_action :verify_authorized
 
   def index
     if params[:contract_id]
@@ -87,5 +89,9 @@ class Admin::PaymentsController < ApplicationController
       :contract_id, :payday, :amount, :date_started, :date_ended,
       :message, :note, :sent_mail
     )
+  end
+
+  def pundit_record
+    @payment || Payment.new
   end
 end

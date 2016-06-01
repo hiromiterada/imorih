@@ -1,6 +1,8 @@
 class Admin::UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
+  before_action :pundit_auth
+  before_action :verify_authorized
 
   def index
     @users = User.order('created_at DESC').page(params[:page]).decorate
@@ -55,5 +57,9 @@ class Admin::UsersController < ApplicationController
       :locale, :gender, :birthday, :address, :phone, :role,
       :customer_code, :send_of_dm
     )
+  end
+
+  def pundit_record
+    @user || User.new
   end
 end

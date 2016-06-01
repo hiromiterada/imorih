@@ -28,7 +28,8 @@
             - options = {prompt: true}
           = f.collection_select(:contract_id, @contracts, :id, :number_and_fullname, options)
         - else
-          = @payment.decorate.contract.number_and_fullname
+          = @payment.contract.decorate.number_and_fullname
+          = f.hidden_field :contract_id
       = f.error_span(:contract_id)
     .form-group
       = f.label :payday, class: 'control-label col-lg-2'

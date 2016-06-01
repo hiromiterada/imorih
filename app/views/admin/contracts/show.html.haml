@@ -38,9 +38,8 @@
     %b= Contract.human_attribute_name(:note) + ':'
     = @contract.note
 
-  = link_to t('views.edit'), [:edit, :admin, @contract], class: 'btn btn-default'
-  = link_to t('views.delete'), [:admin, @contract], method: :delete,
-    data: { confirm: t('views.messages.confirm')}, class: 'btn btn-danger'
+  = @contract.link_to_edit
+  = @contract.link_to_destroy
 = link_to [Payment.model_name.human, t('views.new')].join,
   [:new, :admin, @contract, :payment], class: 'btn btn-default'
 = link_to [Payment.model_name.human, t('views.index')].join,

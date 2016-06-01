@@ -11,8 +11,7 @@
       %b= Contract.human_attribute_name(:number) + ':'
       = @payment.contract.number_and_fullname
       = f.hidden_field :contract_id
-      .well
-        = render 'shared/contract_info', contract: @payment.contract
+      = render 'shared/contract_info', contract: @payment.contract
     %p
       %b= Payment.human_attribute_name(:payday) + ':'
       = l(@payment.payday)

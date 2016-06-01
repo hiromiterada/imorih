@@ -1,7 +1,9 @@
 class Admin::OwnersController < ApplicationController
   before_action :set_owner, only: [:show, :edit, :update, :destroy]
   before_action :set_parameters, only: [:new, :edit, :create, :update]
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
+  before_action :pundit_auth
+  before_action :verify_authorized
 
   def index
     @owners = Owner.order('created_at DESC').page(params[:page]).decorate
@@ -59,5 +61,9 @@ class Admin::OwnersController < ApplicationController
       :name, :email, :address, :phone, :representative, :signature,
       owner_users_attributes: [:id, :user_id, :_destroy]
     )
+  end
+
+  def pundit_record
+    @owner || Owner.new
   end
 end

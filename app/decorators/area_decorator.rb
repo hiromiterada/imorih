@@ -14,14 +14,4 @@ class AreaDecorator < Draper::Decorator
       Area.human_attribute_name(:vacant)
     end
   end
-
-  def contract_info
-    if object.contracts.in_process.present?
-      contract = object.contracts.in_process.first.decorate
-      [Area.human_attribute_name(:contract_period),
-        '(', contract.period, ')', ' ',contract.number_and_fullname].join
-    else
-      nil
-    end
-  end
 end

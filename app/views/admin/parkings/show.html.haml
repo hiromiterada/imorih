@@ -52,12 +52,12 @@
           %td= area.name
           %td= area.note
           %td= area.enum_i18n(:status)
-          %td= area.contract_info
+          %td
+            - area.contracts.each do |contract|
+              = render 'shared/contract_info', contract: contract
 
-  = link_to t('views.edit'), [:edit, :admin, @parking],
-    class: 'btn btn-default'
-  = link_to t('views.delete'), [:admin, @parking], method: :delete,
-    data: { confirm: t('views.messages.confirm')}, class: 'btn btn-danger'
+  = @parking.link_to_edit
+  = @parking.link_to_destroy
 = link_to [Contract.model_name.human, t('views.new')].join,
-  [:new, :admin, @parking, :contract], class: 'btn btn-default'
+    [:new, :admin, @parking, :contract], class: 'btn btn-default'
 = link_to t('views.back'), [:admin, :parkings], class: 'btn btn-default'

@@ -1,5 +1,5 @@
 <%= t('owner_mailer.user_created.name',
-  name: current_user.decorate.fullname) %>
+  name: @user.decorate.fullname) %>
 
 <%= t('owner_mailer.user_created.messages') %>
 
@@ -16,4 +16,4 @@
 <%= t('owner_mailer.user_created.customer',
   {code: @contract.user.customer_code,
   password: @contract.user.password,
-  url: edit_admin_user_url(current_user.locale, @contract.user)}) %>
+  url: edit_admin_user_url(@user.locale, @contract.user)}) %>

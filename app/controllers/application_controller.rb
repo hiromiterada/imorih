@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
+  include Pundit
   protect_from_forgery with: :exception
 
   before_action :configure_permitted_parameters, if: :devise_controller?
@@ -12,6 +13,17 @@ class ApplicationController < ActionController::Base
     puts ex.class
     puts ex.backtrace.join("\n")
     raise ex
+  end
+
+  rescue_from NotAuthorizedError, with: :render_404
+
+  def render_404(exception = nil)
+    if exception
+      logger.info "Rendering 404 with exception: #{exception.message}"
+    end
+
+    flash.now[:alert] = t('views.messages.do_not_have_authorization')
+    render template: 'home/index'
   end
 
   protected
@@ -70,5 +82,14 @@ class ApplicationController < ActionController::Base
       /Nexus [4|5|6]/, /BlackBerry/
       request.variant = :mobile
     end
+  end
+
+  def pundit_auth
+    authorize(pundit_record)
+  rescue Pundit::NotDefinedError => ex
+    raise ex
+  end
+
+  def pundit_record
   end
 end

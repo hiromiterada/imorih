@@ -1,15 +1,12 @@
 class Admin::ParkingsController < ApplicationController
   before_action :set_parking, only: [:show, :edit, :update, :destroy]
   before_action :set_parameters, only: [:new, :edit, :create, :update]
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
+  before_action :pundit_auth
+  before_action :verify_authorized
 
   def index
-    if current_user.admin?
-      parkings = Parking.all
-    else
-      parkings = Parking.by_master(current_user)
-    end
-    @parkings = parkings.page(params[:page]).decorate
+    @parkings = policy_scope(Parking).page(params[:page]).decorate
     respond_to do |format|
       format.html
       format.json { render json: parkings }
@@ -79,5 +76,9 @@ class Admin::ParkingsController < ApplicationController
       :id, :parking_id, :name, :status, :note, :_destroy
       ]
     )
+  end
+
+  def pundit_record
+    @parking || Parking.new
   end
 end
