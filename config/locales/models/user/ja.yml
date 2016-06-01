@@ -9,7 +9,7 @@ ja:
         female: 女
       role:
         normal: お客様
-        master: 大家さん
+        master: 大家
         admin: システム管理者
   activerecord:
     models:

@@ -25,7 +25,7 @@ class ParkingDecorator < Draper::Decorator
     if h.policy(object).destroy?
       h.link_to h.t('views.delete'),
         [:admin, object], method: :delete, class: 'btn btn-danger',
-        data: { confirm: t('views.messages.confirm')}
+        data: { confirm: h.t('views.messages.confirm')}
     end
   end
 end
