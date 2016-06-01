@@ -33,16 +33,16 @@
       = f.error_span(:owner_id)
     - if current_user.admin?
       .form-group
-        = f.label :number, class: 'control-label col-lg-2'
+        = f.label :code, class: 'control-label col-lg-2'
         .col-lg-10
-          = f.text_field :number, class: 'form-control'
+          = f.text_field :code, class: 'form-control'
           %i= t('views.auto_generation')
     - else
       - unless @contract.new_record?
         .form-group
-          = f.label :number, class: 'control-label col-lg-2'
+          = f.label :code, class: 'control-label col-lg-2'
           .col-lg-10
-            = @contract.number
+            = @contract.code
     .form-group
       = f.label :kind, class: 'control-label col-lg-2'
       .col-lg-10

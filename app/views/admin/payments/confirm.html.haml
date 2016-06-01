@@ -8,8 +8,8 @@
       %legend= Payment.model_name.human
 
     %p
-      %b= Contract.human_attribute_name(:number) + ':'
-      = @payment.contract.number_and_fullname
+      %b= Contract.human_attribute_name(:code) + ':'
+      = @payment.contract.code_and_fullname
       = f.hidden_field :contract_id
       = render 'shared/contract_info', contract: @payment.contract
     %p

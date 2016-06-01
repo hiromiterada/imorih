@@ -10,7 +10,7 @@
 %table.table.table-striped
   %thead
     %tr
-      %th= Contract.human_attribute_name(:number_and_fullname)
+      %th= Contract.human_attribute_name(:code_and_fullname)
       %th= Contract.human_attribute_name(:kind)
       %th= Payment.human_attribute_name(:payday)
       %th= Payment.human_attribute_name(:amount)
@@ -22,7 +22,7 @@
   %tbody
     - @payments.each do |payment|
       %tr{class: "#{payment.pay_later? ? 'danger' : ''}"}
-        %td= link_to payment.contract.try(:number_and_fullname), [:admin, payment.contract]
+        %td= link_to payment.contract.try(:code_and_fullname), [:admin, payment.contract]
         %td= payment.contract.kind_and_parking_name if payment.contract.present?
         %td= l(payment.payday)
         %td= money(payment.amount)

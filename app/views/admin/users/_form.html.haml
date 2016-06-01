@@ -65,12 +65,13 @@
           = f.radio_button :send_of_dm, value, id: "send_of_dm_#{value}"
           %label{for: "send_of_dm_#{value}"}= t("views.boolean.#{key}")
       = f.error_span(:send_of_dm)
-    .form-group
-      = f.label :role, class: 'control-label col-lg-2'
-      .col-lg-10
-        - User.enum_i18n(:role).invert.each do |key, value|
-          = f.radio_button :role, value, id: "role_#{value}"
-          %label{for: "role_#{value}"}= key
+    - if current_user.admin?
+      .form-group
+        = f.label :role, class: 'control-label col-lg-2'
+        .col-lg-10
+          - User.enum_i18n(:role).invert.each do |key, value|
+            = f.radio_button :role, value, id: "role_#{value}"
+            %label{for: "role_#{value}"}= key
       = f.error_span(:role)
     .form-group
       .col-lg-offset-2.col-lg-10

@@ -9,7 +9,7 @@
 %table.table.table-striped
   %thead
     %tr
-      %th= Contract.human_attribute_name(:number)
+      %th= Contract.human_attribute_name(:code)
       %th= Contract.human_attribute_name(:kind)
       %th= Contract.human_attribute_name(:status)
       %th= Contract.human_attribute_name(:rent)
@@ -22,7 +22,7 @@
   %tbody
     - @contracts.each do |contract|
       %tr
-        %td= contract.number
+        %td= contract.code
         %td= contract.kind_and_parking_name
         %td= contract.enum_i18n(:status)
         %td= money_per_month(contract.rent)

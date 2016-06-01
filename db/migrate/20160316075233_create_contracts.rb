@@ -4,7 +4,7 @@ class CreateContracts < ActiveRecord::Migration
       t.references :user,           null: false, index: true, foreign_key: true
       t.references :owner,          null: false, index: true, foreign_key: true
       t.references :parking,                     index: true, foreign_key: true
-      t.string     :number,         null: false
+      t.string     :code,           null: false
       t.integer    :kind,           null: false, index: true, default: 0
       t.integer    :status,         null: false, index: true, default: 1
       t.integer    :rent,           null: false, default: 0

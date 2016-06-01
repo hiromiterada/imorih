@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20160325112343) do
     t.integer  "user_id",                        null: false
     t.integer  "owner_id",                       null: false
     t.integer  "parking_id"
-    t.string   "number",                         null: false
+    t.string   "code",                           null: false
     t.integer  "kind",            default: 0,    null: false
     t.integer  "status",          default: 1,    null: false
     t.integer  "rent",            default: 0,    null: false

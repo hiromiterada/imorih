@@ -8,7 +8,7 @@ en:
         After confirming the customer code and the password, please correct the name of the customer from an edit page. Thank you.
       contract: |
         Contract information
-          * Number: %{number}
+          * Code: %{code}
           * Owner: %{owner}
           * Kind: %{kind}
           * Status: %{status}

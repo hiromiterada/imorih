@@ -17,8 +17,8 @@ en:
         user_id: Account ID
         parking_id: Parking ID
         parking_name_and_area_names: Parking Name(Area)
-        number: Number
-        number_and_fullname: Number(Name)
+        code: Code
+        code_and_fullname: Code(Name)
         kind: Kind
         status: Status
         rent: Rent

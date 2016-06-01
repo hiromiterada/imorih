@@ -4,7 +4,7 @@
 <%= t('owner_mailer.user_created.messages') %>
 
 <%= t('owner_mailer.user_created.contract',
-  {number: @contract.number,
+  {code: @contract.code,
   owner: @contract.owner.name,
   kind: @contract.decorate.kind_and_parking_name,
   status: @contract.enum_i18n(:status),

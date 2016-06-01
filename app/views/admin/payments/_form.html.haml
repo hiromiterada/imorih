@@ -17,7 +17,7 @@
       %p.text-danger= t('errors.messages.not_saved')
 
     .form-group
-      = f.label :contract_id, Contract.human_attribute_name(:number),
+      = f.label :contract_id, Contract.human_attribute_name(:code),
          class: 'control-label col-lg-2'
       %span.text-danger= t('views.required')
       .col-lg-10
@@ -26,9 +26,9 @@
             - options = {selected: @payment.contract.id}
           - else
             - options = {prompt: true}
-          = f.collection_select(:contract_id, @contracts, :id, :number_and_fullname, options)
+          = f.collection_select(:contract_id, @contracts, :id, :code_and_fullname, options)
         - else
-          = @payment.contract.decorate.number_and_fullname
+          = @payment.contract.decorate.code_and_fullname
           = f.hidden_field :contract_id
       = f.error_span(:contract_id)
     .form-group

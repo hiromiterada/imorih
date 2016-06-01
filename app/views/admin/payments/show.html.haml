@@ -6,9 +6,9 @@
   %fieldset
     %legend= Payment.model_name.human
   %p
-    %b= Contract.human_attribute_name(:number) + ':'
+    %b= Contract.human_attribute_name(:code) + ':'
     - if @payment.contract.present?
-      = link_to @payment.contract.number_and_fullname, [:admin, @payment.contract]
+      = link_to @payment.contract.code_and_fullname, [:admin, @payment.contract]
   %p
     %b= Contract.human_attribute_name(:kind) + ':'
     - if @payment.contract.present?

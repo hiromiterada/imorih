@@ -10,8 +10,8 @@
     - if @contract.user.present?
       = link_to @contract.user.customer_code_and_fullname, [:admin, @contract.user]
   %p
-    %b= Contract.human_attribute_name(:number) + ':'
-    = @contract.number
+    %b= Contract.human_attribute_name(:code) + ':'
+    = @contract.code
   %p
     %b= Contract.human_attribute_name(:kind) + ':'
     = @contract.enum_i18n(:kind)

@@ -3,9 +3,9 @@ class ContractDecorator < Draper::Decorator
   decorates_association :user
   decorates_associations :areas
 
-  def number_and_fullname
-    return object.number if user.try(:fullname).blank?
-    [object.number, '(', user.fullname, ')'].join
+  def code_and_fullname
+    return object.code if user.try(:fullname).blank?
+    [object.code, '(', user.fullname, ')'].join
   end
 
   def parking_name_and_area_names

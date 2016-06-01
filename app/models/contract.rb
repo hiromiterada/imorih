@@ -3,14 +3,14 @@ class Contract < ActiveRecord::Base
   include EnumI18n
   include MakeRand
 
-  before_validation :set_number
+  before_validation :set_code
 
   validates :user_id, presence: true
   validates :owner_id, presence: true
   validates :parking_id, presence: true, if: :about_parking?
   validates :kind, presence: true
   validates :status, presence: true
-  validates :number, presence: true, uniqueness: true
+  validates :code, presence: true, uniqueness: true
   validates :rent, numericality: {
     only_integer: true, greater_than_or_equal_to: 0
   }
@@ -45,8 +45,8 @@ class Contract < ActiveRecord::Base
 
   private
 
-  def set_number
-    return if !new_record? || user.blank? || number.present?
+  def set_code
+    return if !new_record? || user.blank? || code.present?
     retry_counter = 0
     begin
       if about_parking?
@@ -60,13 +60,13 @@ class Contract < ActiveRecord::Base
         area_code = '00'
         parking_code = '000'
       end
-      self.number = [
+      self.code = [
         kind[0].upcase + parking_code[1,3],
         area_code + user.customer_code[0,2].upcase,
         user.customer_code[2,4],
         make_rand_string(4)
       ].join('-')
-      raise if Contract.where(number: number).first.present?
+      raise if Contract.where(code: code).first.present?
     rescue
       retry_counter += 1
       if retry_counter <= 10

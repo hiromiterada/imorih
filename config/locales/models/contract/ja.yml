@@ -17,8 +17,8 @@ ja:
         user_id: 会員ID
         parking_id: 駐車場ID
         parking_name_and_area_names: 駐車場(区画)
-        number: ご契約番号
-        number_and_fullname: ご契約番号(氏名)
+        code: ご契約番号
+        code_and_fullname: ご契約番号(氏名)
         kind: 種別
         status: 状態
         rent: 賃料
