@@ -21,7 +21,7 @@
 
   %tbody
     - @contracts.each do |contract|
-      %tr
+      %tr{class: "#{contract.overdue? ? 'danger' : ''}"}
         %td= contract.code
         %td= contract.kind_and_parking_name
         %td= contract.enum_i18n(:status)
