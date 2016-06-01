@@ -28,11 +28,11 @@
     %p
       %b= Payment.human_attribute_name(:message) + ':'
       = @payment.message
-      = f.hidden_field :message
+      = preserve f.hidden_field :message
     %p
       %b= Payment.human_attribute_name(:note) + ':'
       = @payment.note
-      = f.hidden_field :note
+      = preserve f.hidden_field :note
     - if @payment.user.send_mail? && @payment.sent_mail
       %br
       %fieldset

@@ -2,28 +2,24 @@
 
 %p= page_entries_info @payments
 
-%table.table
+%table.table.table-striped
+  %thead
+    %tr
+      - if @contracts.count > 1
+        %th= Contract.model_name.human
+      %th= Payment.human_attribute_name(:payday)
+      %th= Payment.human_attribute_name(:amount)
+      %th= Payment.human_attribute_name(:period)
+
   %tbody
     - @payments.each do |payment|
-      %tr{class: 'active'}
-        %th{colspan: '4'}
-          - if @contracts.count > 1
-            = [Contract.model_name.human,
-              @contracts.map(&:id).index(payment.contract.id)+1].join
       %tr{class: "#{payment.pay_later? ? 'danger' : ''}"}
-        %th= Payment.human_attribute_name(:payday)
+        - if @contracts.count > 1
+          %td= [Contract.model_name.human,
+            @contracts.map(&:id).index(payment.contract.id)+1].join
         %td= l(payment.payday)
-        %th= Payment.human_attribute_name(:amount)
         %td= money(payment.amount)
-      %tr{class: "#{payment.pay_later? ? 'danger' : ''}"}
-        %th= Payment.human_attribute_name(:period)
-        %td{colspan: '3'}= payment.period
-      %tr{class: "#{payment.pay_later? ? 'danger' : ''}"}
-        %th= Payment.human_attribute_name(:message)
-        %td{colspan: '3'}= payment.message
-      %tr{class: "#{payment.pay_later? ? 'danger' : ''}"}
-        %th= Payment.human_attribute_name(:note)
-        %td{colspan: '3'}= payment.note
+        %td= payment.period
 
 %br
 

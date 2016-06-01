@@ -54,7 +54,10 @@
           %td= area.enum_i18n(:status)
           %td
             - area.contracts.each do |contract|
-              = render 'shared/contract_info', contract: contract
+              %p
+                %b= Contract.human_attribute_name(:code) + ':'
+                = link_to contract.code_and_fullname, [:admin, contract]
+                = render 'shared/contract_info', contract: contract
 
   = @parking.link_to_edit
   = @parking.link_to_destroy

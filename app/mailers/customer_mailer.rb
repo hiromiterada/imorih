@@ -8,6 +8,7 @@ class CustomerMailer < ActionMailer::Base
   #
   def payment_confirmation(payment)
     @payment = payment
-    mail to: payment.user.email
+    mail to: payment.user.email,
+         bcc: Rails.application.secrets.mail_sender
   end
 end
