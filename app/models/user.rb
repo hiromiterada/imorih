@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
     return if customer_code.present?
     retry_counter = 0
     begin
-      self.customer_code = make_rand_string_downcase(6)
+      self.customer_code = make_rand_integer(6)
       raise if User.where(customer_code: customer_code).first.present?
     rescue
       retry_counter += 1
@@ -48,7 +48,7 @@ class User < ActiveRecord::Base
   end
 
   def set_password
-    self.password = make_rand_string_downcase(8)
+    self.password = make_rand_string(8).downcase.gsub(/(l|1|q|9|o|0)/, 'h')
   end
 
   class << self

@@ -11,8 +11,4 @@ module MakeRand
     o = ('A'..'Z').to_a + (0..9).to_a
     (0...size).map { o[rand(o.length)] }.join
   end
-
-  def make_rand_string_downcase(size=1)
-    make_rand_string(size).downcase.gsub(/(l|1|q|9|o|0)/, 'h')
-  end
 end
