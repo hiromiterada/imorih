@@ -1,6 +1,4 @@
-- today = Date.today
-- start_day = Date.new(today.year, today.month, 1) >> 1
-- end_day = (start_day >> 1) - 1
+- next_month = Date.today.next_month
 - case controller.action_name
 - when 'edit', 'update'
   - url = admin_payment_url @payment
@@ -47,10 +45,10 @@
         class: 'control-label col-lg-2'
       .col-lg-10
         = f.date_select :date_started,
-          default: Date.new(start_day.year, start_day.month, start_day.day)
+          default: Date.new(next_month.year, next_month.month), discard_day: true
         = '-'
         = f.date_select :date_ended,
-          default: Date.new(end_day.year, end_day.month, end_day.day)
+          default: Date.new(next_month.year, next_month.month), discard_day: true
       = f.error_span(:date_started)
     .form-group
       = f.label :message, class: 'control-label col-lg-2'

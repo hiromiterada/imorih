@@ -1,6 +1,8 @@
 class Payment < ActiveRecord::Base
   include BooleanI18n
 
+  before_validation :set_date_ended
+
   validates :contract_id, presence: true
   validates :payday, presence: true
   validates :amount, numericality: {
@@ -31,5 +33,11 @@ class Payment < ActiveRecord::Base
   def owner
     return if contract.blank?
     contract.owner
+  end
+
+  private
+
+  def set_date_ended
+    self.date_ended = date_ended.end_of_month
   end
 end

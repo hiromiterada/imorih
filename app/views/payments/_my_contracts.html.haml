@@ -11,4 +11,4 @@
         - if contract.overdue?
           %p.text-danger
             = t('payments.index.overdue_message',
-              date: contract.payments.newest.date_ended + 1)
+              date: l(contract.payments.newest.date_ended + 1))

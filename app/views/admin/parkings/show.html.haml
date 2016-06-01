@@ -37,7 +37,7 @@
     = @parking.cautions.html_safe
   %p
     %b= Parking.human_attribute_name(:is_public) + ':'
-    = @parking.is_public
+    = @parking.boolean_i18n(:is_public)
   %fieldset
     %legend= Area.model_name.human
   %table.table.table-striped.table-hover.table-sortable

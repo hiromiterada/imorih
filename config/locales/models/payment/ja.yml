@@ -7,7 +7,7 @@ ja:
         contract_id: 契約ID
         payday: 入金日
         amount: 金額
-        period: 期間
+        period: ご利用期間
         date_started: 期間開始日
         date_ended: 期間終了日
         message: メッセージ

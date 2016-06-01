@@ -42,7 +42,7 @@ en:
     formats:
       default: "%m/%d/%Y"
       long: "%B %d, %Y"
-      short: "%b %d"
+      short: "%b %Y"
     month_names:
     -
     - January
