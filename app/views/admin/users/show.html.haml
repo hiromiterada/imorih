@@ -77,10 +77,8 @@
       %b= User.human_attribute_name(:unconfirmed_email) + ':'
       = @user.unconfirmed_email
 
-  = link_to t('views.edit'), [:edit, :admin, @user], class: 'btn btn-default'
-  = link_to t('views.delete'), [:admin, @user], method: :delete,
-    data: { confirm: t('views.messages.confirm')}, class: 'btn btn-danger'
-
+  = @user.link_to_edit
+  = @user.link_to_destroy
 = link_to [Contract.model_name.human, t('views.new')].join,
   [:new, :admin, @user, :contract], class: 'btn btn-default'
 = link_to t('views.back'), [:admin, :users], class: 'btn btn-default'

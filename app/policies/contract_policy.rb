@@ -4,7 +4,8 @@ class ContractPolicy < AdminPolicy
   end
 
   def show?
-    user.admin? || user.master?
+    user.admin? || ( user.master? &&
+      user.owners.include?(record.owner) )
   end
 
   def create?
@@ -12,7 +13,8 @@ class ContractPolicy < AdminPolicy
   end
 
   def update?
-    user.admin? || user.master?
+    user.admin? || ( user.master? &&
+      user.owners.include?(record.owner) )
   end
 
   class Scope < Scope

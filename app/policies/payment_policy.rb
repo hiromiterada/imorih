@@ -4,7 +4,8 @@ class PaymentPolicy < AdminPolicy
   end
 
   def show?
-    user.admin? || user.master?
+    user.admin? || ( user.master? &&
+      user.owners.include?(record.contract.owner) )
   end
 
   def create?
@@ -12,7 +13,8 @@ class PaymentPolicy < AdminPolicy
   end
 
   def update?
-    user.admin? || user.master?
+    user.admin? || ( user.master? &&
+      user.owners.include?(record.contract.owner) )
   end
 
   def confirm?

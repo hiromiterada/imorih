@@ -32,7 +32,12 @@ class Admin::UsersController < ApplicationController
   def update
     @user.skip_reconfirmation!
     if @user.update(user_params)
-      redirect_to admin_users_url,
+      if Pundit.policy(current_user, User.new).index?
+        url = admin_users_url
+      else
+        url = root_url
+      end
+      redirect_to url,
         notice: t('views.messages.successfully_updated')
     else
       render :edit
