@@ -5,7 +5,7 @@ class Admin::UsersController < ApplicationController
   before_action :verify_authorized
 
   def index
-    @users = User.order('created_at DESC').page(params[:page]).decorate
+    @users = User.order('updated_at DESC').page(params[:page]).decorate
   end
 
   def show

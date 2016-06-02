@@ -6,7 +6,8 @@ class Admin::ParkingsController < ApplicationController
   before_action :verify_authorized
 
   def index
-    @parkings = policy_scope(Parking).page(params[:page]).decorate
+    @parkings = policy_scope(Parking).order('updated_at DESC')
+      .page(params[:page]).decorate
     respond_to do |format|
       format.html
       format.json { render json: parkings }

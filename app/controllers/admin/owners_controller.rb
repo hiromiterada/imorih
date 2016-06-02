@@ -6,7 +6,7 @@ class Admin::OwnersController < ApplicationController
   before_action :verify_authorized
 
   def index
-    @owners = Owner.order('created_at DESC').page(params[:page]).decorate
+    @owners = Owner.order('updated_at DESC').page(params[:page]).decorate
   end
 
   def show

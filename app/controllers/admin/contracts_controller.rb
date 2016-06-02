@@ -6,7 +6,8 @@ class Admin::ContractsController < ApplicationController
   before_action :verify_authorized
 
   def index
-    @contracts = policy_scope(Contract).page(params[:page]).decorate
+    @contracts = policy_scope(Contract).order('updated_at DESC')
+      .page(params[:page]).decorate
   end
 
   def show

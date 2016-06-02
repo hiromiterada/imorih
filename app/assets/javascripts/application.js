@@ -19,3 +19,4 @@
 //= require jquery_nested_form
 //= require underscore
 //= require gmaps/google
+//= require ckeditor/init

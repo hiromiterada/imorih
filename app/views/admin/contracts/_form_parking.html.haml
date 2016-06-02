@@ -13,5 +13,5 @@
           options, onchange: "select_parking(this.value)"
         = f.error_span(:parking_id)
       - else
-        = contract.parking.name
+        = contract.parking.try(:name)
     = render 'form_areas', f: f, contract: contract
