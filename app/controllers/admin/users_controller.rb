@@ -5,7 +5,8 @@ class Admin::UsersController < ApplicationController
   before_action :verify_authorized
 
   def index
-    @users = User.order('updated_at DESC').page(params[:page]).decorate
+    @users = policy_scope(User).order('updated_at DESC')
+      .page(params[:page]).decorate
   end
 
   def show

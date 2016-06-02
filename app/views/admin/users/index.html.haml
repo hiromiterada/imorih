@@ -2,7 +2,8 @@
 
 %h2= User.model_name.human
 
-%p= link_to t('views.new'), [:new, :admin, :user], class: 'btn btn-default'
+- if Pundit.policy(current_user, User).new?
+  %p= link_to t('views.new'), [:new, :admin, :user], class: 'btn btn-default'
 
 %p= page_entries_info @users
 

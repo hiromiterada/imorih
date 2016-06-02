@@ -43,12 +43,16 @@
                     = t('views.management')
                     %span.caret
                   %ul.dropdown-menu
-                    - if current_user.admin?
+                    - if Pundit.policy(current_user, User).index?
                       %li= link_to User.model_name.human, [:admin, :users]
+                    - if Pundit.policy(current_user, Owner).index?
                       %li= link_to Owner.model_name.human, [:admin, :owners]
-                    %li= link_to Parking.model_name.human, [:admin, :parkings]
-                    %li= link_to Contract.model_name.human, [:admin, :contracts]
-                    %li= link_to Payment.model_name.human, [:admin, :payments]
+                    - if Pundit.policy(current_user, Parking).index?
+                      %li= link_to Parking.model_name.human, [:admin, :parkings]
+                    - if Pundit.policy(current_user, Contract).index?
+                      %li= link_to Contract.model_name.human, [:admin, :contracts]
+                    - if Pundit.policy(current_user, Payment).index?
+                      %li= link_to Payment.model_name.human, [:admin, :payments]
           %ul.nav.navbar-nav.navbar-right
             - if user_signed_in?
               %li= link_to t('views.settings'), [:edit, :user, :registration]

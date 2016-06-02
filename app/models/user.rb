@@ -23,6 +23,10 @@ class User < ActiveRecord::Base
   enum gender: %i(male female)
   enum role: %i(normal master admin)
 
+  scope :by_master, -> (user) {
+    where(id: Contract.by_master(user).pluck(:user_id)).normal
+  }
+
   DUMMY_DOMAINNAME = '@example.com'
 
   def send_mail?
