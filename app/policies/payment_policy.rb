@@ -23,7 +23,11 @@ class PaymentPolicy < AdminPolicy
 
   class Scope < Scope
     def resolve
-      scope
+      if user.admin?
+        scope.all
+      else
+        scope.by_master(user)
+      end
     end
   end
 end

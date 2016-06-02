@@ -10,13 +10,9 @@ class Admin::PaymentsController < ApplicationController
       contract = Contract.find(params[:contract_id])
       payments = contract.payments
     else
-      if current_user.admin?
-        payments = Payment.all
-      else
-        payments = Payment.by_master(current_user)
-      end
+      payments = policy_scope(Payment)
     end
-    @payments = payments.order('payday ASC').page(params[:page]).decorate
+    @payments = payments.order('payday DESC').page(params[:page]).decorate
   end
 
   def show

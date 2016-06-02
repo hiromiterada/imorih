@@ -37,10 +37,14 @@
   %p
     %b= Contract.human_attribute_name(:note) + ':'
     = @contract.note
+  %p
+    %b= Contract.human_attribute_name(:last_payday) + ':'
+    = @contract.last_payday
   - if @contract.overdue?
     %p.text-danger
       = t('payments.index.overdue_message',
-        date: l(@contract.payments.newest.date_ended + 1))
+          date: l(@contract.payments.newest.date_ended.next_month,
+          format: :short))
 
   = @contract.link_to_edit
   = @contract.link_to_destroy

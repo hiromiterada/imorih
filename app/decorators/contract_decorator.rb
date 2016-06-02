@@ -23,6 +23,11 @@ class ContractDecorator < Draper::Decorator
     [object.enum_i18n(:kind), '-', parking_name_and_area_names].join
   end
 
+  def last_payday
+    return '-' if object.payments.blank?
+    l(object.payments.newest.payday)
+  end
+
   def link_to_edit
     if h.policy(object).update?
       h.link_to h.t('views.edit'),
