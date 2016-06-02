@@ -86,4 +86,8 @@ Rails.application.configure do
     :user_name => Rails.application.secrets.smtp_username,
     :password => Rails.application.secrets.smtp_password,
   }
+
+  config.assets.precompile += Ckeditor.assets
+  config.assets.precompile += %w( *.js )
+  config.assets.precompile += %w( .svg .eot .woff .ttf )
 end
