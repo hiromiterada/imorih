@@ -24,7 +24,7 @@
     = @contract.enum_i18n(:status)
   %p
     %b= Contract.human_attribute_name(:rent) + ':'
-    = money_per_month(@contract.rent)
+    = @contract.rent_per_month_and_per_year
   %p
     %b= Contract.human_attribute_name(:date_signed) + ':'
     = l(@contract.date_signed)

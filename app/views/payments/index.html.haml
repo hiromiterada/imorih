@@ -6,12 +6,11 @@
   %thead
     %tr
       - if @contracts.count > 1
-        %th= Contract.model_name.human
-      %th= Payment.human_attribute_name(:payday)
-      %th= Payment.human_attribute_name(:amount)
-      %th= Payment.human_attribute_name(:period)
+        %th{style: 'width: 80px'}= Contract.model_name.human
+      %th{style: 'width: 100px'}= Payment.human_attribute_name(:payday)
+      %th{style: 'width: 80px'}= Payment.human_attribute_name(:amount)
+      %th{style: 'width: 100px'}= Payment.human_attribute_name(:period)
       %th= Payment.human_attribute_name(:message)
-      %th= Payment.human_attribute_name(:note)
 
   %tbody
     - @payments.each do |payment|
@@ -23,7 +22,6 @@
         %td= money(payment.amount)
         %td= payment.period
         %td= payment.message
-        %td= payment.note
 
 %br
 

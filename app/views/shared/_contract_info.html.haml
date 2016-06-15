@@ -9,7 +9,7 @@
           = link_to contract.parking_name_and_area_names,
             parking_path(canonical_name: contract.parking.canonical_name)
       %dt= Contract.human_attribute_name(:rent)
-      %dd= money_per_month(contract.rent)
+      %dd= contract.rent_per_month_and_per_year
       %dt= Contract.human_attribute_name(:period)
       %dd
         = contract.period

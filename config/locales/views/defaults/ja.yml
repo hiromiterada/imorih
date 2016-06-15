@@ -25,6 +25,7 @@ ja:
     auto_update: (自動更新)
     money_unit: '%{money}円'
     money_per_month: '%{money}円/月'
+    money_per_year: '%{money}円/年'
     welcome: 'ようこそ %{name} さん。'
     boolean:
       'yes': はい

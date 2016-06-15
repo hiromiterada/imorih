@@ -6,5 +6,6 @@
 
 %p= t('payments.index.first_message')
 %p= t('payments.index.limit_message', date: l(Payment::PAYDAY_LIMIT))
-%p= t('payments.index.warning_notice')
+%p
+  %b= t('payments.index.warning_notice')
 
