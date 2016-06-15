@@ -8,14 +8,17 @@
       = devise_error_messages!
 
       = f.hidden_field :reset_password_token
-      .form-group
-        = f.label :password, t('.new_password'), class: 'col-lg-2 control-label'
-        .col-lg-10
-          = f.password_field :password, autofocus: true, autocomplete: 'off', class: 'form-control'
-      .form-group
-        = f.label :password_confirmation, t('.confirm_new_password'), class: 'col-lg-2 control-label'
-        .col-lg-10
-          = f.password_field :password_confirmation, autocomplete: 'off', class: 'form-control'
+      .input-group
+        %span.input-group-addon
+          %i.fa.fa-key
+        = f.password_field :password, autofocus: true, autocomplete: 'off', class: 'form-control',
+          placeholder: t('.new_password'), class: 'form-control'
+      %span.help-block
+      .input-group
+        %span.input-group-addon
+          %i.fa.fa-key
+        = f.password_field :password_confirmation, autocomplete: 'off', class: 'form-control',
+          placeholder: t('.confirm_new_password'), class: 'form-control'
       %span.help-block
         = f.submit t('.submit'), class: 'btn btn-lg btn-primary btn-block'
     = render 'devise/shared/links'
