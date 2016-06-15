@@ -43,6 +43,11 @@ class Contract < ActiveRecord::Base
     Date.today > payments.newest.date_ended
   end
 
+  def active?
+    return false unless in_process?
+    true
+  end
+
   private
 
   def set_code

@@ -13,7 +13,7 @@
 
   %tbody
     - @payments.each do |payment|
-      %tr{class: "#{payment.pay_later? ? 'danger' : ''}"}
+      %tr{class: "#{payment.color}"}
         - if @contracts.count > 1
           %td= [Contract.model_name.human,
             @contracts.map(&:id).index(payment.contract.id)+1].join

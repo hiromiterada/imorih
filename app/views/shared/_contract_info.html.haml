@@ -1,18 +1,19 @@
-.well
-  %dl.dl-horizontal
-    %dt= Contract.human_attribute_name(:kind)
-    %dd= contract.enum_i18n(:kind)
-    - if contract.monthly_parking?
-      %dt= Contract.human_attribute_name(:parking_name_and_area_names)
+.panel{class: "panel-#{contract.color}"}
+  .panel-body
+    %dl.dl-horizontal
+      %dt= Contract.human_attribute_name(:kind)
+      %dd= contract.enum_i18n(:kind)
+      - if contract.monthly_parking?
+        %dt= Contract.human_attribute_name(:parking_name_and_area_names)
+        %dd
+          = link_to contract.parking_name_and_area_names,
+            parking_path(canonical_name: contract.parking.canonical_name)
+      %dt= Contract.human_attribute_name(:rent)
+      %dd= money_per_month(contract.rent)
+      %dt= Contract.human_attribute_name(:period)
       %dd
-        = link_to contract.parking_name_and_area_names,
-          parking_path(canonical_name: contract.parking.canonical_name)
-    %dt= Contract.human_attribute_name(:rent)
-    %dd= money_per_month(contract.rent)
-    %dt= Contract.human_attribute_name(:period)
-    %dd
-      = contract.period
-      - if contract.auto_updating?
-        = t('views.auto_update')
-    %dt= Contract.human_attribute_name(:status)
-    %dd= contract.enum_i18n(:status)
+        = contract.period
+        - if contract.auto_updating?
+          = t('views.auto_update')
+      %dt= Contract.human_attribute_name(:status)
+      %dd= contract.enum_i18n(:status)

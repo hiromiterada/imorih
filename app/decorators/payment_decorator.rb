@@ -19,6 +19,11 @@ class PaymentDecorator < Draper::Decorator
     [date_start, date_end].join(' - ')
   end
 
+  def color
+    return 'danger' if object.pay_later?
+    'default'
+  end
+
   def link_to_edit
     if h.policy(object).update?
       h.link_to h.t('views.edit'),

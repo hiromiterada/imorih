@@ -28,6 +28,12 @@ class ContractDecorator < Draper::Decorator
     l(object.payments.newest.payday)
   end
 
+  def color
+    return 'info' unless object.active?
+    return 'danger' if object.overdue?
+    'default'
+  end
+
   def link_to_edit
     if h.policy(object).update?
       h.link_to h.t('views.edit'),

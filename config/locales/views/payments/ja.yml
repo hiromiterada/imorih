@@ -5,7 +5,7 @@ ja:
       first_message: お客様のお支払いの履歴を表示しています。
       overdue_message: '%{date}以降のお支払いが滞っています。ご確認をお願いします。'
       warning_notice: ※お支払いは前月末日までに済ませてくださいますようにお願いします。
-      limit_message: '本サービスでは、入金の確認がとれている過去2年分(%{date}まで)の情報を閲覧することができます。'
+      limit_message: '本サービスでは、入金確認済みの過去2年分(%{date}まで)の情報を閲覧することができます。'
   admin:
     payments:
       confirm:

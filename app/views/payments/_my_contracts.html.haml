@@ -8,7 +8,7 @@
           %fieldset
             %legend.h5= [Contract.model_name.human, i+1].join
         = render 'shared/contract_info', contract: contract
-        - if contract.overdue?
+        - if contract.active? && contract.overdue?
           %p.text-danger
             = t('payments.index.overdue_message',
               date: l(contract.payments.newest.date_ended + 1))

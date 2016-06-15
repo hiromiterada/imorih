@@ -40,7 +40,7 @@
   %p
     %b= Contract.human_attribute_name(:last_payday) + ':'
     = @contract.last_payday
-  - if @contract.overdue?
+  - if @contract.active? && @contract.overdue?
     %p.text-danger
       = t('payments.index.overdue_message',
           date: l(@contract.payments.newest.date_ended.next_month,

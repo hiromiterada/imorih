@@ -21,7 +21,7 @@
 
   %tbody
     - @payments.each do |payment|
-      %tr{class: "#{payment.pay_later? ? 'danger' : ''}"}
+      %tr{class: "#{payment.color}"}
         %td= link_to payment.contract.try(:code_and_fullname), [:admin, payment.contract]
         %td= payment.contract.kind_and_parking_name if payment.contract.present?
         %td= l(payment.payday)
