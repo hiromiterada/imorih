@@ -8,8 +8,8 @@ ja:
         payday: 入金日
         amount: 金額
         period: ご利用期間
-        date_started: 期間開始日
-        date_ended: 期間終了日
+        date_started: ご利用期間開始日
+        date_ended: ご利用期間終了日
         message: メッセージ
         note: 備考
         sent_mail: メール送信

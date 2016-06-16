@@ -34,3 +34,4 @@ ja:
       successfully_destroyed: 削除しました。
       successfully_sent_mail: メールを送信しました。
       do_not_have_authorization: 権限がありません。
+      greater_than: は%{date}より未来の日付にしてください。

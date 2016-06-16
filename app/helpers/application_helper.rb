@@ -9,7 +9,6 @@ module ApplicationHelper
   end
 
   def money(money)
-    return if money.blank?
     [money, I18n.t('number.currency.format.unit')].join
   end
 end

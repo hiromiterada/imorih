@@ -33,3 +33,4 @@ en:
       successfully_updated: Successfully updated.
       successfully_destroyed: Successfully destroyed.
       do_not_have_authorization: Do not have authorization.
+      greater_than: must be greater than %{date}

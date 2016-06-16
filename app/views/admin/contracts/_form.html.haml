@@ -67,7 +67,7 @@
       %span.text-danger= t('views.required')
       .col-lg-10
         = f.number_field :rent
-        = t('number.currency.format.unit') + '/'
+        = money(nil) + '/'
         = f.select(:rent_unit, Contract.enum_i18n(:rent_unit).invert)
       = f.error_span(:rent)
     .form-group

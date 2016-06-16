@@ -15,6 +15,9 @@ class Contract < ActiveRecord::Base
     only_integer: true, greater_than_or_equal_to: 0
   }
   validates :areas, presence: true, if: :about_parking?
+  validates :date_signed, presence: true
+  validates :date_terminated, presence: true
+  validate :start_end_check
 
   belongs_to :user
   belongs_to :parking
@@ -81,6 +84,14 @@ class Contract < ActiveRecord::Base
         logger.info 'Retried 10 times so go to next loop.'
         raise
       end
+    end
+  end
+
+  def start_end_check
+    if self.date_signed > self.date_terminated
+      errors.add(:date_terminated,
+        I18n.t('views.messages.greater_than',
+          date: Contract.human_attribute_name(:date_signed)))
     end
   end
 end

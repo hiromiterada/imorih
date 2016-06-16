@@ -49,7 +49,7 @@
         = '-'
         = f.date_select :date_ended,
           default: Date.new(next_month.year, next_month.month), discard_day: true
-      = f.error_span(:date_started)
+      = f.error_span(:date_ended)
     .form-group
       = f.label :message, class: 'control-label col-lg-2'
       .col-lg-10
