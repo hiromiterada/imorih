@@ -81,8 +81,8 @@ class Admin::ContractsController < ApplicationController
 
   def contract_params
     params.require(:contract).permit(
-      :user_id, :owner_id, :parking_id, :code, :kind, :status,
-      :rent, :date_signed, :date_terminated, :auto_updating, :note,
+      :user_id, :owner_id, :parking_id, :code, :kind, :status, :rent,
+      :rent_unit, :date_signed, :date_terminated, :auto_updating, :note,
       :area_ids => []
     )
   end

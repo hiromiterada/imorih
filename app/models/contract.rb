@@ -29,6 +29,7 @@ class Contract < ActiveRecord::Base
 
   enum kind: %i(leased_land monthly_parking)
   enum status: %i(pending in_process completed canceled)
+  enum rent_unit: {month: 1, half_year: 6, year: 12}
 
   scope :by_master, -> (user) {
     where(owner_id: user.owners.pluck(:id))

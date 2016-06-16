@@ -9,6 +9,10 @@ en:
         in_process: In Process
         completed: Completed
         canceled: Canceled
+      rent_unit:
+        month: month
+        half_year: half year
+        year: year
   activerecord:
     models:
       contract: Contract
@@ -22,6 +26,7 @@ en:
         kind: Kind
         status: Status
         rent: Rent
+        rent_unit: Rent Unit
         date_signed: Date Signed
         date_terminated: Date Terminated
         period: Preiod

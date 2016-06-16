@@ -9,6 +9,10 @@ ja:
         in_process: 進行中
         completed: 完了
         canceled: キャンセル
+      rent_unit:
+        month: 月
+        half_year: 半年
+        year: 年
   activerecord:
     models:
       contract: ご契約
@@ -22,6 +26,7 @@ ja:
         kind: 種別
         status: 状態
         rent: 賃料
+        rent_unit: 賃料単位
         date_signed: 契約締結日
         date_terminated: 契約終了日
         period: ご契約期間

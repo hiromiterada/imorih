@@ -25,7 +25,7 @@
         %td= contract.code
         %td= contract.kind_and_parking_name
         %td= contract.enum_i18n(:status)
-        %td= contract.rent_per_month
+        %td= contract.rent_per_xxx
         %td= contract.period
         %td= link_to contract.user.try(:customer_code_and_fullname), [:admin, contract.user]
         %td= link_to t('views.show'), [:admin, contract], class: 'btn btn-default'

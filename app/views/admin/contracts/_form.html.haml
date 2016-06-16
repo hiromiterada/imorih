@@ -67,11 +67,13 @@
       %span.text-danger= t('views.required')
       .col-lg-10
         = f.number_field :rent
+        = t('number.currency.format.unit') + '/'
+        = f.select(:rent_unit, Contract.enum_i18n(:rent_unit).invert)
       = f.error_span(:rent)
     .form-group
       = f.label :date_signed, class: 'control-label col-lg-2'
       .col-lg-10
-        = f.date_select :date_signed
+        = f.date_select :date_signed, start_year: 1950
       = f.error_span(:date_signed)
     .form-group
       = f.label :date_terminated, class: 'control-label col-lg-2'

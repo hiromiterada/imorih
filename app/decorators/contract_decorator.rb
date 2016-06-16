@@ -34,18 +34,9 @@ class ContractDecorator < Draper::Decorator
     'default'
   end
 
-  def rent_per_month
+  def rent_per_xxx
     return if object.rent.blank?
-    h.t('views.money_per_month', money: object.rent)
-  end
-
-  def rent_per_year
-    return if object.rent.blank?
-    h.t('views.money_per_year', money: object.rent * 12)
-  end
-
-  def rent_per_month_and_per_year
-    [rent_per_month, ' (', rent_per_year, ')'].join
+    [h.money(object.rent), '/', object.enum_i18n(:rent_unit)].join
   end
 
   def link_to_edit

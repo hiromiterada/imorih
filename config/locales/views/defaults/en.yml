@@ -23,9 +23,6 @@ en:
     required: (Required)
     auto_generation: (Auto-generation)
     auto_update: (Revised automatically)
-    money_unit: '%{money} yen'
-    money_per_month: '%{money} yen/month'
-    money_per_year: '%{money} yen/year'
     welcome: 'Welcome %{name} !'
     boolean:
       'true': yes
