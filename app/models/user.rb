@@ -90,6 +90,9 @@ class User < ActiveRecord::Base
           { :value => login }
         ]).first
       else
+        if conditions.class.to_s == 'ActionController::Parameters'
+          conditions.permit!
+        end
         where(conditions).first
       end
     end
